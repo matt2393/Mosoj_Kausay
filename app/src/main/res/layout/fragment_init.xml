@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/imageTopInit"
+        android:src="@drawable/top_init"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardPublicoInit"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardPublicoInit"
+        android:layout_marginVertical="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        app:layout_constraintTop_toBottomOf="@id/imageTopInit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cardPersonalInit"
+        app:layout_constraintBottom_toTopOf="@id/textPatrocinadorInit">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_persons_all"
+            android:layout_margin="20dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardPersonalInit"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintTop_toTopOf="@id/cardPublicoInit"
+        app:layout_constraintStart_toEndOf="@id/cardPublicoInit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/cardPublicoInit">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_personal_segure"
+            android:layout_margin="20dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textPatrocinadorInit"
+        android:textAlignment="center"
+        android:paddingVertical="25dp"
+        android:text="¿Quieres ser patrocinador?"
+        app:layout_constraintTop_toBottomOf="@id/cardPublicoInit"
+        app:layout_constraintBottom_toTopOf="@id/viewPager2Init"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/viewPager2Init"
+        app:layout_constraintVertical_weight="3"
+        app:layout_constraintTop_toBottomOf="@id/textPatrocinadorInit"
+        app:layout_constraintBottom_toTopOf="@id/imageGotasoftInit"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/imageGotasoftInit"
+        android:src="@drawable/gotasoft"
+        app:layout_constraintVertical_weight="0.5"
+        app:layout_constraintTop_toBottomOf="@id/viewPager2Init"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imageChildfundInit"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/childfund_bolivia"
+        android:id="@+id/imageChildfundInit"
+        app:layout_constraintTop_toTopOf="@id/imageGotasoftInit"
+        app:layout_constraintStart_toEndOf="@id/imageGotasoftInit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imageGotasoftInit"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mosoj Kausay</string>
+    <string name="buscar">Buscar</string>
+    <string name="childnumber_tit">ChildNumber:</string>
+    <string name="edad_tit">Edad:</string>
+    <string name="contacto_tit">Contacto:</string>
+    <string name="village">Villas</string>
+    <string name="editar">Editar</string>
+    <string name="unidad_educativa">Unidad Educativa</string>
+</resources>
