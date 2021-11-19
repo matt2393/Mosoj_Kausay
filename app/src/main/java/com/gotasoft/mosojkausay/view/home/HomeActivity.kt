@@ -1,11 +1,22 @@
 package com.gotasoft.mosojkausay.view.home
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.databinding.ActivityHomeBinding
 import com.gotasoft.mosojkausay.utils.TipoIngreso
 import com.gotasoft.mosojkausay.utils.TipoPersonal
+import com.gotasoft.mosojkausay.utils.removeToken
+import com.gotasoft.mosojkausay.utils.setToken
+import com.gotasoft.mosojkausay.view.login.LoginActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var bind: ActivityHomeBinding
@@ -57,5 +68,32 @@ class HomeActivity : AppCompatActivity() {
 
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId ==  R.id.menuLogoutMain) {
+            AlertDialog.Builder(this)
+                .setTitle("Cerrar Sessión")
+                .setMessage("¿Esta seguro de cerrar sesión?")
+                .setPositiveButton("Aceptar") { _, _ ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        removeToken(this@HomeActivity)
+                    }
+                    startActivity(
+                        Intent(this, LoginActivity::class.java)
+                    )
+                    finish()
+                }
+                .setNegativeButton("Cancealr") { dialog, _ ->
+                    dialog?.dismiss()
+                }
+                .show()
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -7,8 +7,8 @@ const val URL_DOWNLOAD_IMAGE = "https://gotasoft.com:3001/slides/download?id="
 
 const val TODOS = "Todos"
 
-const val DEFAULT_USER_LOGIN = "aluna"
-const val DEFAULT_PASSWORD_LOGIN = "123456"
+const val DEFAULT_USER_LOGIN = ""//"aluna"
+const val DEFAULT_PASSWORD_LOGIN = ""//""123456"
 
 
 const val US_ADMIN = "administrador"

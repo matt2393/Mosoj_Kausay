@@ -12,10 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentLoginBinding
 import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
-import com.gotasoft.mosojkausay.utils.TipoIngreso
-import com.gotasoft.mosojkausay.utils.TipoPersonal
-import com.gotasoft.mosojkausay.utils.decodeJWT
-import com.gotasoft.mosojkausay.utils.fromJsonToken
+import com.gotasoft.mosojkausay.utils.*
 import com.gotasoft.mosojkausay.view.home.HomeActivity
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import kotlinx.coroutines.flow.collect
@@ -59,6 +56,7 @@ class LoginFragment: Fragment() {
                     is StateData.Success -> {
                         loadDialog?.dismiss()
                         if(it.data.success) {
+                            setToken(requireContext(), it.data.token)
                             TOKEN = "Bearer ${it.data.token}"
                             val dataToken = it.data.token.decodeJWT()
                             val tipoPersonal = if (dataToken.size > 1) {
@@ -74,8 +72,13 @@ class LoginFragment: Fragment() {
                                     .putExtra(HomeActivity.TIPO, TipoIngreso.PERSONAL.name)
                                     .putExtra(HomeActivity.TIPO_PERSONAL, tipoPersonal.name)
                             )
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                            requireActivity().finish()
+                        } else {
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
                         }
-                        Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+
+
                     }
                     is StateData.Error -> {
                         loadDialog?.dismiss()

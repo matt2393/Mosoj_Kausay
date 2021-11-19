@@ -93,7 +93,7 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
                     .request( {
                         val locRequest = LocationRequest.create()
                             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                            .setNumUpdates(1)
+                            .setNumUpdates(2)
                             .setInterval(100)
                             .setFastestInterval(100)
                         googleMap?.isMyLocationEnabled = true
