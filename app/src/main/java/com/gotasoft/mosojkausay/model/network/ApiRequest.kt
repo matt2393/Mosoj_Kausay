@@ -1,6 +1,7 @@
 package com.gotasoft.mosojkausay.model.network
 
 import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
+import com.gotasoft.mosojkausay.model.entities.request.MessageRequest
 import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
 import com.gotasoft.mosojkausay.model.entities.response.*
 import retrofit2.http.*
@@ -39,4 +40,21 @@ interface ApiRequest {
                             @Query("value") value: String = "",
                             @Query("items") items: Int = 10,
                             @Query("page") page: Int = 1): List<MensajeResponse>
+
+    @GET("mensajeria")
+    suspend fun getMensajesAll(@Header("Authorization") token: String = "",
+                            @Query("value") value: String = "",
+                            @Query("items") items: Int = 10,
+                            @Query("page") page: Int = 1): List<MessageResponse>
+
+    @GET("usuarios/personal")
+    suspend fun getPersonal(@Header("Authorization") token: String = "",
+                            @Query("key") key: String = "username",
+                            @Query("value") value: String = "",
+                            @Query("keyUsuario") keyUsuario: String = "rol",
+                            @Query("valueUsuario") valueUsuario: String = ""): List<PersonalResponse>
+
+    @POST("mensajeria")
+    suspend fun addMess(@Header("Authorization") token: String = "",
+                        @Body messageRequest: MessageRequest): MessageResponse
 }

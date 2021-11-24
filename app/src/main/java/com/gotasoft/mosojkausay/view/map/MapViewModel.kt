@@ -25,8 +25,14 @@ class MapViewModel(private val mapRepository: MapRepository = MapRepository()): 
         viewModelScope.launch {
             _rutas.value = StateData.Loading
             mapRepository.getRutas(origen, des, key, alternativas, modo)
-                .catch { _rutas.value = StateData.Error(it)}
-                .collect { _rutas.value = StateData.Success(it) }
+                .catch {
+                    _rutas.value = StateData.None
+                    _rutas.value = StateData.Error(it)
+                }
+                .collect {
+                    _rutas.value = StateData.None
+                    _rutas.value = StateData.Success(it)
+                }
         }
     }
 

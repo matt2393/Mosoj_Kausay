@@ -18,6 +18,7 @@ import com.gotasoft.mosojkausay.TODOS
 import com.gotasoft.mosojkausay.databinding.FragmentListParticipantesBinding
 import com.gotasoft.mosojkausay.utils.PagListener
 import com.gotasoft.mosojkausay.view.participantes.EditParticipante.EditParticipanteActivity
+import com.gotasoft.mosojkausay.view.participantes.perfil_participante.PerfilParticipanteActivity
 import com.gotasoft.mosojkausay.view.villa.VillaDialog
 import kotlinx.coroutines.flow.collect
 
@@ -57,6 +58,11 @@ class ListParticipantesFragment: Fragment() {
             val mad = it.madre_telefono ?: ""
             ContactoDialog.newInstance(ref = ref, padre = pad, madre = mad)
                 .show(childFragmentManager, ContactoDialog.TAG)
+        }, perfil = {
+            startActivity(
+                Intent(requireContext(), PerfilParticipanteActivity::class.java)
+                    .putExtra(PerfilParticipanteActivity.PART, it)
+            )
         })
         val lm = LinearLayoutManager(requireContext())
         bind.recyclerParticipante.layoutManager = lm

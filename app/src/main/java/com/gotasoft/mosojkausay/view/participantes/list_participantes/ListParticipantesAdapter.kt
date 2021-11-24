@@ -11,7 +11,8 @@ import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 class ListParticipantesAdapter(var arrayParticipantes: ArrayList<ParticipanteResponse> = arrayListOf(),
                                val loc: (ParticipanteResponse) -> Unit,
                                val edit: (ParticipanteResponse) -> Unit,
-                               val marcar: (ParticipanteResponse) -> Unit): RecyclerView.Adapter<ListParticipantesAdapter.ListParticipantesViewHolder>() {
+                               val marcar: (ParticipanteResponse) -> Unit,
+                               val perfil: (ParticipanteResponse) -> Unit): RecyclerView.Adapter<ListParticipantesAdapter.ListParticipantesViewHolder>() {
     inner class ListParticipantesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding = ItemListParticipanteBinding.bind(itemView)
         fun bind(participante: ParticipanteResponse) {
@@ -20,6 +21,9 @@ class ListParticipantesAdapter(var arrayParticipantes: ArrayList<ParticipanteRes
             binding.textEdadItemParticipante.text = participante.edad.toString()
             binding.fabEditItemParticipante.setOnClickListener {
                 edit(participante)
+            }
+            binding.fabDataItemParticipante.setOnClickListener {
+                perfil(participante)
             }
             with(binding.fabLocationItemParticipante) {
                 if (participante.latitud.isNullOrBlank() || participante.longitud.isNullOrEmpty()) {

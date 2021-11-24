@@ -64,8 +64,6 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
         binding = DialogMapBinding.inflate(requireActivity().layoutInflater, null, false)
         alert.setView(binding?.root)
 
-        loadDialog = LoadDialog()
-        loadDialog?.isCancelable = false
 
         arguments?.let {
             participante = it.getParcelable(PARTICIPANTE)
@@ -87,6 +85,7 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
+        var isLoadRuta = false
         if(participante!=null){
             if(!participante!!.latitud.isNullOrEmpty() && !participante!!.longitud.isNullOrEmpty()){
                 LocationPermission.with(this)
@@ -100,11 +99,18 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
                         LocationServices.getFusedLocationProviderClient(requireContext())
                             .requestLocationUpdates(locRequest, object: LocationCallback() {
                                 override fun onLocationResult(p0: LocationResult) {
-                                    loc = p0.lastLocation
-                                    val origen = "${loc!!.latitude},${loc!!.longitude}"
-                                    val destino = "${participante!!.latitud},${participante!!.longitud}"
-
-                                    viewModel.getRutas(origen,destino, BuildConfig.MAPS_API_KEY)
+                                    if(!isLoadRuta) {
+                                        isLoadRuta = true
+                                        loc = p0.lastLocation
+                                        val origen = "${loc!!.latitude},${loc!!.longitude}"
+                                        val destino =
+                                            "${participante!!.latitud},${participante!!.longitud}"
+                                        viewModel.getRutas(
+                                            origen,
+                                            destino,
+                                            BuildConfig.MAPS_API_KEY
+                                        )
+                                    }
                                 }
                             }, Looper.getMainLooper())
                     }, {
@@ -186,18 +192,22 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
             viewModel.rutas.collect {
                 when(it) {
                     is StateData.Success -> {
-                        loadDialog?.dismiss()
                         dibujar(it.data)
                     }
                     is StateData.Error -> {
-                        loadDialog?.dismiss()
                         Log.e("MAPError",it.error.toString())
                         Toast.makeText(requireContext(), "No se pudo encontrar una ruta", Toast.LENGTH_SHORT).show()
                     }
                     is StateData.Loading -> {
+                        loadDialog = LoadDialog()
+                        loadDialog?.isCancelable = false
                         loadDialog?.show(childFragmentManager, "load")
                     }
-                    is StateData.None -> { }
+                    is StateData.None -> {
+                        if(loadDialog != null) {
+                            loadDialog?.dismiss()
+                        }
+                    }
                 }
             }
         }

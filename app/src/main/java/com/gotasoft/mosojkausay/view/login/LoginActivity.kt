@@ -3,7 +3,6 @@ package com.gotasoft.mosojkausay.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.ActivityLoginBinding
@@ -29,13 +28,13 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             getToken(this@LoginActivity).collect {
                 if(it != null) {
-                    TOKEN = "Bearer it"
+                    TOKEN = it
                     val dataToken = it.decodeJWT()
                     val tipoPersonal = if (dataToken.size > 1) {
                         val tokenR = dataToken[1].fromJsonToken()
                         when (tokenR.rol) {
                             US_ADMIN -> TipoPersonal.ADMIN
-                            US_TECNICO_1, US_TECNICO_2, US_TECNICO_3 -> TipoPersonal.TECNICO
+                            US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
                             else -> TipoPersonal.TECNICO
                         }
                     } else TipoPersonal.TECNICO

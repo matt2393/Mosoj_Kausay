@@ -57,13 +57,13 @@ class LoginFragment: Fragment() {
                         loadDialog?.dismiss()
                         if(it.data.success) {
                             setToken(requireContext(), it.data.token)
-                            TOKEN = "Bearer ${it.data.token}"
+                            TOKEN = it.data.token
                             val dataToken = it.data.token.decodeJWT()
                             val tipoPersonal = if (dataToken.size > 1) {
                                 val tokenR = dataToken[1].fromJsonToken()
                                 when (tokenR.rol) {
                                     US_ADMIN -> TipoPersonal.ADMIN
-                                    US_TECNICO_1, US_TECNICO_2, US_TECNICO_3 -> TipoPersonal.TECNICO
+                                    US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
                                     else -> TipoPersonal.TECNICO
                                 }
                             } else TipoPersonal.TECNICO

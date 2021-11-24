@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MosojKausay">
         <activity
+            android:name=".view.participantes.perfil_participante.PerfilParticipanteActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.noticia.NoticiaActivity"
             android:exported="false" />
         <activity

@@ -12,9 +12,10 @@ const val DEFAULT_PASSWORD_LOGIN = ""//""123456"
 
 
 const val US_ADMIN = "administrador"
-const val US_TECNICO_1 = "patrocinio"
-const val US_TECNICO_2 = "facilitador_programas"
-const val US_TECNICO_3 = "tecnico_programas"
+const val US_PATROCINIO = "responsable_patrocinio"
+const val US_FACILITADOR = "facilitador_programas"
+const val US_TECNICO = "tecnico_programas"
+const val US_PARTICIPANTE = "participante"
 
 
 /**

@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="15dp"
-        android:visibility="gone"
         android:id="@+id/fabCrearMess"
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white"/>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.participantes.EditParticipante.EditParticipanteActivity">
+    tools:context=".view.participantes.perfil_participante.PerfilParticipanteActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,27 +14,18 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:id="@+id/coordinatorImages"
+            android:id="@+id/coordinatorPerfilImages"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilPart">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageDomicilio"
+                android:id="@+id/imagePerfilDomicilio"
                 android:src="@drawable/ic_house_color"
                 android:scaleType="centerCrop"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/editar"
-                android:gravity="center"
-                android:padding="5dp"
-                android:layout_gravity="bottom"
-                android:textColor="@color/white"
-                android:background="@color/black_transparent"/>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -45,33 +36,25 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imagePart"
+                    android:id="@+id/imagePerfilPart"
                     android:src="@drawable/ic_children"
                     android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editar"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_gravity="bottom"
-                    android:textColor="@color/white"
-                    android:background="@color/black_transparent"/>
+
             </com.google.android.material.card.MaterialCardView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart"
+            android:id="@+id/cardPerfilPart"
             android:layout_marginTop="25dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            app:layout_constraintTop_toBottomOf="@id/coordinatorImages"
+            app:layout_constraintTop_toBottomOf="@id/coordinatorPerfilImages"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart1">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilPart1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -81,25 +64,39 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textNombreEditPart"
+                    android:id="@+id/textNombrePerfilPart"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="15dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textChildNumberEditPart"/>
+                    app:layout_constraintEnd_toStartOf="@id/fabLocPerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textChildNumberPerfilPart"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/purple_500"
-                    android:id="@+id/textChildNumberEditPart"
-                    app:layout_constraintTop_toBottomOf="@id/textNombreEditPart"
-                    app:layout_constraintStart_toStartOf="@id/textNombreEditPart"
-                    app:layout_constraintEnd_toEndOf="@id/textNombreEditPart"
+                    android:id="@+id/textChildNumberPerfilPart"
+                    app:layout_constraintTop_toBottomOf="@id/textNombrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textNombrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textNombrePerfilPart"
                     app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fabLocPerfilPart"
+                    app:backgroundTint="@color/purple_500"
+                    app:srcCompat="@drawable/ic_location"
+                    app:tint="@color/white"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintTop_toTopOf="@id/textNombrePerfilPart"
+                    app:layout_constraintStart_toEndOf="@id/textNombrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/textNombrePerfilPart"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -108,16 +105,16 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart1"
+            android:id="@+id/cardPerfilPart1"
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilPart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart2">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilBenef2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -126,7 +123,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit1"
+                    android:id="@+id/textTitPerfil1"
                     android:text="Datos Afiliado"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
@@ -136,73 +133,87 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputCiPart"/>
+                    app:layout_constraintBottom_toTopOf="@id/textinputCiPerfilPart"/>
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputCiPart"
+                    android:id="@+id/textinputCiPerfilPart"
                     android:layout_marginTop="25dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    android:visibility="gone"
                     android:hint="CI"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit1"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputGeneroPart">
+                    app:layout_constraintBottom_toTopOf="@id/textinputGeneroBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editCiPart"
+                        android:id="@+id/editPerfilCiBenef"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/textinputGeneroBenef"
+                    android:hint="Género"
+                    android:enabled="false"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white_transparent"
+                    app:layout_constraintTop_toBottomOf="@id/textinputCiPerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputCiPerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputCiPerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputTelefonoBenef">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editPerfilGeneroBenef"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:id="@+id/textinputGeneroPart"
-                    android:hint="Género"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/textinputTelefonoBenef"
                     android:layout_marginBottom="10dp"
+                    android:hint="Celular"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputCiPart"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputTelefonoPart">
-                    <AutoCompleteTextView
+                    app:layout_constraintTop_toBottomOf="@id/textinputGeneroBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputGeneroBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputGeneroBenef"
+                    app:layout_constraintBottom_toTopOf="@id/textinputFechaNBenef">
+                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editGeneroPart"
-                        android:inputType="none"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="false"/>
+                        android:id="@+id/editPerfilTelefonoBenef"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputTelefonoPart"
+                    android:id="@+id/textinputFechaNBenef"
                     android:layout_marginBottom="15dp"
-                    android:hint="Celular"
-                    android:visibility="gone"
+                    android:hint="Fecha de Nacimiento"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputGeneroPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputGeneroPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputGeneroPart"
+                    app:layout_constraintTop_toBottomOf="@id/textinputTelefonoBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputTelefonoBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputTelefonoBenef"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTelefonoPart"
-                        android:inputType="number"/>
+                        android:id="@+id/editPerfilFechaNBenef"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -210,16 +221,16 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart2"
+            android:id="@+id/cardPerfilBenef2"
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart1"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilPart1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart3">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilBenef3">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -227,7 +238,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit2"
+                    android:id="@+id/textTitPerfil2"
                     android:text="Datos Tutor"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
@@ -237,7 +248,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputTutorPart"/>
+                    app:layout_constraintBottom_toTopOf="@id/textinputTutorBenef"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -247,35 +258,37 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputTutorPart"
+                    android:id="@+id/textinputTutorBenef"
                     android:hint="Nombre Tutor"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit2"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputTelefonoTutorPart">
+                    app:layout_constraintBottom_toTopOf="@id/textinputTelefonoTutorBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTutorPart"
+                        android:id="@+id/editPerfilTutorBenef"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputTelefonoTutorPart"
+                    android:id="@+id/textinputTelefonoTutorBenef"
                     android:layout_marginBottom="15dp"
-                    android:hint="Teléfono Tutor"
+                    android:hint="Teléfono tutor"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputTutorPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputTutorPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputTutorPart"
+                    app:layout_constraintTop_toBottomOf="@id/textinputTutorBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputTutorBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputTutorBenef"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTelefonoTutorPart"
+                        android:id="@+id/editPerfilTelefonoTutorBenef"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -284,14 +297,15 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart3"
+            android:id="@+id/cardPerfilBenef3"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart2"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilBenef2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart4">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilBenef4">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -300,7 +314,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit3"
+                    android:id="@+id/textTitPerfil3"
                     android:text="Datos Familiares"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
@@ -310,7 +324,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputPadrePart"/>
+                    app:layout_constraintBottom_toTopOf="@id/textinputPadreBenef"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -319,36 +333,38 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
+                    android:enabled="false"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputPadrePart"
+                    android:id="@+id/textinputPadreBenef"
                     android:hint="Nombre Padre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit3"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputOcupacionPadrePart">
+                    app:layout_constraintBottom_toTopOf="@id/textinputOcupacionPadrePerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editPadrePart"
+                        android:id="@+id/editPerfilPadrePart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputOcupacionPadrePart"
+                    android:id="@+id/textinputOcupacionPadrePerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Ocupación Padre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputPadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputPadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputPadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputCelularPadrePart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputPadreBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputPadreBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputPadreBenef"
+                    app:layout_constraintBottom_toTopOf="@id/textinputCelularPadrePerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editOcupacionPadrePart"
+                        android:id="@+id/editPerfilOcupacionPadrePart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -356,19 +372,20 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputCelularPadrePart"
+                    android:id="@+id/textinputCelularPadrePerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Celular Padre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputOcupacionPadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputOcupacionPadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputOcupacionPadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputMadrePart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputOcupacionPadrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputOcupacionPadrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputOcupacionPadrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputMadrePerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editCelularPadrePart"
-                        android:inputType="number"/>
+                        android:id="@+id/editPerfilCelularPadrePart"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -376,35 +393,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputMadrePart"
+                    android:id="@+id/textinputMadrePerfilPart"
+                    android:enabled="false"
                     android:hint="Nombre Madre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputCelularPadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputCelularPadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputCelularPadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputoOcupacionMadrePart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputCelularPadrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputCelularPadrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputCelularPadrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputOcupacionMadrePerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editMadrePart"
+                        android:id="@+id/editPerfilMadrePart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputoOcupacionMadrePart"
+                    android:id="@+id/textinputOcupacionMadrePerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Ocupación Madre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputMadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputMadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputMadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputCelularMadrePart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputMadrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputMadrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputMadrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputCelularMadrePerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editOcupacionMadrePart"
+                        android:id="@+id/editPerfilOcupacionMadrePart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -412,18 +431,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputCelularMadrePart"
+                    android:id="@+id/textinputCelularMadrePerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Celular Madre"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputoOcupacionMadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputoOcupacionMadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputoOcupacionMadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputRefFamiliaPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputOcupacionMadrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputOcupacionMadrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputOcupacionMadrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputRefFamiliaPerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editCelularMadrePart"
+                        android:id="@+id/editPerfilCelularMadrePart"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -431,36 +451,38 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputRefFamiliaPart"
+                    android:id="@+id/textinputRefFamiliaPerfilPart"
                     android:hint="Referencia Familiar"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputCelularMadrePart"
-                    app:layout_constraintStart_toStartOf="@id/textinputCelularMadrePart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputCelularMadrePart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputNumRefFamiliaPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputCelularMadrePerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputCelularMadrePerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputCelularMadrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputNumRefFamiliaPerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editRefFamiliaPart"
+                        android:id="@+id/editPerfilRefFamiliaPart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputNumRefFamiliaPart"
+                    android:id="@+id/textinputNumRefFamiliaPerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Número de Referencia Familiar"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputRefFamiliaPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputRefFamiliaPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputRefFamiliaPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputWhatsappFamiliaPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputRefFamiliaPerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputRefFamiliaPerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputRefFamiliaPerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputWhatsappFamiliaPerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editNumRefFamiliaPart"
+                        android:id="@+id/editPerfilNumRefFamiliaPart"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -468,19 +490,20 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputWhatsappFamiliaPart"
+                    android:id="@+id/textinputWhatsappFamiliaPerfilPart"
                     android:layout_marginBottom="15dp"
+                    android:enabled="false"
                     android:hint="Whatsapp Familiar"
                     android:visibility="gone"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputNumRefFamiliaPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputNumRefFamiliaPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputNumRefFamiliaPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputHijosPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputNumRefFamiliaPerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputNumRefFamiliaPerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputNumRefFamiliaPerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputHijosPerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editWhatsappFamiliaPart"
+                        android:id="@+id/editPerfilWhatsappFamiliaBenef"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -488,18 +511,21 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputHijosPart"
+                    android:id="@+id/textinputHijosPerfilPart"
+                    android:enabled="false"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:hint="Número de Hijos"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputWhatsappFamiliaPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputNumRefFamiliaPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputNumRefFamiliaPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputHijosAfilPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputWhatsappFamiliaPerfilPart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textinputHijosAfilPerfilPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editHijosPart"
+                        android:id="@+id/editPerfilHijosPart"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -507,18 +533,21 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputHijosAfilPart"
+                    android:id="@+id/textinputHijosAfilPerfilPart"
+                    android:enabled="false"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
                     android:hint="Número de Hijos Afiliados"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputHijosPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputHijosPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputHijosPart"
+                    app:layout_constraintTop_toBottomOf="@id/textinputHijosPerfilPart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editHijosAfilPart"
+                        android:id="@+id/editPerfilHijosAfilPart"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -527,15 +556,16 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart4"
+            android:id="@+id/cardPerfilBenef4"
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart3"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilBenef3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart5">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilPart5">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -545,7 +575,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit4"
+                    android:id="@+id/textTitPerfil4"
                     android:text="Datos Dirección"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
@@ -555,140 +585,119 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputDireccionPart"/>
+                    app:layout_constraintBottom_toTopOf="@id/textinputDireccionBenef"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputDireccionPart"
+                    android:id="@+id/textinputDireccionBenef"
                     android:layout_marginTop="25dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    android:hint="Dirección"
-                    android:visibility="gone"
+                    android:enabled="false"
+                    android:hint="Direccion"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit4"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputRefDireccionPart">
+                    app:layout_constraintBottom_toTopOf="@id/textinputRefDireccionBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editDireccionPart"
-                        android:inputType="text"/>
+                        android:id="@+id/editPerfilDireccionBenef"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputRefDireccionPart"
+                    android:id="@+id/textinputRefDireccionBenef"
                     android:layout_marginBottom="10dp"
-                    android:hint="Referencia de la Dirección"
-                    android:visibility="gone"
+                    android:enabled="false"
+                    android:hint="Referencia de la Direccion"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputDireccionPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputDireccionPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputDireccionPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputDescCasaPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputDireccionBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputDireccionBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputDireccionBenef"
+                    app:layout_constraintBottom_toTopOf="@id/textinputDescCasaBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editRefDireccionPart"
-                        android:inputType="text"/>
+                        android:id="@+id/editPerfilRefDireccionBenef"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputDescCasaPart"
+                    android:id="@+id/textinputDescCasaBenef"
                     android:layout_marginBottom="10dp"
+                    android:enabled="false"
                     android:hint="Descripción de la Casa"
-                    android:visibility="gone"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputRefDireccionPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputRefDireccionPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputRefDireccionPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputLatPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputRefDireccionBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputRefDireccionBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputRefDireccionBenef"
+                    app:layout_constraintBottom_toTopOf="@id/textinputLatBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editDescCasaPart"
-                        android:inputType="text"/>
+                        android:id="@+id/editPerfilDescCasaBenef"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputLatPart"
-                    android:layout_marginBottom="10dp"
+                    android:id="@+id/textinputLatBenef"
+                    android:layout_marginBottom="15dp"
                     android:hint="Latitud"
                     android:background="@color/white_transparent"
                     android:enabled="false"
-
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="15dp"
-                    app:layout_constraintTop_toBottomOf="@id/textinputDescCasaPart"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/textinputLongPart"
-                    app:layout_constraintBottom_toTopOf="@id/buttonLocPart">
+                    app:layout_constraintTop_toBottomOf="@id/textinputDescCasaBenef"
+                    app:layout_constraintStart_toStartOf="@id/textinputDescCasaBenef"
+                    app:layout_constraintEnd_toStartOf="@id/textinputLongBenef"
+                    app:layout_constraintBottom_toBottomOf="parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editLatPart"
+                        android:id="@+id/editPerfilLatBenef"
                         android:inputType="numberSigned|numberDecimal"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputLongPart"
+                    android:id="@+id/textinputLongBenef"
                     android:layout_marginStart="10dp"
                     android:hint="Longitud"
                     android:enabled="false"
-                    android:layout_marginEnd="15dp"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toTopOf="@id/textinputLatPart"
-                    app:layout_constraintStart_toEndOf="@id/textinputLatPart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@id/textinputLatPart">
+                    app:layout_constraintTop_toTopOf="@id/textinputLatBenef"
+                    app:layout_constraintStart_toEndOf="@id/textinputLatBenef"
+                    app:layout_constraintEnd_toEndOf="@id/textinputDescCasaBenef"
+                    app:layout_constraintBottom_toBottomOf="@id/textinputLatBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editLongPart"
+                        android:id="@+id/editPerfilLongBenef"
                         android:inputType="numberSigned|numberDecimal"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonLocPart"
-                    android:text="Obtener Ubicación"
-                    android:layout_marginBottom="15dp"
-                    android:drawableEnd="@drawable/ic_location"
-                    android:drawableTint="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/textinputLatPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputLatPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputLongPart"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart5"
+            android:id="@+id/cardPerfilPart5"
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart4"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilBenef4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardEditPart6">
+            app:layout_constraintBottom_toTopOf="@id/cardPerfilBenef6">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -697,8 +706,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit5"
-                    android:text="Datos Académicos"
+                    android:id="@+id/textTitPerfil5"
+                    android:text="Datos Academicos"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -707,94 +716,86 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputGradoEstPart"/>
+                    app:layout_constraintBottom_toTopOf="@id/textinputPerfilNivelPart"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputGradoEstPart"
+                    android:id="@+id/textinputPerfilNivelPart"
                     android:layout_marginTop="25dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
+                    android:enabled="false"
                     android:hint="Nivel"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit5"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/textinputUEPart">
+                    app:layout_constraintBottom_toTopOf="@id/textinputPerfilUEPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editGradoEstPart"
+                        android:id="@+id/editPerfilNivelPart"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputUEPart"
+                    android:id="@+id/textinputPerfilUEPart"
                     android:hint="@string/unidad_educativa"
                     android:layout_marginBottom="10dp"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputGradoEstPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputGradoEstPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputGradoEstPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputCursoPart">
-                    <!--<AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editUEBenef"
-                        android:inputType="none"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="false"/>-->
+                    app:layout_constraintTop_toBottomOf="@id/textinputPerfilNivelPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputPerfilNivelPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputPerfilNivelPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputPerfilCursoPart">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editUEPart"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:id="@+id/textinputCursoPart"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Curso"
-                    android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputUEPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputUEPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputUEPart"
-                    app:layout_constraintBottom_toTopOf="@id/textinputTurnoPart">
-                    <AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editCursoPart"
-                        android:inputType="none"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="false"/>
+                        android:id="@+id/editPerfilUEPart"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/textinputTurnoPart"
+                    android:id="@+id/textinputPerfilCursoPart"
+                    android:layout_marginBottom="10dp"
+                    android:hint="Curso"
+                    android:enabled="false"
+                    android:background="@color/white_transparent"
+                    app:layout_constraintTop_toBottomOf="@id/textinputPerfilUEPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputPerfilUEPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputPerfilUEPart"
+                    app:layout_constraintBottom_toTopOf="@id/textinputPerfilTurnoPart">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editPerfilCursoPart"
+                        android:inputType="text"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/textinputPerfilTurnoPart"
                     android:layout_marginBottom="10dp"
                     android:hint="Turno"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textinputCursoPart"
-                    app:layout_constraintStart_toStartOf="@id/textinputCursoPart"
-                    app:layout_constraintEnd_toEndOf="@id/textinputCursoPart"
+                    app:layout_constraintTop_toBottomOf="@id/textinputPerfilCursoPart"
+                    app:layout_constraintStart_toStartOf="@id/textinputPerfilCursoPart"
+                    app:layout_constraintEnd_toEndOf="@id/textinputPerfilCursoPart"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTurnoPart"
-                        android:inputType="text"
-                        android:textAllCaps="true"
-                        android:maxLength="1"/>
+                        android:id="@+id/editPerfilTurnoPart"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -802,16 +803,17 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cardEditPart6"
+            android:id="@+id/cardPerfilBenef6"
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             app:cardCornerRadius="10dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart5"
+            app:layout_constraintTop_toBottomOf="@id/cardPerfilPart5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/buttonGuardarPart">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -820,7 +822,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textTitEdit6"
+                    android:id="@+id/textTitPerfil6"
                     android:text="Datos Patrocinador"
                     android:layout_marginTop="25dp"
                     android:textSize="18sp"
@@ -841,16 +843,17 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
+                    android:enabled="false"
                     android:hint="Nombre del Patrocinador"
                     android:background="@color/white_transparent"
-                    app:layout_constraintTop_toBottomOf="@id/textTitEdit6"
+                    app:layout_constraintTop_toBottomOf="@id/textTitPerfil6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/textinputEstadoPatrocinadorBenef">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editPatrocinadorBenef"
+                        android:id="@+id/editPerfilPatrocinadorBenef"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -860,6 +863,7 @@
                     android:id="@+id/textinputEstadoPatrocinadorBenef"
                     android:layout_marginBottom="10dp"
                     android:hint="Estado del Patrocinio"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
                     app:layout_constraintTop_toBottomOf="@id/textinputPatrocinadorBenef"
                     app:layout_constraintStart_toStartOf="@id/textinputPatrocinadorBenef"
@@ -868,7 +872,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editEstadoPatrocinadorBenef"
+                        android:id="@+id/editPerfilEstadoPatrocinadorBenef"
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -878,6 +882,7 @@
                     android:id="@+id/textinputContactoPatrocinadorBenef"
                     android:layout_marginBottom="15dp"
                     android:hint="Contacto del Patrocinador"
+                    android:enabled="false"
                     android:background="@color/white_transparent"
                     app:layout_constraintTop_toBottomOf="@id/textinputEstadoPatrocinadorBenef"
                     app:layout_constraintStart_toStartOf="@id/textinputEstadoPatrocinadorBenef"
@@ -886,25 +891,12 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editContactoPatrocinadorBenef"
-                        android:inputType="number"/>
+                        android:id="@+id/editPerfilContactoPatrocinadorBenef"
+                        android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonGuardarPart"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="25dp"
-            android:text="Actualizar"
-            android:layout_marginHorizontal="15dp"
-            app:layout_constraintTop_toBottomOf="@id/cardEditPart6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
