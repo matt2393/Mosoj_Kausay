@@ -1,6 +1,7 @@
 package com.gotasoft.mosojkausay.view.login.init
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,6 +54,12 @@ class InitFragment: Fragment() {
                 .addToBackStack(FormFragment.TAG)
                 .commit()
         }
+        bind.imageGotasoftInit.setOnClickListener {
+            openWeb("https://gotasoft.com/")
+        }
+        bind.imageChildfundInit.setOnClickListener {
+            openWeb("https://www.childfundbolivia.org/")
+        }
         adapter = InitAdapter()
         bind.viewPager2Init.adapter = adapter
         bind.viewPager2Init.clipToPadding = false
@@ -91,5 +98,11 @@ class InitFragment: Fragment() {
                 }
             }
         }
+    }
+
+    private fun openWeb(url: String) {
+        startActivity(
+            Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        )
     }
 }

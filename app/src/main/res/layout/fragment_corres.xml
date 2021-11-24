@@ -9,37 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:id="@+id/cardParticipantesTecnico"
+        android:id="@+id/cardReply"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cardMessTecnico">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:drawableStartCompat="@drawable/ic_persons_all"
-            app:drawableEndCompat="@drawable/ic_chevron_right"
-            app:drawableTint="@color/gray"
-            android:drawablePadding="10dp"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:text="Participantes"/>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:id="@+id/cardMessTecnico"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/cardParticipantesTecnico"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cardNotiTecnico">
+        app:layout_constraintBottom_toTopOf="@id/cardWelcome">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,40 +26,65 @@
             android:drawablePadding="10dp"
             android:textSize="18sp"
             android:gravity="center_vertical"
-            android:text="Mensajeria"/>
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:id="@+id/cardNotiTecnico"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/cardMessTecnico"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cardCorresTecnico">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:drawableStartCompat="@drawable/ic_news"
-            app:drawableEndCompat="@drawable/ic_chevron_right"
-            app:drawableTint="@color/gray"
-            android:drawablePadding="10dp"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:text="Noticias"/>
+            android:text="Reply"/>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:id="@+id/cardCorresTecnico"
+        android:id="@+id/cardWelcome"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/cardNotiTecnico"
+        app:layout_constraintTop_toBottomOf="@id/cardReply"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardDfc">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:drawableStartCompat="@drawable/ic_mess"
+            app:drawableEndCompat="@drawable/ic_chevron_right"
+            app:drawableTint="@color/gray"
+            android:drawablePadding="10dp"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:text="Welcome"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:id="@+id/cardDfc"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/cardWelcome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardUnavailable">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:drawableStartCompat="@drawable/ic_mess"
+            app:drawableEndCompat="@drawable/ic_chevron_right"
+            app:drawableTint="@color/gray"
+            android:drawablePadding="10dp"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:text="DFC"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:id="@+id/cardUnavailable"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/cardDfc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -97,7 +98,7 @@
             android:drawablePadding="10dp"
             android:textSize="18sp"
             android:gravity="center_vertical"
-            android:text="Correspondencia"/>
+            android:text="Unavailable"/>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

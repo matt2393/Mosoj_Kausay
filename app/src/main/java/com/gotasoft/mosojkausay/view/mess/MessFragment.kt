@@ -12,9 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentMessBinding
-import com.gotasoft.mosojkausay.utils.TipoPersonal
-import com.gotasoft.mosojkausay.utils.decodeJWT
-import com.gotasoft.mosojkausay.utils.fromJsonToken
+import com.gotasoft.mosojkausay.utils.*
 import com.gotasoft.mosojkausay.view.mess.crear_mess.CrearMessActivity
 import kotlinx.coroutines.flow.collect
 
@@ -76,6 +74,18 @@ class MessFragment: Fragment() {
     }
 
     private fun flowScopes() {
+        lifecycleScope.launchWhenStarted {
+            getToken(requireContext()).collect {
+                if(it!=null) {
+                    val tipoUss = it.tokenTipoUs()
+                    if(tipoUss == TipoPersonal.ADMIN) {
+                        binding?.fabCrearMess?.show()
+                    } else {
+                        binding?.fabCrearMess?.hide()
+                    }
+                }
+            }
+        }
         lifecycleScope.launchWhenStarted {
             viewModel.mess.collect {
                 when(it) {

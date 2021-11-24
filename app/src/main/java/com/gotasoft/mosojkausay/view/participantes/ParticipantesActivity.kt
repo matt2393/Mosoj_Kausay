@@ -19,6 +19,7 @@ class ParticipantesActivity : AppCompatActivity() {
         bind = ActivityParticipantesBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
+        title = "Participantes"
         val tipoPersonal = intent?.getStringExtra(TIPO_PERSONAL) ?: TipoPersonal.TECNICO
         when (tipoPersonal) {
             TipoPersonal.ADMIN.name -> {

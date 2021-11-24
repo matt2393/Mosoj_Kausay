@@ -16,6 +16,7 @@ class MessActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.containerMess, MessFragment(), MessFragment.TAG)
             .commit()
+        title = "Mensajeria"
 
     }
 }

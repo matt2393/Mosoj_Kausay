@@ -3,6 +3,7 @@ package com.gotasoft.mosojkausay.model.network
 import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
 import com.gotasoft.mosojkausay.model.entities.request.MessageRequest
 import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
+import com.gotasoft.mosojkausay.model.entities.request.ValidarCorresRequest
 import com.gotasoft.mosojkausay.model.entities.response.*
 import retrofit2.http.*
 
@@ -57,4 +58,80 @@ interface ApiRequest {
     @POST("mensajeria")
     suspend fun addMess(@Header("Authorization") token: String = "",
                         @Body messageRequest: MessageRequest): MessageResponse
+
+    @GET("planillas")
+    suspend fun getPlanillas(@Header("Authorization") token: String = "",
+                             @Query("activo") activo: Int = 1,
+                             @Query("tipo") tipo: String = "reply"): List<PlanillaResponse>
+
+    @GET("planillas/mis-correspondencias")
+    suspend fun getMisCorresReply(@Header("Authorization") token: String = "",
+                             @Query("key") key: String = "participant_name",
+                             @Query("value") value: String = "",
+                             @Query("planilla_id") planilla_id: String = "",
+                             @Query("validacion") validacion: String = "pendiente",
+                             @Query("tipo") tipo: String = "reply"): List<ReplyResponse>
+
+    @GET("planillas/mis-correspondencias")
+    suspend fun getMisCorresWelcome(@Header("Authorization") token: String = "",
+                                  @Query("key") key: String = "participant_name",
+                                  @Query("value") value: String = "",
+                                  @Query("planilla_id") planilla_id: String = "",
+                                  @Query("validacion") validacion: String = "pendiente",
+                                  @Query("tipo") tipo: String = "welcome"): List<WelcomeResponse>
+
+    @GET("planillas/mis-correspondencias")
+    suspend fun getMisCorresDfc(@Header("Authorization") token: String = "",
+                                  @Query("key") key: String = "participant_name",
+                                  @Query("value") value: String = "",
+                                  @Query("planilla_id") planilla_id: String = "",
+                                  @Query("validacion") validacion: String = "pendiente",
+                                  @Query("tipo") tipo: String = "dfc"): List<DfcResponse>
+
+    @GET("planillas/mis-correspondencias")
+    suspend fun getMisCorresUnavailable(@Header("Authorization") token: String = "",
+                                  @Query("key") key: String = "participant_name",
+                                  @Query("value") value: String = "",
+                                  @Query("planilla_id") planilla_id: String = "",
+                                  @Query("validacion") validacion: String = "pendiente",
+                                  @Query("tipo") tipo: String = "unavailable"): List<UnavailableResponse>
+
+
+    @GET("planillas/correspondencias")
+    suspend fun getCorresReply(@Header("Authorization") token: String = "",
+                                  @Query("key") key: String = "participant_name",
+                                  @Query("value") value: String = "",
+                                  @Query("planilla_id") planilla_id: String = "",
+                                  @Query("validacion") validacion: String = "pendiente",
+                                  @Query("tipo") tipo: String = "reply"): List<ReplyResponse>
+
+    @GET("planillas/correspondencias")
+    suspend fun getCorresWelcome(@Header("Authorization") token: String = "",
+                                    @Query("key") key: String = "participant_name",
+                                    @Query("value") value: String = "",
+                                    @Query("planilla_id") planilla_id: String = "",
+                                    @Query("validacion") validacion: String = "pendiente",
+                                    @Query("tipo") tipo: String = "welcome"): List<WelcomeResponse>
+
+    @GET("planillas/correspondencias")
+    suspend fun getCorresDfc(@Header("Authorization") token: String = "",
+                                @Query("key") key: String = "participant_name",
+                                @Query("value") value: String = "",
+                                @Query("planilla_id") planilla_id: String = "",
+                                @Query("validacion") validacion: String = "pendiente",
+                                @Query("tipo") tipo: String = "dfc"): List<DfcResponse>
+
+    @GET("planillas/correspondencias")
+    suspend fun getCorresUnavailable(@Header("Authorization") token: String = "",
+                                        @Query("key") key: String = "participant_name",
+                                        @Query("value") value: String = "",
+                                        @Query("planilla_id") planilla_id: String = "",
+                                        @Query("validacion") validacion: String = "pendiente",
+                                        @Query("tipo") tipo: String = "unavailable"): List<UnavailableResponse>
+
+
+    @PUT("planillas/validar-correspondencia/{id}")
+    suspend fun validarCorres(@Header("Authorization") token: String = "",
+                              @Path("id") id: String = "",
+                              @Body validarCorresRequest: ValidarCorresRequest): ValidarCorresResponse
 }

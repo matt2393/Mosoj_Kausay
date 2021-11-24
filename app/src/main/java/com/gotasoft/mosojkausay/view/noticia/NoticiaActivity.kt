@@ -19,6 +19,7 @@ class NoticiaActivity : AppCompatActivity() {
         binding = ActivityNoticiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         adapter = NoticiaAdapter()
+        title = "Noticias"
         with(binding) {
             recyclerNoticias.layoutManager = LinearLayoutManager(this@NoticiaActivity)
             recyclerNoticias.adapter = adapter

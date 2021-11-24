@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -55,10 +56,16 @@ class CrearMess2Fragment: Fragment() {
         bind.buttonCrearMess.setOnClickListener {
             val destinatarios = arrayListOf<MessageRequest.Destinatario>()
             adapter?.arrayPersonal?.forEach {
-                destinatarios.add(MessageRequest.Destinatario(ci = it.personal.ci))
+                if(it.selected) {
+                    destinatarios.add(MessageRequest.Destinatario(ci = it.personal.ci))
+                }
+            }
+            if(destinatarios.isEmpty()) {
+                Toast.makeText(requireContext(), "Seleccione al menos un destinatario", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
             val mess = MessageRequest(asunto, contenido, destinatarios)
-            viewModel.addMess(token, mess)
+            dialogConfirm(mess)
             //requireActivity().finish()
         }
 
@@ -112,6 +119,20 @@ class CrearMess2Fragment: Fragment() {
                 }
             }
         }
+    }
+
+    private fun dialogConfirm(mess: MessageRequest) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Enviar Mensaje")
+            .setMessage("¿Esta seguro de enviar mensaje a los destinatarios?")
+            .setPositiveButton("Enviar") { d, _ ->
+                viewModel.addMess(token, mess)
+                d?.dismiss()
+            }
+            .setNegativeButton("Cancelar") { d, _ ->
+                d?.dismiss()
+            }.show()
+
     }
 
 }

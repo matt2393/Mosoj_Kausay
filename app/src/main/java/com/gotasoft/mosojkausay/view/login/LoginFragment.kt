@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.collect
 class LoginFragment: Fragment() {
     private val viewModel: LoginViewModel by viewModels()
     private var loadDialog: LoadDialog? = null
+    private var bind: FragmentLoginBinding? = null
     companion object {
         val TAG = LoginFragment::class.java.name
     }
@@ -29,12 +31,12 @@ class LoginFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val bind = FragmentLoginBinding.inflate(inflater, container, false)
-        bind.editUserLogin.setText(DEFAULT_USER_LOGIN)
-        bind.editPasswordLogin.setText(DEFAULT_PASSWORD_LOGIN)
-        bind.buttonLogin.setOnClickListener {
-            val user = bind.editUserLogin.text.toString()
-            val pass = bind.editPasswordLogin.text.toString()
+        bind = FragmentLoginBinding.inflate(inflater, container, false)
+        bind?.editUserLogin?.setText(DEFAULT_USER_LOGIN)
+        bind?.editPasswordLogin?.setText(DEFAULT_PASSWORD_LOGIN)
+        bind?.buttonLogin?.setOnClickListener {
+            val user = bind?.editUserLogin?.text.toString()
+            val pass = bind?.editPasswordLogin?.text.toString()
             viewModel.login(LoginRequest(user, pass))
         }
         loadDialog = LoadDialog().apply {
@@ -43,7 +45,7 @@ class LoginFragment: Fragment() {
 
         flows()
 
-        return bind.root
+        return bind?.root
     }
 
     private fun flows() {
@@ -75,17 +77,28 @@ class LoginFragment: Fragment() {
                             Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
                             requireActivity().finish()
                         } else {
-                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                            messError(it.data.message)
                         }
 
 
                     }
                     is StateData.Error -> {
                         loadDialog?.dismiss()
-                        Toast.makeText(requireContext(), "Error...", Toast.LENGTH_SHORT).show()
+                        messError("Error...")
                     }
                 }
             }
         }
+    }
+    private fun messError(mess: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Error")
+            .setMessage(mess)
+            .setPositiveButton("Esta bien") { d, _ ->
+                bind?.editUserLogin?.setText("")
+                bind?.editPasswordLogin?.setText("")
+                bind?.editUserLogin?.requestFocus()
+            }
+            .show()
     }
 }

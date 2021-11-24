@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.gotasoft.mosojkausay.R
@@ -23,6 +24,14 @@ class CrearMess1Fragment: Fragment() {
         bind.fabExSigCrearMess.setOnClickListener {
             val asunto = bind.editTitCrearMess.text.toString()
             val contenido = bind.editMessCrearMess.text.toString()
+            if(asunto.isEmpty()) {
+                Toast.makeText(requireContext(), "Escriba el Asunto", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(contenido.isEmpty()) {
+                Toast.makeText(requireContext(), "Escriba un Contenido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(

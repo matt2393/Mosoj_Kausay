@@ -12,8 +12,13 @@ class PersonalAdapter(var arrayPersonal: ArrayList<PersonalResponse> = arrayList
     inner class PersonalViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding = ItemPersonalBinding.bind(itemView)
         fun bind(personal: PersonalResponse, pos: Int) {
-            binding.textNomItemPersonal.text = personal.username
+            binding.textNomItemPersonal.text = personal.personal.nombre_completo
             binding.checkItemPersonal.isChecked = personal.selected
+            binding.textTipoUsItemPersonal.text = personal.rol.uppercase()
+            binding.checkItemPersonal.setOnClickListener {
+                personal.selected = !personal.selected
+                arrayPersonal[pos] = personal
+            }
             binding.root.setOnClickListener {
                 personal.selected = !personal.selected
                 arrayPersonal[pos] = personal

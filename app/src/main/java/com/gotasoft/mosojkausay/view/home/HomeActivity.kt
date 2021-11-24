@@ -7,15 +7,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.databinding.ActivityHomeBinding
-import com.gotasoft.mosojkausay.utils.TipoIngreso
-import com.gotasoft.mosojkausay.utils.TipoPersonal
-import com.gotasoft.mosojkausay.utils.removeToken
-import com.gotasoft.mosojkausay.utils.setToken
+import com.gotasoft.mosojkausay.utils.*
 import com.gotasoft.mosojkausay.view.login.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
@@ -68,7 +67,20 @@ class HomeActivity : AppCompatActivity() {
 
             }
         }
+        flowScope()
     }
+
+    private fun flowScope() {
+        lifecycleScope.launchWhenStarted {
+            getToken(this@HomeActivity).collect {
+                if (it!=null) {
+                    val tipo = it.tokenTipoUsApi()
+                    bind.textTipoUsHome.text = tipo
+                }
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -77,7 +89,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId ==  R.id.menuLogoutMain) {
             AlertDialog.Builder(this)
-                .setTitle("Cerrar Sessión")
+                .setTitle("Cerrar Sesión")
                 .setMessage("¿Esta seguro de cerrar sesión?")
                 .setPositiveButton("Aceptar") { _, _ ->
                     CoroutineScope(Dispatchers.IO).launch {

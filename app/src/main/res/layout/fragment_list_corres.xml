@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchValidadoListCorres"
+        android:text="Pendientes"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textinputBuscarListCorres"
+        app:layout_constraintBottom_toTopOf="@id/recyclerListCorres"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textinputBuscarListCorres"
+        android:hint="Buscar"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/switchValidadoListCorres"
+        app:layout_constraintTop_toTopOf="@id/switchValidadoListCorres"
+        app:layout_constraintBottom_toBottomOf="@id/switchValidadoListCorres"
+        app:layout_constraintEnd_toStartOf="@id/fabBuscarListCorres"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editBuscarListCorres"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabBuscarListCorres"
+        app:srcCompat="@drawable/ic_search"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="5dp"
+        app:tint="@color/white"
+        app:layout_constraintTop_toTopOf="@id/textinputBuscarListCorres"
+        app:layout_constraintStart_toEndOf="@id/textinputBuscarListCorres"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/textinputBuscarListCorres"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/recyclerListCorres"
+        app:layout_constraintTop_toBottomOf="@id/switchValidadoListCorres"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

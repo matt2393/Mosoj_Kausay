@@ -4,5 +4,5 @@ enum class TipoIngreso{
     PUBLICO, PERSONAL
 }
 enum class TipoPersonal {
-    ADMIN, TECNICO
+    ADMIN, TECNICO, PATROCINIO, FACILITADOR, PARTICIPANTE
 }
