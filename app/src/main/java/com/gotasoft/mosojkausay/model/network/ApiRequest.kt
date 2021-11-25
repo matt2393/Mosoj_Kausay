@@ -134,4 +134,8 @@ interface ApiRequest {
     suspend fun validarCorres(@Header("Authorization") token: String = "",
                               @Path("id") id: String = "",
                               @Body validarCorresRequest: ValidarCorresRequest): ValidarCorresResponse
+
+    @GET("mensajeria/get-destinatarios")
+    suspend fun getDestinatarios(@Header("Authorization") token: String = "",
+                                 @Query("mensajeriaId") messId: Int): List<DestinatarioResponse>
 }

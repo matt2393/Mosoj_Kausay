@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.google.android.material.card.MaterialCardView
@@ -36,14 +37,24 @@
                 app:layout_constraintTop_toBottomOf="@id/textTitItemNoticia"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textContItemNoticia"/>
+                app:layout_constraintBottom_toTopOf="@id/textFechaItemNoticia"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:id="@+id/textFechaItemNoticia"
+                app:layout_constraintTop_toBottomOf="@id/textPubliItemNoticia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/textContItemNoticia"
+                tools:ignore="SmallSp" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textContItemNoticia"
                 android:text="Contenid"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/textPubliItemNoticia"
+                app:layout_constraintTop_toBottomOf="@id/textFechaItemNoticia"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

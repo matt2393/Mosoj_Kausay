@@ -14,6 +14,7 @@ import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentMessBinding
 import com.gotasoft.mosojkausay.utils.*
 import com.gotasoft.mosojkausay.view.mess.crear_mess.CrearMessActivity
+import com.gotasoft.mosojkausay.view.mess.destinatarios.DestinatariosDialog
 import kotlinx.coroutines.flow.collect
 
 class MessFragment: Fragment() {
@@ -32,7 +33,10 @@ class MessFragment: Fragment() {
     ): View? {
         binding= FragmentMessBinding.inflate(inflater, container, false)
         adapter = MessAdapter()
-        adapterAll = AllMessAdapter()
+        adapterAll = AllMessAdapter {
+            DestinatariosDialog.newInstance(it.id)
+                .show(childFragmentManager, DestinatariosDialog.TAG)
+        }
         binding?.recyclerMess?.layoutManager = LinearLayoutManager(requireContext())
         binding?.fabCrearMess?.setOnClickListener {
             startActivity(Intent(requireContext(), CrearMessActivity::class.java))

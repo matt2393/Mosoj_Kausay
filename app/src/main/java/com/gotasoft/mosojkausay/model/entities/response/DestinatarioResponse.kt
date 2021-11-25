@@ -6,17 +6,12 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class NoticiaPublicadaResponse(
+data class DestinatarioResponse(
     @Json(name = "Personal") var personal: Personal = Personal(),
-    var ci: String = "",
-    var contenido: String = "",
-    var createdAt: String = "",
-    var id: Int = 0,
-    var publicado: Boolean = false,
-    var titulo: String = "",
-    var momento_publicacion: String = ""
+    var leido: Boolean = false
 ) : Parcelable {
     @JsonClass(generateAdapter = true)
     @Parcelize

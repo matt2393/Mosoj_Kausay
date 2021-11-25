@@ -61,9 +61,24 @@ class HomeTecnicoFragment: Fragment() {
         lifecycleScope.launchWhenStarted {
             getToken(requireContext()).collect {
                 if (it!=null) {
-                    val tipo = it.tokenTipoUs()
-                    if(tipo == TipoPersonal.PARTICIPANTE) {
-                        bind?.cardMessTecnico?.visibility = View.GONE
+                    when(it.tokenTipoUs()) {
+                        TipoPersonal.PARTICIPANTE -> {
+                            bind?.cardMessTecnico?.visibility = View.GONE
+                            bind?.cardParticipantesTecnico?.visibility = View.GONE
+                            bind?.cardCorresTecnico?.visibility = View.GONE
+                        }
+                        TipoPersonal.TECNICO -> {
+
+                        }
+                        TipoPersonal.PATROCINIO -> {
+
+                        }
+                        TipoPersonal.FACILITADOR -> {
+                            bind?.cardCorresTecnico?.visibility = View.GONE
+                        }
+                        else -> {
+
+                        }
                     }
                 }
             }

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MCS ID:"
+            android:textStyle="bold"
+            android:id="@+id/textTitIdDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textIdDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textIdDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textIdDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textIdDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitIdDialogCorres"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textDateDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MCS Fecha:"
+            android:textStyle="bold"
+            android:id="@+id/textTitDateDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textDateDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textDateDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textDateDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textDateDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitDateDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textIdDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textLetterDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MCS Tipo de Carta:"
+            android:textStyle="bold"
+            android:id="@+id/textTitLetterDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textLetterDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textLetterDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textLetterDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textLetterDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/textTitLetterDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textDateDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textNomDialogcorres"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textStyle="bold"
+            android:id="@+id/textTitNomDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textNomDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textNomDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textNomDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textNomDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/textTitNomDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textLetterDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textEdadDialogcorres"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad:"
+            android:textStyle="bold"
+            android:id="@+id/textTitEdadDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textEdadDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textEdadDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textEdadDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textEdadDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitEdadDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textNomDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textChildNumberDialogcorres"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChildNumber:"
+            android:textStyle="bold"
+            android:id="@+id/textTitChildNumberDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textChildNumberDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textChildNumberDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textChildNumberDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textChildNumberDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitChildNumberDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textEdadDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textDonorDialogcorres"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donante:"
+            android:textStyle="bold"
+            android:id="@+id/textTitDonorDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textDonorDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textDonorDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textDonorDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textDonorDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitDonorDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textChildNumberDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textComunityIdDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidad ID:"
+            android:textStyle="bold"
+            android:id="@+id/textTitComunityIdDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textComunityIdDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textComunityIdDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textComunityIdDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textComunityIdDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitComunityIdDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textDonorDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textComunityDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidad:"
+            android:textStyle="bold"
+            android:id="@+id/textTitComunityDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textComunityDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textComunityDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textComunityDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textComunityDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitComunityDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textComunityIdDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textVillageDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pueblo:"
+            android:textStyle="bold"
+            android:id="@+id/textTitVillageDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textVillageDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textVillageDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textVillageDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textVillageDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitVillageDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textComunityDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textPartnerDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Socio Local:"
+            android:textStyle="bold"
+            android:id="@+id/textTitPartnerDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textPartnerDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textPartnerDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textPartnerDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textPartnerDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitPartnerDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textVillageDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textAllianceDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alianza:"
+            android:textStyle="bold"
+            android:id="@+id/textTitAllianceDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textAllianceDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textAllianceDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textAllianceDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textAllianceDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitAllianceDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textPartnerDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textResponsableDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Responsable:"
+            android:textStyle="bold"
+            android:id="@+id/textTitResponsableDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textResponsableDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textResponsableDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textResponsableDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textResponsableDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitResponsableDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textAllianceDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textTitCommentsDialogCorres"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Comentario:"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:id="@+id/textTitCommentsDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textResponsableDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textCommentsDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textCommentsDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitCommentsDialogCorres"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

@@ -9,7 +9,8 @@ import com.gotasoft.mosojkausay.databinding.ItemMessBinding
 import com.gotasoft.mosojkausay.model.entities.response.MensajeResponse
 import com.gotasoft.mosojkausay.model.entities.response.MessageResponse
 
-class AllMessAdapter(var arrayMess: ArrayList<MessageResponse> = arrayListOf()): RecyclerView.Adapter<AllMessAdapter.AllMessViewHolder>() {
+class AllMessAdapter(var arrayMess: ArrayList<MessageResponse> = arrayListOf(),
+                     val clickDest: (MessageResponse) -> Unit): RecyclerView.Adapter<AllMessAdapter.AllMessViewHolder>() {
     inner class AllMessViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding = ItemMessBinding.bind(itemView)
         fun bind(mensaje: MessageResponse) {
@@ -18,6 +19,10 @@ class AllMessAdapter(var arrayMess: ArrayList<MessageResponse> = arrayListOf()):
                 textContenidoItemMess.text = mensaje.contenido
                 val emisor = "${mensaje.personal.nombre_completo}"
                 textEmisorItemMess.text = emisor
+                fabDestItemMess.show()
+                fabDestItemMess.setOnClickListener {
+                    clickDest(mensaje)
+                }
             }
         }
     }

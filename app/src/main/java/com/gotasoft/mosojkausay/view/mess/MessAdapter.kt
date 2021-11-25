@@ -17,6 +17,7 @@ class MessAdapter(var arrayMess: ArrayList<MensajeResponse> = arrayListOf()): Re
                 textContenidoItemMess.text = mensaje.contenido
                 val emisor = "${mensaje.emisor} el ${mensaje.fecha}"
                 textEmisorItemMess.text = emisor
+                fabDestItemMess.hide()
             }
         }
     }

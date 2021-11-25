@@ -24,6 +24,7 @@ import com.gotasoft.mosojkausay.model.entities.response.WelcomeResponse
 import com.gotasoft.mosojkausay.utils.TipoPersonal
 import com.gotasoft.mosojkausay.utils.getToken
 import com.gotasoft.mosojkausay.utils.tokenTipoUs
+import com.gotasoft.mosojkausay.view.corres.CorresDialog
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import kotlinx.coroutines.flow.collect
 
@@ -85,7 +86,8 @@ class ListCorresFragment: Fragment() {
             }
             b.textValidadoItemCorres.text = re.validacion.uppercase()
         }, ver = {
-
+            CorresDialog.newInstance(it)
+                .show(childFragmentManager, CorresDialog.TAG)
         }, validar = {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
@@ -108,7 +110,8 @@ class ListCorresFragment: Fragment() {
             }
             b.textValidadoItemCorres.text = wel.validacion.uppercase()
         }, ver = {
-
+            CorresDialog.newInstance(it)
+                .show(childFragmentManager, CorresDialog.TAG)
         }, validar = {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
@@ -132,7 +135,8 @@ class ListCorresFragment: Fragment() {
             }
             b.textValidadoItemCorres.text = dfc.validacion.uppercase()
         }, ver = {
-
+            CorresDialog.newInstance(it)
+                .show(childFragmentManager, CorresDialog.TAG)
         }, validar = {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
@@ -155,7 +159,8 @@ class ListCorresFragment: Fragment() {
             }
             b.textValidadoItemCorres.text = una.validacion.uppercase()
         }, ver = {
-
+            CorresDialog.newInstance(it)
+                .show(childFragmentManager, CorresDialog.TAG)
         }, validar = {
             confim(it.id.toString(), "Validar", it.participant_name, "validado")
         }, pendiente = {

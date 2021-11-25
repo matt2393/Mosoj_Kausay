@@ -47,6 +47,21 @@
             app:layout_constraintTop_toBottomOf="@id/textEmisorItemMess"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fabDestItemMess"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:fabSize="mini"
+            android:id="@+id/fabDestItemMess"
+            app:srcCompat="@drawable/ic_persons_all"
+            app:tint="@color/white"
+            app:backgroundTint="@color/gray"
+            android:layout_margin="5dp"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toBottomOf="@id/textContenidoItemMess"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
