@@ -22,5 +22,5 @@ class ParticipantesAdapter: RecyclerView.Adapter<ParticipantesAdapter.Participan
 
     }
 
-    override fun getItemCount(): Int = 10
+    override fun getItemCount(): Int = 1
 }

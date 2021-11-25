@@ -24,7 +24,7 @@ class ParticipantesFragment: Fragment() {
         bind.recyclerParticipantes.layoutManager = LinearLayoutManager(requireContext())
         bind.recyclerParticipantes.adapter = adapter
 
-        val arrayGes = arrayListOf("2018", "2019", "2020", "2021")
+        val arrayGes = arrayListOf("2021")
         val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, arrayGes)
         bind.autocompleteGestionParticipantes.setAdapter(arrayAdapter)
         bind.autocompleteGestionParticipantes.setText("2021", false)
