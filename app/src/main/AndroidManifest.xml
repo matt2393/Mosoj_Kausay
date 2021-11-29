@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gotasoft.mosojkausay">
+    package="com.gotasoft.mosojkausay" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +16,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MosojKausay">
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.MosojKausay" >
+        <activity
+            android:name=".view.momentos_magicos.MMActivity"
+            android:exported="false" />
         <activity
             android:name=".view.corres.CorresActivity"
             android:exported="false"
@@ -43,12 +50,12 @@
             android:name=".view.mess.crear_mess.CrearMessActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.participantes.ParticipantesActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.mess.MessActivity"
             android:exported="true"
@@ -58,13 +65,13 @@
             android:name=".view.home.HomeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.MosojKausay.NoActionBar"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
+            android:theme="@style/Theme.MosojKausay.NoActionBar"
+            tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,7 +82,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

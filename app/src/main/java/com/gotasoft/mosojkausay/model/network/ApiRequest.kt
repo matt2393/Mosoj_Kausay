@@ -1,10 +1,8 @@
 package com.gotasoft.mosojkausay.model.network
 
-import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
-import com.gotasoft.mosojkausay.model.entities.request.MessageRequest
-import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
-import com.gotasoft.mosojkausay.model.entities.request.ValidarCorresRequest
+import com.gotasoft.mosojkausay.model.entities.request.*
 import com.gotasoft.mosojkausay.model.entities.response.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ApiRequest {
@@ -138,4 +136,39 @@ interface ApiRequest {
     @GET("mensajeria/get-destinatarios")
     suspend fun getDestinatarios(@Header("Authorization") token: String = "",
                                  @Query("mensajeriaId") messId: Int): List<DestinatarioResponse>
+
+
+    @GET("momentos-magicos")
+    suspend fun getMM(@Header("Authorization") token: String = "",
+                      @Query("value") value: String = "",
+                      @Query("items") items: Int = 10,
+                      @Query("page") page: Int = 1): List<MMResponse>
+
+    @POST("momentos-magicos")
+    suspend fun addMM(@Header("Authorization") token: String = "",
+                      @Body mmRequest: MMRequest): MMResponse
+
+    @GET("testimonios-adicionales/{id}")
+    suspend fun getTestAdMM(@Header("Authorization") token: String = "",
+                            @Path("id") id: Int): List<TestimonioAdResponse>
+
+    @POST("testimonios-adicionales")
+    suspend fun addTestAdMM(@Header("Authorization") token: String = "",
+                            @Body testAd: TestimonioAdRequest): TestimonioAdResponse
+
+
+    @GET("fotos/listar/{id}")
+    suspend fun getFotosMM(@Header("Authorization") token: String = "",
+                           @Path("id") id: Int): List<FotoMMResponse>
+
+    @Multipart
+    @POST("fotos")
+    suspend fun addFotoMM(@Header("Authorization") token: String = "",
+                          @Query("descripcion") desc: String = "",
+                          @Query("momento_magico_id") mmId: Int = 0,
+                          @Part foto: MultipartBody.Part): FotoMMAddResponse
+
+    @POST("patrocinadores")
+    suspend fun registrarPatrocinador(@Body patrocinadorRequest: PatrocinadorRequest): PatrocinadorResponse
+
 }

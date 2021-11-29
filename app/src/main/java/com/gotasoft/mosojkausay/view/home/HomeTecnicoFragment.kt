@@ -14,6 +14,7 @@ import com.gotasoft.mosojkausay.utils.tokenTipoUs
 import com.gotasoft.mosojkausay.utils.tokenTipoUsApi
 import com.gotasoft.mosojkausay.view.corres.CorresActivity
 import com.gotasoft.mosojkausay.view.mess.MessActivity
+import com.gotasoft.mosojkausay.view.momentos_magicos.MMActivity
 import com.gotasoft.mosojkausay.view.noticia.NoticiaActivity
 import com.gotasoft.mosojkausay.view.participantes.ParticipantesActivity
 import kotlinx.coroutines.flow.collect
@@ -53,6 +54,11 @@ class HomeTecnicoFragment: Fragment() {
                 //.putExtra(ParticipantesActivity.TIPO_PERSONAL, TipoPersonal.TECNICO.name)
             )
         }
+        bind?.cardMMTecnico?.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), MMActivity::class.java)
+            )
+        }
         flowScope()
         return bind?.root
     }
@@ -66,6 +72,7 @@ class HomeTecnicoFragment: Fragment() {
                             bind?.cardMessTecnico?.visibility = View.GONE
                             bind?.cardParticipantesTecnico?.visibility = View.GONE
                             bind?.cardCorresTecnico?.visibility = View.GONE
+                            bind?.cardMMTecnico?.visibility = View.GONE
                         }
                         TipoPersonal.TECNICO -> {
 

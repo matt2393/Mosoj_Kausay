@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switchConsentiAddMM"
+            android:text="Consentimiento"
+            android:checked="true"
+            android:layout_marginTop="10dp"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textinputChildNumberAddMM"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputChildNumberAddMM"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="ChildNumber"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/switchConsentiAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputModeloAddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/editChildNumberAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputModeloAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:hint="Modelo Programático"
+            app:layout_constraintTop_toBottomOf="@id/textinputChildNumberAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTipoAddMM">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                android:id="@+id/editModeloAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputTipoAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:hint="Tipo de Momento Mágico"
+            app:layout_constraintTop_toBottomOf="@id/textinputModeloAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputResAddMM">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                android:id="@+id/editTipoAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputResAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:hint="Resultado intermedio"
+            app:layout_constraintTop_toBottomOf="@id/textinputTipoAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputRefFamAddMM">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                android:id="@+id/editResAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputRefFamAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Referencia Familiar"
+            app:layout_constraintTop_toBottomOf="@id/textinputResAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputNomAddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/editRefFamAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputNomAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Nombre Completo"
+            app:layout_constraintTop_toBottomOf="@id/textinputRefFamAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputEdadAddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/editNomAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputEdadAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Edad"
+            app:layout_constraintTop_toBottomOf="@id/textinputNomAddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/editEdadAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputFechaAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Fecha de envio"
+            app:layout_constraintTop_toBottomOf="@id/textinputEdadAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputOcupacionAddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:drawableTint="@color/gray"
+                android:inputType="date"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                android:id="@+id/editFechaAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputOcupacionAddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Ocupación"
+            app:layout_constraintTop_toBottomOf="@id/textinputFechaAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes1AddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/editOcupacionAddMM"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputTes1AddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Testimonio 1"
+            app:layout_constraintTop_toBottomOf="@id/textinputOcupacionAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes2AddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="7"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:id="@+id/editTes1AddMM"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputTes2AddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Testimonio 2"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes1AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes3AddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="7"
+                android:gravity="top"
+                android:id="@+id/editTes2AddMM"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputTes3AddMM"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Testimonio 3"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes2AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes4AddMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="7"
+                android:gravity="top"
+                android:id="@+id/editTes3AddMM"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputTes4AddMM"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="Testimonio 4"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes3AddMM"
+            app:layout_constraintBottom_toTopOf="@id/buttonGuardarMM">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="7"
+                android:gravity="top"
+                android:id="@+id/editTes4AddMM"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:text="Guardar"
+            android:id="@+id/buttonGuardarMM"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes4AddMM"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

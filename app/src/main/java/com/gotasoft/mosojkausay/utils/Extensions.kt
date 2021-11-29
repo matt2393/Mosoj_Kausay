@@ -1,6 +1,10 @@
 package com.gotasoft.mosojkausay.utils
 
 import android.util.Base64
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import com.gotasoft.mosojkausay.US_ADMIN
 import com.gotasoft.mosojkausay.US_FACILITADOR
 import com.gotasoft.mosojkausay.US_PATROCINIO
@@ -58,5 +62,9 @@ fun String.tokenTipoUs(): TipoPersonal {
             else -> TipoPersonal.PARTICIPANTE
         }
     } else TipoPersonal.PARTICIPANTE
+}
 
+fun ViewGroup.inflateLayout(@LayoutRes id: Int): View {
+    return LayoutInflater.from(context)
+        .inflate(id, this, false)
 }

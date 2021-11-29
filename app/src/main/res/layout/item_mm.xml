@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChildNumber:"
+            android:textStyle="bold"
+            android:id="@+id/textTitChildNumberItemMM"
+            app:layout_constraintTop_toTopOf="@id/textChildNumberItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textChildNumberItemMM"
+            app:layout_constraintBottom_toBottomOf="@id/textChildNumberItemMM"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textChildNumberItemMM"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitChildNumberItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textNombreItemMM"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textStyle="bold"
+            android:id="@+id/textTitNombreItemMM"
+            app:layout_constraintTop_toTopOf="@id/textNombreItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textNombreItemMM"
+            app:layout_constraintBottom_toBottomOf="@id/textNombreItemMM"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textNombreItemMM"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textChildNumberItemMM"
+            app:layout_constraintStart_toEndOf="@id/textTitNombreItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textModeloItemMM"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modelo Programático:"
+            android:textStyle="bold"
+            android:id="@+id/textTitModeloItemMM"
+            app:layout_constraintTop_toTopOf="@id/textModeloItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textModeloItemMM"
+            app:layout_constraintBottom_toBottomOf="@id/textModeloItemMM"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textModeloItemMM"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textNombreItemMM"
+            app:layout_constraintStart_toEndOf="@id/textTitModeloItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textTipoItemMM"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Momento Mágico:"
+            android:textStyle="bold"
+            android:id="@+id/textTitTipoItemMM"
+            app:layout_constraintTop_toTopOf="@id/textTipoItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textTipoItemMM"
+            app:layout_constraintBottom_toBottomOf="@id/textTipoItemMM"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textTipoItemMM"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textModeloItemMM"
+            app:layout_constraintStart_toEndOf="@id/textTitTipoItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textResItemMM"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resultado Intermedio:"
+            android:textStyle="bold"
+            android:id="@+id/textTitResItemMM"
+            app:layout_constraintTop_toTopOf="@id/textResItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textResItemMM"
+            app:layout_constraintBottom_toBottomOf="@id/textResItemMM"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textResItemMM"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textTipoItemMM"
+            app:layout_constraintStart_toEndOf="@id/textTitResItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fabTestItemMM"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fabTestItemMM"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_testimonio"
+            app:tint="@color/white"
+            app:backgroundTint="@color/gray"
+            app:fabSize="mini"
+            app:layout_constraintTop_toBottomOf="@id/textResItemMM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fabFotosItemMM"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fabFotosItemMM"
+            app:srcCompat="@drawable/ic_photos"
+            app:tint="@color/white"
+            app:backgroundTint="@color/teal_700"
+            app:fabSize="mini"
+            app:layout_constraintTop_toTopOf="@id/fabTestItemMM"
+            app:layout_constraintStart_toEndOf="@id/fabTestItemMM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/fabTestItemMM"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

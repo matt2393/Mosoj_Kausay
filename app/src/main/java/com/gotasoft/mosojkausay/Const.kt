@@ -4,6 +4,7 @@ const val URL_SERVER = "https://gotasoft.com:3001/"
 const val URL_RUTAS_MAPS = "https://maps.googleapis.com/maps/api/"
 
 const val URL_DOWNLOAD_IMAGE = "https://gotasoft.com:3001/slides/download?id="
+const val URL_DOWNLOAD_PHOTO_MM = "https://gotasoft.com:3001/fotos/download?id="
 
 const val TODOS = "Todos"
 
