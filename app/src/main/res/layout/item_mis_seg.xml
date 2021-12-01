@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textMesItemMisSeg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textActItemMisSeg"
+            app:layout_constraintBottom_toTopOf="@id/textModProgItemMisSeg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textActItemMisSeg"
+            app:layout_constraintTop_toTopOf="@id/textMesItemMisSeg"
+            app:layout_constraintStart_toEndOf="@id/textMesItemMisSeg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/textMesItemMisSeg"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textModProgItemMisSeg"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textMesItemMisSeg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textProgramadoItemMisSeg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textTitProgramadoItemMisSeg"
+            android:text="Programado:"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/textProgramadoItemMisSeg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textProgramadoItemMisSeg"
+            app:layout_constraintBottom_toBottomOf="@id/textProgramadoItemMisSeg"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textProgramadoItemMisSeg"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textModProgItemMisSeg"
+            app:layout_constraintStart_toEndOf="@id/textTitProgramadoItemMisSeg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textinputEjecutadoItemMisSeg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textTitEjecutadoItemMisSeg"
+            android:text="Ejectuado:"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/textinputEjecutadoItemMisSeg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textinputEjecutadoItemMisSeg"
+            app:layout_constraintBottom_toBottomOf="@id/textinputEjecutadoItemMisSeg"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textinputEjecutadoItemMisSeg"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:layout_constraintTop_toBottomOf="@id/textProgramadoItemMisSeg"
+            app:layout_constraintStart_toEndOf="@id/textTitEjecutadoItemMisSeg"
+            app:layout_constraintBottom_toTopOf="@id/fabGuardarItemMisSeg">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/editEjecutadoItemMisSeg"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fabGuardarItemMisSeg"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_save"
+            app:backgroundTint="@color/teal_700"
+            app:tint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/textinputEjecutadoItemMisSeg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

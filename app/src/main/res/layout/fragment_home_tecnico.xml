@@ -110,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@id/cardCorresTecnico"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/cardSegTecnico">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,6 +122,31 @@
             android:textSize="18sp"
             android:gravity="center_vertical"
             android:text="Momentos Mágicos"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:id="@+id/cardSegTecnico"
+        android:visibility="gone"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/cardMMTecnico"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:drawableStartCompat="@drawable/ic_segs"
+            app:drawableEndCompat="@drawable/ic_chevron_right"
+            app:drawableTint="@color/gray"
+            android:drawablePadding="10dp"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:text="Mis Seguimientos"/>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

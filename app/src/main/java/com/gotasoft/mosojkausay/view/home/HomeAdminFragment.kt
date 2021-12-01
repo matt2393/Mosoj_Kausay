@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import com.gotasoft.mosojkausay.databinding.FragmentHomeAdminBinding
 import com.gotasoft.mosojkausay.utils.TipoPersonal
 import com.gotasoft.mosojkausay.view.mess.MessActivity
+import com.gotasoft.mosojkausay.view.mis_seguimientos.MisSegActivity
 import com.gotasoft.mosojkausay.view.momentos_magicos.MMActivity
 import com.gotasoft.mosojkausay.view.participantes.ParticipantesActivity
+import com.gotasoft.mosojkausay.view.seguimiento.SeguimientoActivity
 
 class HomeAdminFragment: Fragment() {
 
@@ -35,6 +37,11 @@ class HomeAdminFragment: Fragment() {
         bind.cardMMPersonal.setOnClickListener {
             startActivity(
                 Intent(requireContext(), MMActivity::class.java)
+            )
+        }
+        bind.cardSegPersonal.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), SeguimientoActivity::class.java)
             )
         }
         return bind.root

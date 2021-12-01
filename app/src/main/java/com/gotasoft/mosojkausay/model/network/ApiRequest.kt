@@ -171,4 +171,29 @@ interface ApiRequest {
     @POST("patrocinadores")
     suspend fun registrarPatrocinador(@Body patrocinadorRequest: PatrocinadorRequest): PatrocinadorResponse
 
+    @GET("seguimientos")
+    suspend fun getSegs(@Header("Authorization") token: String = "",
+                        @Query("gestion") gestion: String = "",
+                        @Query("tipo") tipo: String = "",
+                        @Query("activo") activo: Int = 1): List<SeguimientoResponse>
+
+    @GET("seguimientos/mis-seguimientos")
+    suspend fun getMisSegs(@Header("Authorization") token: String = "",
+                           @Query("tipo") tipo: String = ""): List<SeguimientoResponse>
+
+
+    @POST("seguimientos")
+    suspend fun addSegs(@Header("Authorization") token: String = "",
+                        @Body seguimientoCreateRequest: SeguimientoCreateRequest): SeguimientoResponse
+
+    @PUT("seguimientos/{id}")
+    suspend fun editSegs(@Header("Authorization") token: String = "",
+                         @Path("id") id: Int = 0,
+                         @Body seguimientoEditRequest: SeguimientoEditRequest): MessGenericResponse
+
+    @PUT("seguimientos/set-activo/{id}")
+    suspend fun editSegsActivoInactivo(@Header("Authorization") token: String = "",
+                                       @Path("id") id: Int = 0,
+                                       @Body segActivoInactivoRequest: SegActivoInactivoRequest): MessGenericResponse
+
 }

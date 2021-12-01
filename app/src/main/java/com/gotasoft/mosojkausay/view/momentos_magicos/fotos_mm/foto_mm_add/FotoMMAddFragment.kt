@@ -98,17 +98,17 @@ class FotoMMAddFragment: Fragment() {
                         .request(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)){ p ->
                             if(p[Manifest.permission.READ_EXTERNAL_STORAGE]!! && p[Manifest.permission.WRITE_EXTERNAL_STORAGE]!!) {
-                                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                                intent.type = "image/*"
+                                //val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                                //intent.type = "image/*"
                                 //intent.action = Intent.ACTION_OPEN_DOCUMENT
                                 //intent.addCategory(Intent.CATEGORY_OPENABLE)
                                 //intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                                register.launch(Intent.createChooser(intent, "Selecciones una imagen"))
+                                //register.launch(Intent.createChooser(intent, "Selecciones una imagen"))
 
-                                /*ImagePicker.with(this@FotoMMAddFragment)
+                                ImagePicker.with(this@FotoMMAddFragment)
                                     .createIntent { intent->
                                         register.launch(intent)
-                                    }*/
+                                    }
                                 //register.launch("image/*")
                             } else {
                                 Toast.makeText(requireContext(), "Se necesita permisos.", Toast.LENGTH_SHORT).show()
