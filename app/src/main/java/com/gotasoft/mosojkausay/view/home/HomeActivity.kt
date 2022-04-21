@@ -100,7 +100,7 @@ class HomeActivity : AppCompatActivity() {
                     )
                     finish()
                 }
-                .setNegativeButton("Cancealr") { dialog, _ ->
+                .setNegativeButton("Cancelar") { dialog, _ ->
                     dialog?.dismiss()
                 }
                 .show()

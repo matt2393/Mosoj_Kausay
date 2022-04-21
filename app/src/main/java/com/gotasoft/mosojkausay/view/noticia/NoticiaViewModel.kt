@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.model.entities.response.NoticiaPublicadaResponse
+import com.gotasoft.mosojkausay.model.entities.response.NoticiaShowRes
 import com.gotasoft.mosojkausay.repositories.NoticiaRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,6 +24,19 @@ class NoticiaViewModel(private val noticiaRepository: NoticiaRepository = Notici
             noticiaRepository.getNoticias(value, items, page)
                 .catch { _noticias.value = StateData.Error(it) }
                 .collect { _noticias.value = StateData.Success(it) }
+        }
+    }
+
+    private val _notShow: MutableStateFlow<StateData<NoticiaShowRes>> = MutableStateFlow(StateData.None)
+    val notShow: StateFlow<StateData<NoticiaShowRes>> get() = _notShow
+
+    fun showNoticia(id: Int) {
+        _notShow.value = StateData.Loading
+        viewModelScope.launch {
+            noticiaRepository.showNoticia( id)
+                .catch { _notShow.value = StateData.Error(it) }
+                .collect { _notShow.value = StateData.Success(it) }
+
         }
     }
 }

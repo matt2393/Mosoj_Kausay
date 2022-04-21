@@ -5,11 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.noticia.NoticiaActivity">
+    tools:context=".view.noticia.NoticiaActivity"
+    android:id="@+id/containerNoticia">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerNoticias"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

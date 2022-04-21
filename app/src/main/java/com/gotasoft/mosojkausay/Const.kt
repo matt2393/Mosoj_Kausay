@@ -6,6 +6,9 @@ const val URL_RUTAS_MAPS = "https://maps.googleapis.com/maps/api/"
 const val URL_DOWNLOAD_IMAGE = "https://gotasoft.com:3001/slides/download?id="
 const val URL_DOWNLOAD_PHOTO_MM = "https://gotasoft.com:3001/fotos/download?id="
 
+const val URL_DOWNLOAD_FILE = "https://gotasoft.com:3001/multimedia/download?id="
+const val URL_DOWNLOAD_PHOTO_PART = "https://gotasoft.com:3001/participantes/download?"
+
 const val TODOS = "Todos"
 
 const val DEFAULT_USER_LOGIN = ""//"aluna"

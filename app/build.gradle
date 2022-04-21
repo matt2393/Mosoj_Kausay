@@ -13,8 +13,8 @@ android {
         applicationId "com.gotasoft.mosojkausay"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-    implementation 'com.github.matt2393.LibreriasMatt:permissions:0.5'
+    implementation 'com.github.matt2393.LibreriasMatt:permissions:0.6'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
     implementation 'io.coil-kt:coil:1.4.0'

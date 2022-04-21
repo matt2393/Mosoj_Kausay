@@ -3,6 +3,7 @@ package com.gotasoft.mosojkausay.view.login.init
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,55 +30,74 @@ class InitFragment: Fragment() {
         val TAG = InitFragment::class.java.name
     }
     private var adapter: InitAdapter? = null
+    private var bind: FragmentInitBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val bind = FragmentInitBinding.inflate(inflater, container, false)
+        bind = FragmentInitBinding.inflate(inflater, container, false)
 
-        bind.cardPersonalInit.setOnClickListener {
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.containerLogin, LoginFragment(), LoginFragment.TAG)
-                .addToBackStack(LoginFragment.TAG)
-                .commit()
+        with(bind!!) {
+            cardPersonalInit.setOnClickListener {
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerLogin, LoginFragment(), LoginFragment.TAG)
+                    .addToBackStack(LoginFragment.TAG)
+                    .commit()
+            }
+            cardPublicoInit.setOnClickListener {
+                startActivity(Intent(requireContext(), NoticiaActivity::class.java))
+            }
+            textPatrocinadorInit.setOnClickListener {
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerLogin, FormFragment(), FormFragment.TAG)
+                    .addToBackStack(FormFragment.TAG)
+                    .commit()
+            }
+            imageGotasoftInit.setOnClickListener {
+                openWeb("https://gotasoft.com/")
+            }
+            imageChildfundInit.setOnClickListener {
+                openWeb("https://www.childfundbolivia.org/")
+            }
+            imageTopInit.setOnClickListener {
+                openWeb("https://mosojkausay.org/")
+            }
+            cardTheEndsInit.setOnClickListener {
+                openWeb("https://the-ends.web.app/")
+            }
+            buttonInit.setOnClickListener {
+
+                /*startActivity(
+                    Intent(Intent.ACTION_VIEW, Uri.parse("http://www.regionalamericacf.org/"))
+                )*/
+                ModelProgDialog()
+                    .show(childFragmentManager, "ModelProgDialog")
+            }
+            adapter = InitAdapter()
+            viewPager2Init.adapter = adapter
+            viewPager2Init.clipToPadding = false
+            viewPager2Init.clipChildren = false
+            viewPager2Init.offscreenPageLimit = 3
+            viewPager2Init.getChildAt(0).overScrollMode= RecyclerView.OVER_SCROLL_NEVER
+            val com =  CompositePageTransformer()
+            com.addTransformer(MarginPageTransformer(40))
+            com.addTransformer { page, position ->
+                val r = 1 - abs(position)
+                page.scaleY = 0.95f + r * 0.05f
+            }
+            viewPager2Init.setPageTransformer(com)
         }
-        bind.cardPublicoInit.setOnClickListener {
-            startActivity(Intent(requireContext(), NoticiaActivity::class.java))
-        }
-        bind.textPatrocinadorInit.setOnClickListener {
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.containerLogin, FormFragment(), FormFragment.TAG)
-                .addToBackStack(FormFragment.TAG)
-                .commit()
-        }
-        bind.imageGotasoftInit.setOnClickListener {
-            openWeb("https://gotasoft.com/")
-        }
-        bind.imageChildfundInit.setOnClickListener {
-            openWeb("https://www.childfundbolivia.org/")
-        }
-        adapter = InitAdapter()
-        bind.viewPager2Init.adapter = adapter
-        bind.viewPager2Init.clipToPadding = false
-        bind.viewPager2Init.clipChildren = false
-        bind.viewPager2Init.offscreenPageLimit = 3
-        bind.viewPager2Init.getChildAt(0).overScrollMode= RecyclerView.OVER_SCROLL_NEVER
-        val com =  CompositePageTransformer()
-        com.addTransformer(MarginPageTransformer(40))
-        com.addTransformer { page, position ->
-            val r = 1 - abs(position)
-            page.scaleY = 0.95f + r * 0.05f
-        }
-        bind.viewPager2Init.setPageTransformer(com)
+
 
         flowScopes()
 
         viewModel.getSlides()
-        return bind.root
+        viewModel.getContador()
+        return bind?.root
     }
 
     private fun flowScopes() {
@@ -95,6 +115,24 @@ class InitFragment: Fragment() {
 
                     }
                     StateData.None -> { }
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.contador.collect {
+                when(it) {
+                    is StateData.Success -> {
+                        val cont = it.data.cantidad
+                        val textCont = "$cont" + if(cont == 1) " Visita" else " Visitas"
+                        bind?.textVisitas?.text = textCont
+                    }
+                    is StateData.Error -> {
+                        Log.e(TAG, "flowScopes() contador [${it.error}]")
+                    }
+                    StateData.Loading -> {
+                    }
+                    StateData.None -> {
+                    }
                 }
             }
         }

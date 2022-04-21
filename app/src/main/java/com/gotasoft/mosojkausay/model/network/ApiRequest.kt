@@ -34,6 +34,11 @@ interface ApiRequest {
                             @Query("items") items: Int = 10,
                             @Query("page") page: Int = 1): List<NoticiaPublicadaResponse>
 
+    @GET("noticias/mostrar/{id}")
+    suspend fun showNoticia(
+        @Path("id") id: Int = 10
+    ): NoticiaShowRes
+
     @GET("mensajeria/mis-mensajes")
     suspend fun getMensajes(@Header("Authorization") token: String = "",
                             @Query("value") value: String = "",
@@ -195,5 +200,18 @@ interface ApiRequest {
     suspend fun editSegsActivoInactivo(@Header("Authorization") token: String = "",
                                        @Path("id") id: Int = 0,
                                        @Body segActivoInactivoRequest: SegActivoInactivoRequest): MessGenericResponse
+
+    @POST("contador")
+    suspend fun agregarContador(): AgregarContadorRes
+
+    @GET("contador/contar")
+    suspend fun getContador(): ContadorRes
+
+    @Multipart
+    @POST("participantes/save-foto")
+    suspend fun savePhotoPart(
+                          @Query("child_number") childNumber: String = "",
+                          @Query("type") type: String = "",
+                          @Part foto: MultipartBody.Part): SuccessRes
 
 }

@@ -4,11 +4,16 @@ import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
 import com.gotasoft.mosojkausay.model.entities.response.AllParticipanteResponse
 import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.model.entities.response.ResponseGeneric
+import com.gotasoft.mosojkausay.model.entities.response.SuccessRes
 import com.gotasoft.mosojkausay.model.network.ApiRest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 
 class ParticipanteRepository {
@@ -33,5 +38,11 @@ class ParticipanteRepository {
             emit(res)
         }.flowOn(Dispatchers.IO)
 
+    suspend fun savePhoto(childNumber: String, type: String, photo: File): Flow<SuccessRes> = flow<SuccessRes> {
+        val req = MultipartBody.Part.createFormData("foto", photo.name,
+            photo.asRequestBody("multipart/form-data".toMediaTypeOrNull()))
+        val res = ApiRest.request.savePhotoPart(childNumber, type, req)
+        emit(res)
+    }.flowOn(Dispatchers.IO)
 
 }

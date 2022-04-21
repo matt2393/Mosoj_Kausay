@@ -1,6 +1,7 @@
 package com.gotasoft.mosojkausay.repositories
 
 import com.gotasoft.mosojkausay.model.entities.response.NoticiaPublicadaResponse
+import com.gotasoft.mosojkausay.model.entities.response.NoticiaShowRes
 import com.gotasoft.mosojkausay.model.network.ApiRest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +19,9 @@ class NoticiaRepository {
             val res = ApiRest.request.getNoticias(value, items, page)
             emit(ArrayList(res))
         }.flowOn(Dispatchers.IO)
+
+    suspend fun showNoticia(id: Int): Flow<NoticiaShowRes> = flow {
+        val res = ApiRest.request.showNoticia(id)
+        emit(res)
+    }.flowOn(Dispatchers.IO)
 }

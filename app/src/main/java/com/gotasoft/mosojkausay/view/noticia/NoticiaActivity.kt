@@ -1,5 +1,6 @@
 package com.gotasoft.mosojkausay.view.noticia
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,44 +9,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.databinding.ActivityNoticiaBinding
+import com.gotasoft.mosojkausay.view.noticia.list.NoticiaAdapter
+import com.gotasoft.mosojkausay.view.noticia.list.NotificaListFragment
 import kotlinx.coroutines.flow.collect
 
 class NoticiaActivity : AppCompatActivity() {
-    private val viewModel: NoticiaViewModel by viewModels()
     private lateinit var binding: ActivityNoticiaBinding
-    private var adapter: NoticiaAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        adapter = NoticiaAdapter()
-        title = "Noticias"
-        with(binding) {
-            recyclerNoticias.layoutManager = LinearLayoutManager(this@NoticiaActivity)
-            recyclerNoticias.adapter = adapter
-        }
-
-        flowScopes()
-        viewModel.getNoticias()
-    }
-
-    private fun flowScopes() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.noticias.collect {
-                when(it) {
-                    is StateData.Success -> {
-                        adapter?.arrayNoticia = it.data
-                        adapter?.notifyItemRangeInserted(0, it.data.size)
-                    }
-                    is StateData.Error -> {
-
-                    }
-                    StateData.Loading -> {
-
-                    }
-                    StateData.None -> { }
-                }
-            }
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.containerNoticia, NotificaListFragment(), "NotList")
+            .commit()
     }
 }

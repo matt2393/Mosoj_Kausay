@@ -35,7 +35,7 @@ import com.gotasoft.mosojkausay.databinding.DialogMapBinding
 import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.model.entities.response.RutasMap
 import com.gotasoft.mosojkausay.view.load.LoadDialog
-import dev.matt2393.utils.Location.LocationPermission
+import dev.matt2393.utils.location.LocPermission
 import kotlinx.coroutines.flow.collect
 
 class MapDialog: DialogFragment(), OnMapReadyCallback {
@@ -60,6 +60,7 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     private var participante: ParticipanteResponse? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        LocPermission.init(this)
         val alert = AlertDialog.Builder(requireContext())
         binding = DialogMapBinding.inflate(requireActivity().layoutInflater, null, false)
         alert.setView(binding?.root)
@@ -88,8 +89,8 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
         var isLoadRuta = false
         if(participante!=null){
             if(!participante!!.latitud.isNullOrEmpty() && !participante!!.longitud.isNullOrEmpty()){
-                LocationPermission.with(this)
-                    .request( {
+                LocPermission.launch(
+                    success = {
                         val locRequest = LocationRequest.create()
                             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                             .setNumUpdates(2)
@@ -113,9 +114,11 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
                                     }
                                 }
                             }, Looper.getMainLooper())
-                    }, {
+                    },
+                    error = {
                         Toast.makeText(requireContext(), "Error, necesita persmisos de localización", Toast.LENGTH_SHORT).show()
-                    })
+                    }
+                )
             }
         }
     }

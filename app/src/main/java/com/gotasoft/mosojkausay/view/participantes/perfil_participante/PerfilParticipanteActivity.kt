@@ -3,16 +3,17 @@ package com.gotasoft.mosojkausay.view.participantes.perfil_participante
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import coil.load
 import com.estrelladelsur.apptecnico.map.MapDialog
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.gotasoft.mosojkausay.R
+import com.gotasoft.mosojkausay.URL_DOWNLOAD_PHOTO_PART
 import com.gotasoft.mosojkausay.databinding.ActivityEditParticipanteBinding
 import com.gotasoft.mosojkausay.databinding.ActivityPerfilParticipanteBinding
 import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import com.gotasoft.mosojkausay.view.participantes.EditParticipante.EditParticipanteActivity
-import dev.matt2393.utils.Location.LocationPermission
 
 class PerfilParticipanteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilParticipanteBinding
@@ -51,6 +52,12 @@ class PerfilParticipanteActivity : AppCompatActivity() {
             editPerfilCursoPart.setText(if (participante?.curso == null) "" else participante?.curso,)
             editPerfilTurnoPart.setText(if (participante?.turno == null) "" else participante?.turno)
 
+            if(!participante?.foto.isNullOrEmpty()) {
+                imagePerfilPart.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto")
+            }
+            if(!participante?.foto_domicilio.isNullOrEmpty()) {
+                imagePerfilDomicilio.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio")
+            }
 
             fabLocPerfilPart.setOnClickListener {
                 if(participante!=null) {

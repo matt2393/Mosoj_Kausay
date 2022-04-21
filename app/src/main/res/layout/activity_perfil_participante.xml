@@ -80,9 +80,21 @@
                     android:textSize="15sp"
                     android:textColor="@color/purple_500"
                     android:id="@+id/textChildNumberPerfilPart"
+
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintTop_toBottomOf="@id/textNombrePerfilPart"
                     app:layout_constraintStart_toStartOf="@id/textNombrePerfilPart"
                     app:layout_constraintEnd_toEndOf="@id/textNombrePerfilPart"
+                    app:layout_constraintBottom_toTopOf="@id/textNomPatroPerfilPart"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/purple_500"
+                    android:id="@+id/textNomPatroPerfilPart"
+                    app:layout_constraintTop_toBottomOf="@id/textChildNumberPerfilPart"
+                    app:layout_constraintStart_toStartOf="@id/textChildNumberPerfilPart"
+                    app:layout_constraintEnd_toEndOf="@id/textChildNumberPerfilPart"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

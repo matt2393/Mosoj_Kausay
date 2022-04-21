@@ -22,7 +22,6 @@ import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.databinding.FragmentAddFotoMmBinding
 import com.gotasoft.mosojkausay.utils.getToken
 import com.gotasoft.mosojkausay.view.load.LoadDialog
-import dev.matt2393.utils.Permission.PermissionRequest
 import kotlinx.coroutines.flow.collect
 import java.io.File
 import android.provider.MediaStore
@@ -32,6 +31,8 @@ import androidx.core.net.toFile
 import androidx.loader.content.CursorLoader
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.gotasoft.mosojkausay.utils.FetchPath
+import dev.matt2393.utils.location.LocPermission
+import dev.matt2393.utils.permission.ReqPermission
 
 
 class FotoMMAddFragment: Fragment() {
@@ -58,6 +59,7 @@ class FotoMMAddFragment: Fragment() {
     ): View? {
         val binding = FragmentAddFotoMmBinding.inflate(inflater, container, false)
         requireActivity().title = "Fotografias"
+        ReqPermission.init(this)
         val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if(it.data!=null && it.data?.data!=null) {
                 val uriData = it.data?.data!!
@@ -94,10 +96,10 @@ class FotoMMAddFragment: Fragment() {
             mm_id = it.getInt(MM_ID, 0)
             with(binding) {
                 cardAddFotoMM.setOnClickListener {
-                    PermissionRequest.with(this@FotoMMAddFragment)
-                        .request(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE)){ p ->
-                            if(p[Manifest.permission.READ_EXTERNAL_STORAGE]!! && p[Manifest.permission.WRITE_EXTERNAL_STORAGE]!!) {
+                    ReqPermission.launch(
+                        permission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        result = { p->
+                            if(p[Manifest.permission.READ_EXTERNAL_STORAGE] == true && p[Manifest.permission.WRITE_EXTERNAL_STORAGE] == true) {
                                 //val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                                 //intent.type = "image/*"
                                 //intent.action = Intent.ACTION_OPEN_DOCUMENT
@@ -114,6 +116,8 @@ class FotoMMAddFragment: Fragment() {
                                 Toast.makeText(requireContext(), "Se necesita permisos.", Toast.LENGTH_SHORT).show()
                             }
                         }
+                    )
+
                 }
                 buttonGuardarFotoMM.setOnClickListener {
                     val des = editDescAddFotoMM.text.toString()

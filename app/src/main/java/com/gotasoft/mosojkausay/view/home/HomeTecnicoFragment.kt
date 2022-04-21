@@ -66,6 +66,12 @@ class HomeTecnicoFragment: Fragment() {
                 Intent(requireContext(), MisSegActivity::class.java)
             )
         }
+        bind?.cardConteoTecnico?.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), ParticipantesActivity::class.java)
+                    .putExtra(ParticipantesActivity.TIPO_PERSONAL, TipoPersonal.ADMIN.name)
+            )
+        }
         flowScope()
         return bind?.root
     }
