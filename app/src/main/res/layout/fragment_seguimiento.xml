@@ -6,6 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textEstadoSeguimiento"
+        android:text="@string/segs_activos"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="10dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/active"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textinputGestionSeg"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -13,12 +27,12 @@
         android:id="@+id/textinputGestionSeg"
         android:layout_marginVertical="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="15dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textEstadoSeguimiento"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textinputTipoSeg"
-        app:layout_constraintBottom_toTopOf="@id/recyclerSeg">
+        app:layout_constraintEnd_toStartOf="@id/switchActivoSeg"
+        app:layout_constraintBottom_toTopOf="@id/textinputTipoSeg">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -35,12 +49,11 @@
         android:layout_height="wrap_content"
         android:hint="Tipo"
         android:id="@+id/textinputTipoSeg"
-        android:layout_marginHorizontal="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-        app:layout_constraintTop_toTopOf="@id/textinputGestionSeg"
-        app:layout_constraintStart_toEndOf="@id/textinputGestionSeg"
-        app:layout_constraintEnd_toStartOf="@id/switchActivoSeg"
-        app:layout_constraintBottom_toBottomOf="@id/textinputGestionSeg">
+        app:layout_constraintTop_toBottomOf="@id/textinputGestionSeg"
+        app:layout_constraintStart_toStartOf="@id/textinputGestionSeg"
+        app:layout_constraintEnd_toEndOf="@id/textinputGestionSeg"
+        app:layout_constraintBottom_toTopOf="@id/swipeSeg">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -60,19 +73,25 @@
         android:layout_marginEnd="15dp"
         android:checked="true"
         app:layout_constraintTop_toTopOf="@id/textinputGestionSeg"
-        app:layout_constraintStart_toEndOf="@id/textinputTipoSeg"
+        app:layout_constraintStart_toEndOf="@id/textinputGestionSeg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/textinputGestionSeg"/>
+        app:layout_constraintBottom_toBottomOf="@id/textinputTipoSeg"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/recyclerSeg"
-        android:paddingBottom="65dp"
-        android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/textinputGestionSeg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_seguimiento"/>
+        android:id="@+id/swipeSeg"
+        app:layout_constraintTop_toBottomOf="@id/textinputTipoSeg"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerSeg"
+            android:paddingBottom="65dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_seguimiento"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

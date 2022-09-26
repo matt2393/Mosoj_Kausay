@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
+import com.gotasoft.mosojkausay.BuildConfig
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.databinding.ActivityHomeBinding
 import com.gotasoft.mosojkausay.utils.*
@@ -67,6 +68,7 @@ class HomeActivity : AppCompatActivity() {
 
             }
         }
+        bind.textVersionHome.text = getString(R.string.version, BuildConfig.VERSION_NAME)
         flowScope()
     }
 

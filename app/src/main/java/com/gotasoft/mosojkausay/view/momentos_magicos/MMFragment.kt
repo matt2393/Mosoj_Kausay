@@ -25,12 +25,13 @@ class MMFragment: Fragment() {
     }
     private var token = ""
     private var adapter: MMAdapter? = null
+    private var binding: FragmentMmBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMmBinding.inflate(inflater, container, false)
+        binding = FragmentMmBinding.inflate(inflater, container, false)
 
         requireActivity().title = "Momentos Mágicos"
         adapter = MMAdapter(clickTestAd = {
@@ -44,17 +45,25 @@ class MMFragment: Fragment() {
                 .addToBackStack(FotosMMFragment.TAG)
                 .commit()
         })
-        binding.recyclerMM.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerMM.adapter = adapter
-        binding.fabAddMM.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.containerMM, AddMMFragment(), AddMMFragment.TAG)
-                .addToBackStack(AddMMFragment.TAG)
-                .commit()
+        with(binding!!) {
+            recyclerMM.layoutManager = LinearLayoutManager(requireContext())
+            recyclerMM.adapter = adapter
+            fabAddMM.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.containerMM, AddMMFragment(), AddMMFragment.TAG)
+                    .addToBackStack(AddMMFragment.TAG)
+                    .commit()
+            }
+
+            swipeMM.setOnRefreshListener {
+                if(token.isNotEmpty()) {
+                    viewModel.getMM(token)
+                }
+            }
         }
 
         flowScopes()
-        return binding.root
+        return binding?.root
     }
 
     override fun onStart() {
@@ -80,9 +89,10 @@ class MMFragment: Fragment() {
                     is StateData.Success -> {
                         adapter?.arrayMM = it.data
                         adapter?.notifyDataSetChanged()
+                        binding?.swipeMM?.isRefreshing = false
                     }
                     is StateData.Error -> {
-
+                        binding?.swipeMM?.isRefreshing = false
                     }
                     StateData.Loading -> {
 

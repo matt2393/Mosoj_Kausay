@@ -199,7 +199,7 @@ interface ApiRequest {
     @PUT("seguimientos/set-activo/{id}")
     suspend fun editSegsActivoInactivo(@Header("Authorization") token: String = "",
                                        @Path("id") id: Int = 0,
-                                       @Body segActivoInactivoRequest: SegActivoInactivoRequest): MessGenericResponse
+                                       @Body segActivoInactivoRequest: SegActivoInactivoRequest): MessGenericResponse2
 
     @POST("contador")
     suspend fun agregarContador(): AgregarContadorRes
@@ -213,5 +213,8 @@ interface ApiRequest {
                           @Query("child_number") childNumber: String = "",
                           @Query("type") type: String = "",
                           @Part foto: MultipartBody.Part): SuccessRes
+
+    @GET("participantes/{gestion}")
+    suspend fun getPartTotales(@Path("gestion") gestion: String): List<PartTotales>
 
 }

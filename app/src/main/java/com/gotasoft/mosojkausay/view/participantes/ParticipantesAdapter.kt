@@ -6,10 +6,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.databinding.ItemParticipantesBinding
+import com.gotasoft.mosojkausay.model.entities.response.PartTotales
 
-class ParticipantesAdapter: RecyclerView.Adapter<ParticipantesAdapter.ParticipantesViewHolder>() {
+class ParticipantesAdapter(var listTotales: MutableList<PartTotales> = mutableListOf()): RecyclerView.Adapter<ParticipantesAdapter.ParticipantesViewHolder>() {
     inner class ParticipantesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val bind = ItemParticipantesBinding.bind(itemView)
+        private val binding = ItemParticipantesBinding.bind(itemView)
+        fun bind(part: PartTotales) {
+            with(binding) {
+                textTitItemParticipantes.text = part.mes_nombre
+                textNumNuevoItemPart.text = part.nuevos.toString()
+                textNumMigracionItemPart.text = part.migrados.toString()
+                textNumTotalItemPart.text = part.total.toString()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParticipantesViewHolder =
@@ -19,8 +28,9 @@ class ParticipantesAdapter: RecyclerView.Adapter<ParticipantesAdapter.Participan
         )
 
     override fun onBindViewHolder(holder: ParticipantesViewHolder, position: Int) {
-
+        val part = listTotales[position]
+        holder.bind(part)
     }
 
-    override fun getItemCount(): Int = 1
+    override fun getItemCount(): Int = listTotales.size
 }

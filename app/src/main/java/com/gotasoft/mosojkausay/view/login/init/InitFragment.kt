@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.gotasoft.mosojkausay.BuildConfig
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.databinding.FragmentInitBinding
@@ -90,6 +91,8 @@ class InitFragment: Fragment() {
                 page.scaleY = 0.95f + r * 0.05f
             }
             viewPager2Init.setPageTransformer(com)
+
+            textVersionInit.text = getString(R.string.version, BuildConfig.VERSION_NAME)
         }
 
 

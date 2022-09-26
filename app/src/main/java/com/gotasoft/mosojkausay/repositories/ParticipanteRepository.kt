@@ -1,10 +1,7 @@
 package com.gotasoft.mosojkausay.repositories
 
 import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
-import com.gotasoft.mosojkausay.model.entities.response.AllParticipanteResponse
-import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
-import com.gotasoft.mosojkausay.model.entities.response.ResponseGeneric
-import com.gotasoft.mosojkausay.model.entities.response.SuccessRes
+import com.gotasoft.mosojkausay.model.entities.response.*
 import com.gotasoft.mosojkausay.model.network.ApiRest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -42,6 +39,12 @@ class ParticipanteRepository {
         val req = MultipartBody.Part.createFormData("foto", photo.name,
             photo.asRequestBody("multipart/form-data".toMediaTypeOrNull()))
         val res = ApiRest.request.savePhotoPart(childNumber, type, req)
+        emit(res)
+    }.flowOn(Dispatchers.IO)
+
+
+    suspend fun getTotales(gestion: String): Flow<List<PartTotales>> = flow {
+        val res = ApiRest.request.getPartTotales(gestion)
         emit(res)
     }.flowOn(Dispatchers.IO)
 

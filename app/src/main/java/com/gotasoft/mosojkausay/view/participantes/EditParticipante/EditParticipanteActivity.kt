@@ -28,7 +28,9 @@ import com.gotasoft.mosojkausay.databinding.ActivityEditParticipanteBinding
 import com.gotasoft.mosojkausay.model.entities.request.ParticipanteRequest
 import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.utils.FetchPath
+import com.gotasoft.mosojkausay.view.MessageDialog
 import com.gotasoft.mosojkausay.view.load.LoadDialog
+import com.gotasoft.mosojkausay.view.map.MapSelectDialog
 import dev.matt2393.utils.location.LocPermission
 import dev.matt2393.utils.permission.ReqPermission
 import kotlinx.coroutines.flow.collect
@@ -38,7 +40,6 @@ class EditParticipanteActivity : AppCompatActivity() {
     private val viewModel: EditParticipanteViewModel by viewModels()
     private lateinit var binding: ActivityEditParticipanteBinding
 
-    private var locationCallback: LocationCallback? = null
     private var lat = "0.0"
     private var lon = "0.0"
     private var loadDialog: LoadDialog? = null
@@ -63,10 +64,9 @@ class EditParticipanteActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ReqPermission.init(this)
         binding = ActivityEditParticipanteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        LocPermission.init(this)
-        ReqPermission.init(this)
         intent?.let {
             participante = it.getParcelableExtra(PART)
         }
@@ -129,7 +129,7 @@ class EditParticipanteActivity : AppCompatActivity() {
             }
 
             buttonLocPart.setOnClickListener {
-                LocPermission.launch(
+                /*LocPermission.launch(
                     success = {
                         if(locationCallback!=null) {
                             val locRequest = LocationRequest.create()
@@ -144,7 +144,13 @@ class EditParticipanteActivity : AppCompatActivity() {
                     error = {
                         Toast.makeText(this@EditParticipanteActivity, "Necesita permisos o activar gps", Toast.LENGTH_SHORT).show()
                     }
-                )
+                )*/
+                MapSelectDialog.newInstance(participante) { l, l2 ->
+                    lat = l.toString()
+                    lon = l2.toString()
+                    binding.editLatPart.setText(lat)
+                    binding.editLongPart.setText(lon)
+                }.show(supportFragmentManager, MapSelectDialog.TAG)
             }
 
             buttonGuardarPart.setOnClickListener {
@@ -190,26 +196,25 @@ class EditParticipanteActivity : AppCompatActivity() {
 
         }
 
-        locationCallback = object : LocationCallback(){
-            override fun onLocationResult(p0: LocationResult) {
-                lat = p0.lastLocation.latitude.toString()
-                lon = p0.lastLocation.longitude.toString()
-                binding.editLatPart.setText(lat)
-                binding.editLongPart.setText(lon)
-            }
-        }
-
         lifecycleScope.launchWhenStarted {
             viewModel.savePart.collect {
                 when(it) {
                     is StateData.Success -> {
                         loadDialog?.dismiss()
-                        Toast.makeText(this@EditParticipanteActivity, it.data.message, Toast.LENGTH_SHORT).show()
-                        finish()
+                        val mess = MessageDialog.newInstance("Éxito", it.data.message, "Aceptar", {
+                            finish()
+                        })
+                        mess.isCancelable = false
+                        mess.show(supportFragmentManager, MessageDialog.TAG)
+
                     }
                     is StateData.Error -> {
                         loadDialog?.dismiss()
-                        Toast.makeText(this@EditParticipanteActivity, it.error.message, Toast.LENGTH_SHORT).show()
+                        val mess = MessageDialog.newInstance("Error", "Ocurrio un error inesperado, intente nuevamente", "Aceptar", { d ->
+                            d.dismiss()
+                        })
+                        mess.isCancelable = true
+                        mess.show(supportFragmentManager, MessageDialog.TAG)
                     }
                     is StateData.Loading -> {
                         loadDialog?.show(supportFragmentManager, "Load")
@@ -233,7 +238,11 @@ class EditParticipanteActivity : AppCompatActivity() {
                                 }
                             }
                         }
-                        Toast.makeText(this@EditParticipanteActivity, "Se subio la imagen con éxito", Toast.LENGTH_SHORT).show()
+                        val mess = MessageDialog.newInstance("Éxito","Se subio la imagen con éxito", "Aceptar", { d ->
+                            d.dismiss()
+                        })
+                        mess.isCancelable = true
+                        mess.show(supportFragmentManager, MessageDialog.TAG)
                     }
                     is StateData.Error -> {
                         loadDialog?.dismiss()

@@ -42,6 +42,7 @@ class LoginFragment: Fragment() {
         loadDialog = LoadDialog().apply {
             isCancelable = false
         }
+        bind?.textVersionLogin?.text = getString(R.string.version, BuildConfig.VERSION_NAME)
 
         flows()
 

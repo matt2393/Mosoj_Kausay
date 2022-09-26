@@ -13,8 +13,8 @@ android {
         applicationId "com.gotasoft.mosojkausay"
         minSdk 21
         targetSdk 31
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 5
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,13 +57,14 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-    implementation 'com.github.matt2393.LibreriasMatt:permissions:0.6'
+    implementation 'com.github.matt2393.LibreriasMatt:permissions:0.6.1'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
     implementation 'io.coil-kt:coil:1.4.0'
 
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

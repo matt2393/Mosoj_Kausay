@@ -31,6 +31,7 @@ import androidx.core.net.toFile
 import androidx.loader.content.CursorLoader
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.gotasoft.mosojkausay.utils.FetchPath
+import com.gotasoft.mosojkausay.view.MessageDialog
 import dev.matt2393.utils.location.LocPermission
 import dev.matt2393.utils.permission.ReqPermission
 
@@ -151,11 +152,18 @@ class FotoMMAddFragment: Fragment() {
             viewModel.foto.collect {
                 when(it) {
                     is StateData.Success -> {
-                        Toast.makeText(requireContext(), "Se guardo con éxito", Toast.LENGTH_SHORT).show()
-                        requireActivity().onBackPressed()
+                        val mess = MessageDialog.newInstance("Éxito", "Se guardo con éxito", "Aceptar", {
+                            requireActivity().onBackPressed()
+                        })
+                        mess.isCancelable = false
+                        mess.show(childFragmentManager, MessageDialog.TAG)
                     }
                     is StateData.Error -> {
-                        Toast.makeText(requireContext(), "Error...", Toast.LENGTH_SHORT).show()
+                        val mess = MessageDialog.newInstance("Error", "Ocurrio un error inesperado, intente nuevamente", "Aceptar", { d ->
+                            d.dismiss()
+                        })
+                        mess.isCancelable = true
+                        mess.show(childFragmentManager, MessageDialog.TAG)
                     }
                     StateData.Loading -> {
                         loadDialog = LoadDialog()

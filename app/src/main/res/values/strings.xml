@@ -7,4 +7,8 @@
     <string name="village">Villas</string>
     <string name="editar">Editar</string>
     <string name="unidad_educativa">Unidad Educativa</string>
+
+    <string name="segs_activos">Seguimientos Activos</string>
+    <string name="segs_desactivos">Seguimientos Desactivados</string>
+    <string name="version">Versión %s</string>
 </resources>

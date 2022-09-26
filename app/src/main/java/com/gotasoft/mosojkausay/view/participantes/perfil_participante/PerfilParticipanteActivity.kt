@@ -14,6 +14,7 @@ import com.gotasoft.mosojkausay.databinding.ActivityPerfilParticipanteBinding
 import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import com.gotasoft.mosojkausay.view.participantes.EditParticipante.EditParticipanteActivity
+import dev.matt2393.utils.location.LocPermission
 
 class PerfilParticipanteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilParticipanteBinding
@@ -25,6 +26,7 @@ class PerfilParticipanteActivity : AppCompatActivity() {
     private var participante: ParticipanteResponse? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        LocPermission.init(this)
         binding = ActivityPerfilParticipanteBinding.inflate(layoutInflater)
         intent?.let {
             participante = it.getParcelableExtra(EditParticipanteActivity.PART)

@@ -28,6 +28,12 @@ class ListParticipantesFragment: Fragment() {
     private var adapter: ListParticipantesAdapter? = null
     companion object {
         val TAG = ListParticipantesFragment::class.java.name
+        private const val FROM = "FROM"
+        private const val TO = "TO"
+        private const val VILLA = "VILLA"
+        private const val VALUE = "VALUE"
+        private const val PAGE = "PAGE"
+        private const val POS = "POS"
     }
 
     private var from = 0
@@ -37,6 +43,7 @@ class ListParticipantesFragment: Fragment() {
     private var isLoad: Boolean = false
     private var isLast: Boolean = false
     private var pag = 1
+    private var positionRecycler: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,7 +77,7 @@ class ListParticipantesFragment: Fragment() {
         val villaDialog = VillaDialog.newInstance {
             bind.textVillas.text = it.village
             changeData(bind)
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -79,7 +86,7 @@ class ListParticipantesFragment: Fragment() {
             override fun loadMoreItems() {
                 pag++
                 isLoad = true
-                viewModel.getParticipantes(value = value,
+                viewModel.getParticipantes(key = getKey(value), value = value,
                     village = villa,
                     from = from, to = to, page = pag
                 )
@@ -99,7 +106,7 @@ class ListParticipantesFragment: Fragment() {
             changeData(bind)
             from = 0
             to = 5
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -109,7 +116,7 @@ class ListParticipantesFragment: Fragment() {
             changeData(bind)
             from = 6
             to = 11
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -119,7 +126,7 @@ class ListParticipantesFragment: Fragment() {
             changeData(bind)
             from = 12
             to = 15
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -129,7 +136,7 @@ class ListParticipantesFragment: Fragment() {
             changeData(bind)
             from = 16
             to = 24
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -139,7 +146,7 @@ class ListParticipantesFragment: Fragment() {
             changeData(bind)
             from = 0
             to = 100
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -147,7 +154,7 @@ class ListParticipantesFragment: Fragment() {
         }
         bind.fabBuscarParticipante.setOnClickListener {
             changeData(bind)
-            viewModel.getParticipantes(value = value,
+            viewModel.getParticipantes(key = getKey(value), value = value,
                 village = villa,
                 from = from, to = to
             )
@@ -155,8 +162,19 @@ class ListParticipantesFragment: Fragment() {
         flows()
         changeColor(Edades.PATROCINIO, bind)
 
-        viewModel.getParticipantes(from = from, to = to)
+        //viewModel.getParticipantes(from = from, to = to)
         return bind.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter?.arrayParticipantes?.clear()
+        adapter?.notifyDataSetChanged()
+        viewModel.getParticipantes(
+            key = getKey(value), value = value,
+            village = villa,
+            from = from, to = to
+        )
     }
     private fun flows() {
         lifecycleScope.launchWhenStarted {
@@ -231,5 +249,18 @@ class ListParticipantesFragment: Fragment() {
     }
     enum class Edades {
         CC, MQMC, NSP, PACTO, PATROCINIO
+    }
+
+    private fun getKey(value: String): String {
+        return if(value.isNotEmpty()) {
+            try {
+                val aux = value.toLong()
+                "child_number"
+            } catch (ex: Exception) {
+                "nombre_completo"
+            }
+        } else {
+            "nombre_completo"
+        }
     }
 }

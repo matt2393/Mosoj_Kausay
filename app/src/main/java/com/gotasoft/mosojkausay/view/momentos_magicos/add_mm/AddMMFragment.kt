@@ -16,6 +16,8 @@ import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.databinding.FragmentAddMmBinding
 import com.gotasoft.mosojkausay.model.entities.request.MMRequest
 import com.gotasoft.mosojkausay.utils.getToken
+import com.gotasoft.mosojkausay.view.MessageDialog
+import com.gotasoft.mosojkausay.view.load.LoadDialog
 import kotlinx.coroutines.flow.collect
 import java.util.*
 
@@ -26,6 +28,8 @@ class AddMMFragment: Fragment() {
     }
 
     private var token = ""
+
+    private var loadDialog: LoadDialog? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -147,17 +151,33 @@ class AddMMFragment: Fragment() {
             viewModel.mm.collect {
                 when(it) {
                     is StateData.Success -> {
-                        Toast.makeText(requireContext(), "Se guardo con éxito", Toast.LENGTH_SHORT).show()
-                        requireActivity().onBackPressed()
+                        val mess = MessageDialog.newInstance("Éxito", "Se guardo con éxito", "Aceptar", {
+                            requireActivity().onBackPressed()
+                        })
+                        mess.isCancelable = false
+                        mess.show(childFragmentManager, MessageDialog.TAG)
+
                     }
                     is StateData.Error -> {
-                        Toast.makeText(requireContext(), "Error...", Toast.LENGTH_SHORT).show()
+                        val mess = MessageDialog.newInstance("Error", "Ocurrio un error inesperado, intente nuevamente", "Aceptar", { d ->
+                            d.dismiss()
+                        })
+                        mess.isCancelable = true
+                        mess.show(childFragmentManager, MessageDialog.TAG)
                     }
                     StateData.Loading -> {
+                        if(loadDialog == null) {
+                            loadDialog = LoadDialog()
+                            loadDialog?.isCancelable = false
+                            loadDialog?.show(childFragmentManager, "Load2")
+                        }
 
                     }
                     StateData.None -> {
-
+                        if(loadDialog != null) {
+                            loadDialog?.dismiss()
+                            loadDialog = null
+                        }
                     }
                 }
             }
@@ -168,7 +188,7 @@ class AddMMFragment: Fragment() {
         val c = Calendar.getInstance()
         DatePickerDialog(requireContext(),
             { _, year, month, dayOfMonth ->
-                val fecha = "$year-$month-$dayOfMonth"
+                val fecha = "$year-${month + 1}-$dayOfMonth"
                 edit.setText(fecha)
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH))
             .show()

@@ -64,6 +64,10 @@ class PlanillaFragment: Fragment() {
             viewModel.getPlanilla(token, getActivo(), tipo)
         }
 
+        binding?.swipePlanilla?.setOnRefreshListener {
+            viewModel.getPlanilla(token, getActivo(), tipo)
+        }
+
         flowScopes()
 
         return binding?.root
@@ -92,10 +96,12 @@ class PlanillaFragment: Fragment() {
             viewModel.planilla.collect {
                 when(it) {
                     is StateData.Success -> {
+                        binding?.swipePlanilla?.isRefreshing = false
                         adapter?.arrayPlanilla = it.data
                         adapter?.notifyDataSetChanged()
                     }
                     is StateData.Error -> {
+                        binding?.swipePlanilla?.isRefreshing = false
                         Log.e("ErrorPlanilla", it.toString())
                     }
                     StateData.Loading -> {

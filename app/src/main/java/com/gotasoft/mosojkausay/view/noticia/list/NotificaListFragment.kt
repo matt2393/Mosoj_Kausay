@@ -20,12 +20,13 @@ import kotlinx.coroutines.flow.collect
 class NotificaListFragment: Fragment() {
     private val viewModel: NoticiaViewModel by activityViewModels()
     private var adapter: NoticiaAdapter? = null
+    private var binding: FragmentNoticiaListBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentNoticiaListBinding.inflate(inflater, container, false)
+        binding = FragmentNoticiaListBinding.inflate(inflater, container, false)
         adapter = NoticiaAdapter {
             requireActivity().supportFragmentManager
                 .beginTransaction()
@@ -34,15 +35,19 @@ class NotificaListFragment: Fragment() {
                 .commit()
         }
         requireActivity().title = "Noticias"
-        with(binding) {
+        with(binding!!) {
             recyclerNoticias.layoutManager = LinearLayoutManager(requireContext())
             recyclerNoticias.adapter = adapter
+
+            swipeNoticias.setOnRefreshListener {
+                viewModel.getNoticias()
+            }
         }
 
         flowScopes()
         viewModel.getNoticias()
 
-        return binding.root
+        return binding?.root
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun flowScopes() {
@@ -50,11 +55,12 @@ class NotificaListFragment: Fragment() {
             viewModel.noticias.collect {
                 when(it) {
                     is StateData.Success -> {
+                        binding?.swipeNoticias?.isRefreshing = false
                         adapter?.arrayNoticia = it.data
                         adapter?.notifyDataSetChanged()
                     }
                     is StateData.Error -> {
-
+                        binding?.swipeNoticias?.isRefreshing = false
                     }
                     StateData.Loading -> {
 

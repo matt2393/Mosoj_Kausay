@@ -4,6 +4,7 @@ import com.gotasoft.mosojkausay.model.entities.request.SegActivoInactivoRequest
 import com.gotasoft.mosojkausay.model.entities.request.SeguimientoCreateRequest
 import com.gotasoft.mosojkausay.model.entities.request.SeguimientoEditRequest
 import com.gotasoft.mosojkausay.model.entities.response.MessGenericResponse
+import com.gotasoft.mosojkausay.model.entities.response.MessGenericResponse2
 import com.gotasoft.mosojkausay.model.entities.response.SeguimientoResponse
 import com.gotasoft.mosojkausay.model.network.ApiRest
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +49,7 @@ class SeguimientoRepository {
 
     suspend fun editSegsActivoInactivo(token: String,
                                        id: Int,
-                                       segActivoInactivoRequest: SegActivoInactivoRequest): Flow<MessGenericResponse> =
+                                       segActivoInactivoRequest: SegActivoInactivoRequest): Flow<MessGenericResponse2> =
         flow {
             val res = ApiRest.request.editSegsActivoInactivo(token, id, segActivoInactivoRequest)
             emit(res)

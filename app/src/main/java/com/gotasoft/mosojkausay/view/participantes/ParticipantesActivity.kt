@@ -7,6 +7,7 @@ import com.gotasoft.mosojkausay.databinding.ActivityParticipantesBinding
 import com.gotasoft.mosojkausay.utils.TipoPersonal
 import com.gotasoft.mosojkausay.view.mess.crear_mess.CrearMess1Fragment
 import com.gotasoft.mosojkausay.view.participantes.list_participantes.ListParticipantesFragment
+import dev.matt2393.utils.location.LocPermission
 
 class ParticipantesActivity : AppCompatActivity() {
     companion object {

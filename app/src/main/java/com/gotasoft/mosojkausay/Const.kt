@@ -43,5 +43,16 @@ val arrayModeloProgValue = arrayListOf("creciendo_contigo", "ninez_segura_proteg
 val arrayModeloProg = arrayListOf("Creciendo Contigo", "Niñez Segura y Protegida",
     "Me Quiero me Cuido", "Pacto")
 
-val arrayMeses = arrayListOf("Enero", "Febrero", "Marzo", "Abril", "Mayo",
+val arrayMeses = arrayListOf("", "Enero", "Febrero", "Marzo", "Abril", "Mayo",
     "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+
+
+/**
+ *
+ *
+ * {
+"username": "mbautista",
+"password": "10516362"
+}
+ *
+ */

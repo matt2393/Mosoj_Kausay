@@ -8,15 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentSeguimientoBinding
+import com.gotasoft.mosojkausay.model.entities.request.ValidarCorresRequest
 import com.gotasoft.mosojkausay.utils.getToken
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import com.gotasoft.mosojkausay.view.seguimiento.add_seg.AddSegFragment
+import com.gotasoft.mosojkausay.view.seguimiento.edit_seg.EditSegFragment
 import kotlinx.coroutines.flow.collect
 
 class SeguimientoFragment: Fragment() {
@@ -40,11 +43,32 @@ class SeguimientoFragment: Fragment() {
     ): View? {
         binding = FragmentSeguimientoBinding.inflate(inflater, container, false)
         adapter = SeguimientoAdapter(edit = {
-
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.containerSeg, EditSegFragment.newInstance(it, it.id), EditSegFragment.TAG)
+                .addToBackStack(EditSegFragment.TAG)
+                .commit()
         }, activar = {
-
+            AlertDialog.Builder(requireContext())
+                .setTitle("Activar")
+                .setMessage("¿Desea activar este seguimiento?")
+                .setPositiveButton("Aceptar") { d, _ ->
+                    viewModel.activeSegimiento(token, it.id)
+                    d?.dismiss()
+                }
+                .setNegativeButton("Cancelar") { d, _ ->
+                    d?.dismiss()
+                }.show()
         }, desactivar = {
-
+            AlertDialog.Builder(requireContext())
+                .setTitle("Desactivar")
+                .setMessage("¿Desea desactivar este seguimiento?")
+                .setPositiveButton("Aceptar") { d, _ ->
+                    viewModel.inactiveSegimiento(token, it.id)
+                    d?.dismiss()
+                }
+                .setNegativeButton("Cancelar") { d, _ ->
+                    d?.dismiss()
+                }.show()
         })
         with(binding!!) {
             recyclerSeg.layoutManager = LinearLayoutManager(requireContext())
@@ -73,6 +97,10 @@ class SeguimientoFragment: Fragment() {
                     .replace(R.id.containerSeg, AddSegFragment(), AddSegFragment.TAG)
                     .addToBackStack(AddSegFragment.TAG)
                     .commit()
+            }
+
+            swipeSeg.setOnRefreshListener {
+                viewModel.getSegs(token, arrayGestion[posGestion], arrayTipoSeg[posTipo], activo)
             }
         }
         flowScopes()
@@ -104,8 +132,73 @@ class SeguimientoFragment: Fragment() {
             viewModel.segs.collect {
                 when(it) {
                     is StateData.Success -> {
+                        it.data.sortBy { seg -> seg.mes }
                         adapter?.arraySeg = it.data
                         adapter?.notifyDataSetChanged()
+                        binding?.swipeSeg?.isRefreshing = false
+                        if (activo == 1) {
+                            binding?.textEstadoSeguimiento?.text = getString(R.string.segs_activos)
+                            binding?.textEstadoSeguimiento?.setTextColor(requireActivity().getColor(R.color.active))
+                        } else {
+                            binding?.textEstadoSeguimiento?.text = getString(R.string.segs_desactivos)
+                            binding?.textEstadoSeguimiento?.setTextColor(requireActivity().getColor(R.color.gray))
+                        }
+                    }
+                    is StateData.Error -> {
+                        Log.e("SegError", it.toString())
+                        binding?.swipeSeg?.isRefreshing = false
+                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                    }
+                    StateData.Loading -> {
+                        if(loadDialog == null) {
+                            loadDialog = LoadDialog()
+                            loadDialog?.isCancelable = false
+                            loadDialog?.show(childFragmentManager, LoadDialog.TAG)
+                        }
+                    }
+                    StateData.None -> {
+                        if(loadDialog != null) {
+                            loadDialog?.dismiss()
+                            loadDialog = null
+                        }
+
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.activeSeg.collect {
+                when(it) {
+                    is StateData.Success -> {
+                        viewModel.getSegs(token, arrayGestion[posGestion], arrayTipoSeg[posTipo], activo)
+                    }
+                    is StateData.Error -> {
+                        Log.e("SegError", it.toString())
+                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                    }
+                    StateData.Loading -> {
+                        if(loadDialog == null) {
+                            loadDialog = LoadDialog()
+                            loadDialog?.isCancelable = false
+                            loadDialog?.show(childFragmentManager, LoadDialog.TAG)
+                        }
+                    }
+                    StateData.None -> {
+                        if(loadDialog != null) {
+                            loadDialog?.dismiss()
+                            loadDialog = null
+                        }
+
+                    }
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.inactiveSeg.collect {
+                when(it) {
+                    is StateData.Success -> {
+                        viewModel.getSegs(token, arrayGestion[posGestion], arrayTipoSeg[posTipo], activo)
                     }
                     is StateData.Error -> {
                         Log.e("SegError", it.toString())

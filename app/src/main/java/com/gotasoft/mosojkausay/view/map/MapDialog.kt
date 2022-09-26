@@ -59,8 +59,12 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     private var binding: DialogMapBinding? = null
     private var participante: ParticipanteResponse? = null
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         LocPermission.init(this)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val alert = AlertDialog.Builder(requireContext())
         binding = DialogMapBinding.inflate(requireActivity().layoutInflater, null, false)
         alert.setView(binding?.root)
@@ -120,6 +124,11 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
                     }
                 )
             }
+        }
+        if(loadDialog == null) {
+            loadDialog = LoadDialog()
+            loadDialog?.isCancelable = false
+            loadDialog?.show(childFragmentManager, "load")
         }
     }
 
@@ -202,13 +211,16 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
                         Toast.makeText(requireContext(), "No se pudo encontrar una ruta", Toast.LENGTH_SHORT).show()
                     }
                     is StateData.Loading -> {
-                        loadDialog = LoadDialog()
-                        loadDialog?.isCancelable = false
-                        loadDialog?.show(childFragmentManager, "load")
+                        if(loadDialog == null) {
+                            loadDialog = LoadDialog()
+                            loadDialog?.isCancelable = false
+                            loadDialog?.show(childFragmentManager, "load")
+                        }
                     }
                     is StateData.None -> {
                         if(loadDialog != null) {
                             loadDialog?.dismiss()
+                            loadDialog = null
                         }
                     }
                 }

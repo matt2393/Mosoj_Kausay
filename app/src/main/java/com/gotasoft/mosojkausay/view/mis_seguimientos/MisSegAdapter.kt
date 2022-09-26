@@ -18,7 +18,7 @@ class MisSegAdapter(var arraySeg: ArrayList<SeguimientoResponse> = arrayListOf()
         private val binding = ItemMisSegBinding.bind(itemView)
         fun bind(seg: SeguimientoResponse) {
             with(binding) {
-                textMesItemMisSeg.text = arrayMeses[seg.mes]
+                textMesItemMisSeg.text = "${arrayMeses[seg.mes]} - ${seg.gestion}"
                 textActItemMisSeg.text = seg.tipo
                 textProgramadoItemMisSeg.text = seg.programado.toString()
                 editEjecutadoItemMisSeg.setText(seg.ejecutado.toString())

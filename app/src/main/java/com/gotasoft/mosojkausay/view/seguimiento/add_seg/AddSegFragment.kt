@@ -14,6 +14,7 @@ import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentAddSegBinding
 import com.gotasoft.mosojkausay.model.entities.request.SeguimientoCreateRequest
 import com.gotasoft.mosojkausay.utils.getToken
+import com.gotasoft.mosojkausay.view.MessageDialog
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import kotlinx.coroutines.flow.collect
 
@@ -116,12 +117,19 @@ class AddSegFragment: Fragment() {
             viewModel.segs.collect {
                 when(it) {
                     is StateData.Success -> {
-                        Toast.makeText(requireContext(), "Se guardo con éxito", Toast.LENGTH_SHORT).show()
-                        requireActivity().onBackPressed()
+                        val mess = MessageDialog.newInstance("Éxito", "Se guardo con éxito", "Aceptar", {
+                            requireActivity().onBackPressed()
+                        })
+                        mess.isCancelable = false
+                        mess.show(childFragmentManager, MessageDialog.TAG)
                     }
                     is StateData.Error -> {
                         Log.e("SegAddError", it.toString())
-                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                        val mess = MessageDialog.newInstance("Error", "Ocurrio un error inesperado, intente nuevamente", "Aceptar", { d ->
+                            d.dismiss()
+                        })
+                        mess.isCancelable = true
+                        mess.show(childFragmentManager, MessageDialog.TAG)
                     }
                     StateData.Loading -> {
                         loadDialog = LoadDialog()

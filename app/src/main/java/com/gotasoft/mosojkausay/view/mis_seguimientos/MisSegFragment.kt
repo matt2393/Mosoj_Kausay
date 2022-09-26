@@ -59,7 +59,9 @@ class MisSegFragment: Fragment() {
                 posTipo = position
                 viewModel.getMisSegs(token, arrayTipoSeg[posTipo])
             }
-
+            swipeMisSeg.setOnRefreshListener {
+                viewModel.getMisSegs(token, arrayTipoSeg[posTipo])
+            }
         }
         flowScopes()
         return binding?.root
@@ -81,8 +83,10 @@ class MisSegFragment: Fragment() {
                     is StateData.Success -> {
                         adapter?.arraySeg = it.data
                         adapter?.notifyDataSetChanged()
+                        binding?.swipeMisSeg?.isRefreshing = false
                     }
                     is StateData.Error -> {
+                        binding?.swipeMisSeg?.isRefreshing = false
                         Log.e("MisSegError", it.toString())
                         Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                     }

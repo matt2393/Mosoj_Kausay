@@ -21,6 +21,7 @@ data class DfcResponse(
     var dfc_amount: String = "",
     var dfc_currency: String = "",
     var donor_name: String = "",
+    var donor_number: String = "",
     var alliance_name: String = "",
     var validacion: String = "",
     var responsable: String = "",

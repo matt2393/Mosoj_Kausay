@@ -17,7 +17,7 @@ class AllMessAdapter(var arrayMess: ArrayList<MessageResponse> = arrayListOf(),
             with(binding) {
                 textAsuntoItemMess.text = mensaje.asunto
                 textContenidoItemMess.text = mensaje.contenido
-                val emisor = "${mensaje.personal.nombre_completo}"
+                val emisor = "${mensaje.personal?.nombre_completo}"
                 textEmisorItemMess.text = emisor
                 fabDestItemMess.show()
                 fabDestItemMess.setOnClickListener {

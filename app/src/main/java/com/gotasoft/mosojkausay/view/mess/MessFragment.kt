@@ -21,6 +21,7 @@ class MessFragment: Fragment() {
     private val viewModel: MessViewModel by viewModels()
     private var adapter: MessAdapter? = null
     private var adapterAll: AllMessAdapter? = null
+    private var tipoPersonal = TipoPersonal.TECNICO
     companion object {
         val TAG = MessFragment::class.java.name
     }
@@ -42,6 +43,14 @@ class MessFragment: Fragment() {
             startActivity(Intent(requireContext(), CrearMessActivity::class.java))
         }
 
+        binding?.swipeMess?.setOnRefreshListener {
+            if(tipoPersonal == TipoPersonal.ADMIN) {
+                viewModel.getMessAll(token = "Bearer $TOKEN")
+            } else {
+                viewModel.getMess(token = "Bearer $TOKEN")
+            }
+        }
+
         flowScopes()
 
 
@@ -50,22 +59,8 @@ class MessFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val dataToken = TOKEN.decodeJWT()
-        val tipoPersonal = if (dataToken.size > 1) {
-            val tokenR = dataToken[1].fromJsonToken()
-            when (tokenR.rol) {
-                US_ADMIN -> TipoPersonal.ADMIN
-                US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
-                else -> TipoPersonal.TECNICO
-            }
-        } else TipoPersonal.TECNICO
-        if(tipoPersonal == TipoPersonal.ADMIN) {
-            viewModel.getMessAll(token = "Bearer $TOKEN")
-            binding?.recyclerMess?.adapter = adapterAll
-        } else {
-            viewModel.getMess(token = "Bearer $TOKEN")
-            binding?.recyclerMess?.adapter = adapter
-        }
+
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -81,11 +76,28 @@ class MessFragment: Fragment() {
         lifecycleScope.launchWhenStarted {
             getToken(requireContext()).collect {
                 if(it!=null) {
+                    val dataToken = TOKEN.decodeJWT()
+                    tipoPersonal = if (dataToken.size > 1) {
+                        val tokenR = dataToken[1].fromJsonToken()
+                        when (tokenR.rol) {
+                            US_ADMIN -> TipoPersonal.ADMIN
+                            US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
+                            else -> TipoPersonal.TECNICO
+                        }
+                    } else TipoPersonal.TECNICO
+                    TOKEN = it
                     val tipoUss = it.tokenTipoUs()
                     if(tipoUss == TipoPersonal.ADMIN) {
                         binding?.fabCrearMess?.show()
                     } else {
                         binding?.fabCrearMess?.hide()
+                    }
+                    if(tipoPersonal == TipoPersonal.ADMIN) {
+                        viewModel.getMessAll(token = "Bearer $TOKEN")
+                        binding?.recyclerMess?.adapter = adapterAll
+                    } else {
+                        viewModel.getMess(token = "Bearer $TOKEN")
+                        binding?.recyclerMess?.adapter = adapter
                     }
                 }
             }
@@ -94,11 +106,13 @@ class MessFragment: Fragment() {
             viewModel.mess.collect {
                 when(it) {
                     is StateData.Success -> {
+                        binding?.swipeMess?.isRefreshing = false
                         adapter?.arrayMess = it.data
-                        adapter?.notifyItemRangeInserted(0, it.data.size)
+                        adapter?.notifyDataSetChanged()
+                        //adapter?.notifyItemRangeInserted(0, it.data.size)
                     }
                     is StateData.Error -> {
-
+                        binding?.swipeMess?.isRefreshing = false
                     }
                     StateData.Loading -> {
 
@@ -111,11 +125,13 @@ class MessFragment: Fragment() {
             viewModel.messAll.collect {
                 when(it) {
                     is StateData.Success -> {
+                        binding?.swipeMess?.isRefreshing = false
                         adapterAll?.arrayMess = it.data
-                        adapterAll?.notifyItemRangeInserted(0, it.data.size)
+                        adapterAll?.notifyDataSetChanged()
+                        //adapterAll?.notifyItemRangeInserted(0, it.data.size)
                     }
                     is StateData.Error -> {
-
+                        binding?.swipeMess?.isRefreshing = false
                     }
                     StateData.Loading -> {
 

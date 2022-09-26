@@ -1,5 +1,6 @@
 package com.gotasoft.mosojkausay.repositories
 
+import android.util.Log
 import com.gotasoft.mosojkausay.model.entities.response.MensajeResponse
 import com.gotasoft.mosojkausay.model.entities.response.MessageResponse
 import com.gotasoft.mosojkausay.model.network.ApiRest
@@ -25,6 +26,7 @@ class MensajeRepository {
                             page: Int = 1): Flow<ArrayList<MessageResponse>> =
         flow {
             val res = ApiRest.request.getMensajesAll(token, value, items, page)
+            Log.e("RES", res.toString())
             emit(ArrayList(res))
         }.flowOn(Dispatchers.IO)
 }
