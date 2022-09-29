@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gotasoft.mosojkausay.StateData
+import com.gotasoft.mosojkausay.model.entities.request.FcmReq
 import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
 import com.gotasoft.mosojkausay.model.entities.response.AgregarContadorRes
 import com.gotasoft.mosojkausay.model.entities.response.LoginResponse
@@ -42,4 +43,15 @@ class LoginViewModel(
         }
     }
 
+    fun editFCM(token: String, fcmReq: FcmReq) {
+        viewModelScope.launch {
+            loginRepository.editFCMToken(token, fcmReq)
+                .catch {
+                    Log.e("FCMError", it.toString())
+                }
+                .collect {
+                    Log.e("FCMSuccess", it.toString())
+                }
+        }
+    }
 }

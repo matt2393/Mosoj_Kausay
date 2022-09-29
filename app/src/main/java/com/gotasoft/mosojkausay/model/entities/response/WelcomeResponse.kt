@@ -24,5 +24,7 @@ data class WelcomeResponse(
     var createdAt: String = "",
     var updatedAt: String? = "",
     var deletedAt: String? = "",
-    var planilla_id: String = ""
+    var planilla_id: String = "",
+    var comunidad_act: String? = "",
+    var tecnico_campo: String? = ""
 ) : Parcelable

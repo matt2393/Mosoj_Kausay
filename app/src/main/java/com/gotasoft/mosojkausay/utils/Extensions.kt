@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.gotasoft.mosojkausay.US_ADMIN
-import com.gotasoft.mosojkausay.US_FACILITADOR
-import com.gotasoft.mosojkausay.US_PATROCINIO
-import com.gotasoft.mosojkausay.US_TECNICO
+import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.model.entities.response.TokenResponse
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -59,6 +56,7 @@ fun String.tokenTipoUs(): TipoPersonal {
             US_PATROCINIO -> TipoPersonal.PATROCINIO
             US_FACILITADOR -> TipoPersonal.FACILITADOR
             US_TECNICO -> TipoPersonal.TECNICO
+            US_FINANZAS -> TipoPersonal.FINANZAS
             else -> TipoPersonal.PARTICIPANTE
         }
     } else TipoPersonal.PARTICIPANTE

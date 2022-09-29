@@ -69,6 +69,8 @@ class CorresDialog<R: Parcelable>: DialogFragment() {
             textAllianceDialogcorres.text = d.alliance_name
             textResponsableDialogcorres.text = d.responsable
             textCommentsDialogcorres.text = d.comments
+            textComunityActDialogcorres.text = d.comunidad_act ?: ""
+            textTecnicoCampoDialogcorres.text = d.tecnico_campo ?: ""
         }
     }
     private fun llenarWelcome(d: WelcomeResponse, binding: DialogCorresBinding) {
@@ -88,6 +90,8 @@ class CorresDialog<R: Parcelable>: DialogFragment() {
             textResponsableDialogcorres.text = d.responsable
             textCommentsDialogcorres.visibility = View.GONE
             textTitCommentsDialogCorres.visibility = View.GONE
+            textComunityActDialogcorres.text = d.comunidad_act ?: ""
+            textTecnicoCampoDialogcorres.text = d.tecnico_campo ?: ""
         }
     }
     private fun llenarDfc(d: DfcResponse, binding: DialogCorresBinding) {
@@ -107,6 +111,8 @@ class CorresDialog<R: Parcelable>: DialogFragment() {
             textResponsableDialogcorres.text = d.responsable
             textCommentsDialogcorres.visibility = View.GONE
             textTitCommentsDialogCorres.visibility = View.GONE
+            textComunityActDialogcorres.text = d.comunidad_act ?: ""
+            textTecnicoCampoDialogcorres.text = d.tecnico_campo ?: ""
         }
     }
     private fun llenarUnavailable(d: UnavailableResponse, binding: DialogCorresBinding) {
@@ -134,6 +140,9 @@ class CorresDialog<R: Parcelable>: DialogFragment() {
 
             textCommentsDialogcorres.visibility = View.GONE
             textTitCommentsDialogCorres.visibility = View.GONE
+
+            textComunityActDialogcorres.text = d.comunidad_act ?: ""
+            textTecnicoCampoDialogcorres.text = d.tecnico_campo ?: ""
         }
     }
 

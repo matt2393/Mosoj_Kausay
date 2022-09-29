@@ -210,6 +210,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textTitComunityDialogCorres"
             app:layout_constraintTop_toBottomOf="@id/textComunityIdDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textComunityActDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidad Act:"
+            android:textStyle="bold"
+            android:id="@+id/textTitComunityActDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textComunityActDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textComunityActDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textComunityActDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textComunityActDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitComunityActDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textComunityDialogcorres"
             app:layout_constraintBottom_toTopOf="@id/textVillageDialogcorres"/>
 
         <TextView
@@ -231,7 +253,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textTitVillageDialogCorres"
-            app:layout_constraintTop_toBottomOf="@id/textComunityDialogcorres"
+            app:layout_constraintTop_toBottomOf="@id/textComunityActDialogcorres"
             app:layout_constraintBottom_toTopOf="@id/textPartnerDialogcorres"/>
 
         <TextView
@@ -298,6 +320,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textTitResponsableDialogCorres"
             app:layout_constraintTop_toBottomOf="@id/textAllianceDialogcorres"
+            app:layout_constraintBottom_toTopOf="@id/textTecnicoCampoDialogcorres"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Técnico de Campo:"
+            android:textStyle="bold"
+            android:id="@+id/textTitTecnicoCampoDialogCorres"
+            app:layout_constraintTop_toTopOf="@id/textTecnicoCampoDialogcorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textTecnicoCampoDialogcorres"
+            app:layout_constraintBottom_toBottomOf="@id/textTecnicoCampoDialogcorres"/>
+
+        <TextView
+            android:id="@+id/textTecnicoCampoDialogcorres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textTitTecnicoCampoDialogCorres"
+            app:layout_constraintTop_toBottomOf="@id/textResponsableDialogcorres"
             app:layout_constraintBottom_toTopOf="@id/textTitCommentsDialogCorres"/>
 
 
@@ -308,7 +352,7 @@
             android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:id="@+id/textTitCommentsDialogCorres"
-            app:layout_constraintTop_toBottomOf="@id/textResponsableDialogcorres"
+            app:layout_constraintTop_toBottomOf="@id/textTecnicoCampoDialogcorres"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/textCommentsDialogcorres"/>

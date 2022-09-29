@@ -11,4 +11,9 @@
     <string name="segs_activos">Seguimientos Activos</string>
     <string name="segs_desactivos">Seguimientos Desactivados</string>
     <string name="version">Versión %s</string>
+
+    <string name="hint_testimonio_1">Testimonio 1: ¿Cómo se sintió en la actividad \n de programa o cómo se ha sentido \n en las actividades de programas?</string>
+    <string name="hint_testimonio_2">Testimonio 2: ¿Que aprendió en la actividad de programa o que ha aprendido en las actividades de programa?</string>
+    <string name="hint_testimonio_3">Testimonio 3: ¿Cómo ha aplicado lo aprendido, como aplica lo aprendido o cómo podria aplicar lo aprendido?</string>
+    <string name="hint_testimonio_4">Testimonio 4: ¿Cómo ha cambiado su vida o qué cosas hace ahora de manera diferente al participar en las actividades del programa?</string>
 </resources>

@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.messaging.FirebaseMessaging
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.ActivityLoginBinding
+import com.gotasoft.mosojkausay.model.entities.request.FcmReq
 import com.gotasoft.mosojkausay.utils.*
+import com.gotasoft.mosojkausay.view.MessageDialog
 import com.gotasoft.mosojkausay.view.home.HomeActivity
 import com.gotasoft.mosojkausay.view.login.init.InitFragment
 import kotlinx.coroutines.flow.collect
@@ -31,22 +34,29 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             getToken(this@LoginActivity).collect {
                 if(it != null) {
-                    TOKEN = it
-                    val dataToken = it.decodeJWT()
-                    val tipoPersonal = if (dataToken.size > 1) {
-                        val tokenR = dataToken[1].fromJsonToken()
-                        when (tokenR.rol) {
-                            US_ADMIN -> TipoPersonal.ADMIN
-                            US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
-                            else -> TipoPersonal.TECNICO
+                    Tools.getFCMToken { tokenFCM ->
+                        if (tokenFCM.isNotEmpty()) {
+                            viewModel.editFCM(
+                                it, FcmReq(tokenFCM)
+                            )
                         }
-                    } else TipoPersonal.TECNICO
-                    startActivity(
-                        Intent(this@LoginActivity, HomeActivity::class.java)
-                            .putExtra(HomeActivity.TIPO, TipoIngreso.PERSONAL.name)
-                            .putExtra(HomeActivity.TIPO_PERSONAL, tipoPersonal.name)
-                    )
-                    finish()
+                        TOKEN = it
+                        val dataToken = it.decodeJWT()
+                        val tipoPersonal = if (dataToken.size > 1) {
+                            val tokenR = dataToken[1].fromJsonToken()
+                            when (tokenR.rol) {
+                                US_ADMIN -> TipoPersonal.ADMIN
+                                US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
+                                else -> TipoPersonal.TECNICO
+                            }
+                        } else TipoPersonal.TECNICO
+                        startActivity(
+                            Intent(this@LoginActivity, HomeActivity::class.java)
+                                .putExtra(HomeActivity.TIPO, TipoIngreso.PERSONAL.name)
+                                .putExtra(HomeActivity.TIPO_PERSONAL, tipoPersonal.name)
+                        )
+                        finish()
+                    }
                 }
             }
         }
@@ -61,8 +71,11 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is StateData.Error -> {
                         Log.e("ErrorContador", it.error.toString())
-                        Toast.makeText(this@LoginActivity, "Ocurrio un error al iniciar", Toast.LENGTH_SHORT).show()
-                        finish()
+                        MessageDialog.newInstance("Error", "Ocurrio un error al inicia", "Cerrar", {
+                            finish()
+                        }).show(supportFragmentManager, MessageDialog.TAG)
+                        //Toast.makeText(this@LoginActivity, "Ocurrio un error al iniciar", Toast.LENGTH_SHORT).show()
+                        //finish()
                     }
                     StateData.Loading -> {
                     }

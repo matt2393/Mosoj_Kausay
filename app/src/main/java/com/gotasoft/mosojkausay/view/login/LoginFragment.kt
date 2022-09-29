@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.gotasoft.mosojkausay.*
 import com.gotasoft.mosojkausay.databinding.FragmentLoginBinding
+import com.gotasoft.mosojkausay.model.entities.request.FcmReq
 import com.gotasoft.mosojkausay.model.entities.request.LoginRequest
 import com.gotasoft.mosojkausay.utils.*
 import com.gotasoft.mosojkausay.view.home.HomeActivity
@@ -60,23 +61,30 @@ class LoginFragment: Fragment() {
                         loadDialog?.dismiss()
                         if(it.data.success) {
                             setToken(requireContext(), it.data.token)
-                            TOKEN = it.data.token
-                            val dataToken = it.data.token.decodeJWT()
-                            val tipoPersonal = if (dataToken.size > 1) {
-                                val tokenR = dataToken[1].fromJsonToken()
-                                when (tokenR.rol) {
-                                    US_ADMIN -> TipoPersonal.ADMIN
-                                    US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
-                                    else -> TipoPersonal.TECNICO
+                            Tools.getFCMToken { tokenFCM ->
+                                if (tokenFCM.isNotEmpty()) {
+                                    viewModel.editFCM(
+                                        it.data.token, FcmReq(tokenFCM)
+                                    )
                                 }
-                            } else TipoPersonal.TECNICO
-                            startActivity(
-                                Intent(requireContext(), HomeActivity::class.java)
-                                    .putExtra(HomeActivity.TIPO, TipoIngreso.PERSONAL.name)
-                                    .putExtra(HomeActivity.TIPO_PERSONAL, tipoPersonal.name)
-                            )
-                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
-                            requireActivity().finish()
+                                TOKEN = it.data.token
+                                val dataToken = it.data.token.decodeJWT()
+                                val tipoPersonal = if (dataToken.size > 1) {
+                                    val tokenR = dataToken[1].fromJsonToken()
+                                    when (tokenR.rol) {
+                                        US_ADMIN -> TipoPersonal.ADMIN
+                                        US_PATROCINIO, US_FACILITADOR, US_TECNICO -> TipoPersonal.TECNICO
+                                        else -> TipoPersonal.TECNICO
+                                    }
+                                } else TipoPersonal.TECNICO
+                                startActivity(
+                                    Intent(requireContext(), HomeActivity::class.java)
+                                        .putExtra(HomeActivity.TIPO, TipoIngreso.PERSONAL.name)
+                                        .putExtra(HomeActivity.TIPO_PERSONAL, tipoPersonal.name)
+                                )
+                                Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                                requireActivity().finish()
+                            }
                         } else {
                             messError(it.data.message)
                         }

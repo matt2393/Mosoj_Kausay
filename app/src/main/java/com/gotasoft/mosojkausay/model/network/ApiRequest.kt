@@ -217,4 +217,7 @@ interface ApiRequest {
     @GET("participantes/{gestion}")
     suspend fun getPartTotales(@Path("gestion") gestion: String): List<PartTotales>
 
+    @PUT("fsm-token")
+    suspend fun editFCMToken(@Header("Authorization") token: String = "",
+                             @Body fcmReq: FcmReq): MessGenericResponse
 }

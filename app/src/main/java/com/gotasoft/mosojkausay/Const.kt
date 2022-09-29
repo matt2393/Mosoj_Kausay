@@ -19,6 +19,7 @@ const val US_ADMIN = "administrador"
 const val US_PATROCINIO = "responsable_patrocinio"
 const val US_FACILITADOR = "facilitador_programas"
 const val US_TECNICO = "tecnico"
+const val US_FINANZAS = "finanzas"
 const val US_PARTICIPANTE = "participante"
 
 

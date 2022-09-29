@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996946000906",
+    "project_id": "mosoj-kausay",
+    "storage_bucket": "mosoj-kausay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996946000906:android:be3f8c12ce66a586edb3f3",
+        "android_client_info": {
+          "package_name": "com.gotasoft.mosojkausay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996946000906-jjas5vhuk9lbef760o04cpumk3g66th8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG3MMNYS-w7O1z8YPvnjgVy1fgQ2nkElM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996946000906-jjas5vhuk9lbef760o04cpumk3g66th8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

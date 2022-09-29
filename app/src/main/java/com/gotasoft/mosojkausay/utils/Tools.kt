@@ -1,6 +1,12 @@
 package com.gotasoft.mosojkausay.utils
 
 import android.annotation.SuppressLint
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,4 +35,19 @@ object Tools {
         }
     }
 
+
+    fun getFCMToken(callback: (String) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val token = FirebaseMessaging.getInstance().token.await()
+                withContext(Dispatchers.Main) {
+                    callback.invoke(token)
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback.invoke("")
+                }
+            }
+        }
+    }
 }

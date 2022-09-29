@@ -97,6 +97,12 @@ class HomeTecnicoFragment: Fragment() {
                             bind?.cardCorresTecnico?.visibility = View.GONE
                             bind?.cardSegTecnico?.visibility = View.VISIBLE
                         }
+                        TipoPersonal.FINANZAS -> {
+                            bind?.cardMessTecnico?.visibility = View.VISIBLE
+                            bind?.cardParticipantesTecnico?.visibility = View.GONE
+                            bind?.cardCorresTecnico?.visibility = View.GONE
+                            bind?.cardMMTecnico?.visibility = View.GONE
+                        }
                         else -> {
 
                         }
