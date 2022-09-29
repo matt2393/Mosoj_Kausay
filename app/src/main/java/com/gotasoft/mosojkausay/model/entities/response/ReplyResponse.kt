@@ -28,5 +28,7 @@ data class ReplyResponse(
     var validacion: String = "",
     var village: String = "",
     var comunidad_act: String? = "",
-    var tecnico_campo: String? = ""
+    var tecnico_campo: String? = "",
+    var latitud: String? = null,
+    var longitud: String? = null
 ) : Parcelable

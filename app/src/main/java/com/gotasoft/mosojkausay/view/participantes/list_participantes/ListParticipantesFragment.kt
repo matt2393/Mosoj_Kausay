@@ -52,7 +52,7 @@ class ListParticipantesFragment: Fragment() {
         val bind = FragmentListParticipantesBinding.inflate(inflater, container, false)
 
         adapter = ListParticipantesAdapter(loc = {
-            MapDialog.newInstance(it)
+            MapDialog.newInstance(it.latitud?:"", it.longitud?:"", it.nombre_completo?:"")
                 .show(childFragmentManager, MapDialog.TAG)
         }, edit = {
             startActivity(

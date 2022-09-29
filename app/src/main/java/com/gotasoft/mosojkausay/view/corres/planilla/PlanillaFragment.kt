@@ -105,12 +105,15 @@ class PlanillaFragment: Fragment() {
                         Log.e("ErrorPlanilla", it.toString())
                     }
                     StateData.Loading -> {
-                        loadDialog = LoadDialog()
-                        loadDialog?.show(childFragmentManager, LoadDialog.TAG)
+                        if (loadDialog == null) {
+                            loadDialog = LoadDialog()
+                            loadDialog?.show(childFragmentManager, LoadDialog.TAG)
+                        }
                     }
                     StateData.None -> {
                         if(loadDialog!=null) {
                             loadDialog?.dismiss()
+                            loadDialog = null
                         }
                     }
                 }

@@ -64,7 +64,7 @@ class LoginFragment: Fragment() {
                             Tools.getFCMToken { tokenFCM ->
                                 if (tokenFCM.isNotEmpty()) {
                                     viewModel.editFCM(
-                                        it.data.token, FcmReq(tokenFCM)
+                                        "Bearer ${it.data.token}", FcmReq(tokenFCM)
                                     )
                                 }
                                 TOKEN = it.data.token

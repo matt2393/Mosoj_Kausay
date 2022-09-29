@@ -2,7 +2,6 @@ package com.estrelladelsur.apptecnico.map
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Location
@@ -27,6 +26,7 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.PolyUtil
 import com.gotasoft.mosojkausay.BuildConfig
@@ -36,9 +36,8 @@ import com.gotasoft.mosojkausay.model.entities.response.ParticipanteResponse
 import com.gotasoft.mosojkausay.model.entities.response.RutasMap
 import com.gotasoft.mosojkausay.view.load.LoadDialog
 import dev.matt2393.utils.location.LocPermission
-import kotlinx.coroutines.flow.collect
 
-class MapDialog: DialogFragment(), OnMapReadyCallback {
+class MapDialog : DialogFragment(), OnMapReadyCallback {
 
     private val viewModel: MapViewModel by activityViewModels()
 
@@ -47,17 +46,29 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
 
     private var locationCallback: LocationCallback? = null
     private var loc: Location? = null
+
     companion object {
         val TAG = MapDialog::class.java.name
-        private const val PARTICIPANTE = "PARTICIPANTE"
-        fun newInstance(part: ParticipanteResponse) = MapDialog().apply {
+        private const val LAT = "LAT"
+        private const val LNG = "LNG"
+        private const val NAME = "NAME"
+
+        fun newInstance(lat: String, lng: String, name: String) = MapDialog().apply {
             arguments = Bundle().apply {
-                putParcelable(PARTICIPANTE, part)
+                putString(LAT, lat)
+                putString(LNG, lng)
+                putString(NAME, name)
             }
         }
     }
+
     private var binding: DialogMapBinding? = null
-    private var participante: ParticipanteResponse? = null
+
+    private var lat: String? = null
+    private var lng: String? = null
+    private var name: String? = null
+
+    private var polylines: MutableList<Polyline> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +82,9 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
 
 
         arguments?.let {
-            participante = it.getParcelable(PARTICIPANTE)
+            lat = it.getString(LAT)
+            lng = it.getString(LNG)
+            name = it.getString(NAME)
         }
 
         binding?.mapView?.onCreate(savedInstanceState)
@@ -82,7 +95,11 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
         return alert.create()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -91,41 +108,65 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
         var isLoadRuta = false
-        if(participante!=null){
-            if(!participante!!.latitud.isNullOrEmpty() && !participante!!.longitud.isNullOrEmpty()){
-                LocPermission.launch(
-                    success = {
-                        val locRequest = LocationRequest.create()
-                            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                            .setNumUpdates(2)
-                            .setInterval(100)
-                            .setFastestInterval(100)
-                        googleMap?.isMyLocationEnabled = true
-                        LocationServices.getFusedLocationProviderClient(requireContext())
-                            .requestLocationUpdates(locRequest, object: LocationCallback() {
-                                override fun onLocationResult(p0: LocationResult) {
-                                    if(!isLoadRuta) {
-                                        isLoadRuta = true
-                                        loc = p0.lastLocation
-                                        val origen = "${loc!!.latitude},${loc!!.longitude}"
-                                        val destino =
-                                            "${participante!!.latitud},${participante!!.longitud}"
-                                        viewModel.getRutas(
-                                            origen,
-                                            destino,
-                                            BuildConfig.MAPS_API_KEY
-                                        )
-                                    }
-                                }
-                            }, Looper.getMainLooper())
-                    },
-                    error = {
-                        Toast.makeText(requireContext(), "Error, necesita persmisos de localización", Toast.LENGTH_SHORT).show()
-                    }
+        if (!lat.isNullOrEmpty() && !lng.isNullOrEmpty()) {
+            try {
+                val lat2 = lat!!.toDouble()
+                val lng2 = lng!!.toDouble()
+                val latLng = LatLng(lat2, lng2)
+                googleMap?.addMarker(
+                    MarkerOptions().position(latLng)
+                        .title(name ?: "")
+                        .snippet(name ?: "")
+                )
+                googleMap?.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        latLng, 17f
+                    )
+                )
+            } catch (ex: NumberFormatException) {
+                Log.e(
+                    "LocationFormatError",
+                    "Error al convertir latitud y longitud a Double LAT: $lat LNG: $lng"
                 )
             }
+
+
+            LocPermission.launch(
+                success = {
+                    val locRequest = LocationRequest.create()
+                        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                        .setNumUpdates(2)
+                        .setInterval(100)
+                        .setFastestInterval(100)
+                    googleMap?.isMyLocationEnabled = true
+                    LocationServices.getFusedLocationProviderClient(requireContext())
+                        .requestLocationUpdates(locRequest, object : LocationCallback() {
+                            override fun onLocationResult(p0: LocationResult) {
+                                if (!isLoadRuta) {
+                                    isLoadRuta = true
+                                    loc = p0.lastLocation
+                                    val origen = "${loc!!.latitude},${loc!!.longitude}"
+                                    val destino =
+                                        "$lat,$lng"
+                                    viewModel.getRutas(
+                                        origen,
+                                        destino,
+                                        BuildConfig.MAPS_API_KEY
+                                    )
+                                }
+                            }
+                        }, Looper.getMainLooper())
+                },
+                error = {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error, necesita persmisos de localización",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
         }
-        if(loadDialog == null) {
+        if (loadDialog == null) {
             loadDialog = LoadDialog()
             loadDialog?.isCancelable = false
             loadDialog?.show(childFragmentManager, "load")
@@ -141,7 +182,7 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
         binding?.mapView?.onStart()
-        if(locationCallback!=null) {
+        if (locationCallback != null) {
             LocationServices.getFusedLocationProviderClient(requireContext())
                 .removeLocationUpdates(locationCallback!!)
         }
@@ -168,32 +209,22 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     }
 
     private fun dibujar(rutas: RutasMap) {
-        googleMap?.clear()
-        if(participante!=null){
-            if(!participante!!.latitud.isNullOrEmpty() && !participante!!.longitud.isNullOrEmpty()){
-                val lat = participante!!.latitud!!.toDouble()
-                val lng = participante!!.longitud!!.toDouble()
-                val latLng = LatLng(lat, lng)
-                googleMap?.addMarker(
-                    MarkerOptions().position(latLng)
-                        .title(participante!!.nombre_completo)
-                        .snippet(participante!!.nombre_completo)
-                )
-                googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                    LatLng(loc!!.latitude, loc!!.longitude), 17f
-                ))
-
-                rutas.routes.forEachIndexed { index, route ->
-                    val colorP =
-                        if(index == 0) Color.rgb(238, 118, 56)
-                        else Color.rgb(163, 163, 163)
-                    val puntos = PolyUtil.decode(route.overview_polyline.points)
-                    googleMap?.addPolyline(
-                        PolylineOptions().addAll(puntos)
-                            .color(colorP)
-                    )
-                }
-
+        polylines.forEach {
+            it.remove()
+        }
+        polylines.clear()
+        polylines = mutableListOf()
+        rutas.routes.forEachIndexed { index, route ->
+            val colorP =
+                if (index == 0) Color.rgb(238, 118, 56)
+                else Color.rgb(163, 163, 163)
+            val puntos = PolyUtil.decode(route.overview_polyline.points)
+            val poly = googleMap?.addPolyline(
+                PolylineOptions().addAll(puntos)
+                    .color(colorP)
+            )
+            if (poly != null) {
+                polylines.add(poly)
             }
         }
     }
@@ -202,23 +233,27 @@ class MapDialog: DialogFragment(), OnMapReadyCallback {
     private fun flowStart() {
         lifecycleScope.launchWhenStarted {
             viewModel.rutas.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         dibujar(it.data)
                     }
                     is StateData.Error -> {
-                        Log.e("MAPError",it.error.toString())
-                        Toast.makeText(requireContext(), "No se pudo encontrar una ruta", Toast.LENGTH_SHORT).show()
+                        Log.e("MAPError", it.error.toString())
+                        Toast.makeText(
+                            requireContext(),
+                            "No se pudo encontrar una ruta",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     is StateData.Loading -> {
-                        if(loadDialog == null) {
+                        if (loadDialog == null) {
                             loadDialog = LoadDialog()
                             loadDialog?.isCancelable = false
                             loadDialog?.show(childFragmentManager, "load")
                         }
                     }
                     is StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                             loadDialog = null
                         }

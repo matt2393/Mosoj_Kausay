@@ -23,6 +23,7 @@ data class PersonalResponse(
         var celular: String? = null,
         var ci: String = "",
         var correo: String? = null,
-        var nombre_completo: String = ""
+        var nombre_completo: String = "",
+        var fsm_token: String? = null
     ) : Parcelable
 }

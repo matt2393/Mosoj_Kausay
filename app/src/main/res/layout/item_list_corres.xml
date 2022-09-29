@@ -57,6 +57,18 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fabMapItemCorres"
+            app:backgroundTint="@color/map"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            app:srcCompat="@drawable/ic_location"
+            app:layout_constraintTop_toTopOf="@id/fabVerItemCorres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fabVerItemCorres"
+            app:layout_constraintBottom_toBottomOf="@id/fabVerItemCorres"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:id="@+id/fabVerItemCorres"
             app:backgroundTint="@color/purple_700"
@@ -64,7 +76,7 @@
             app:tint="@color/white"
             app:srcCompat="@drawable/ic_eye"
             app:layout_constraintTop_toBottomOf="@id/textIdCorres"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fabMapItemCorres"
             app:layout_constraintEnd_toStartOf="@id/fabValidarItemCorres"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton

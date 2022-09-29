@@ -63,7 +63,7 @@ class PerfilParticipanteActivity : AppCompatActivity() {
 
             fabLocPerfilPart.setOnClickListener {
                 if(participante!=null) {
-                    MapDialog.newInstance(participante!!)
+                    MapDialog.newInstance(participante?.latitud?:"", participante?.longitud?:"",participante?.nombre_completo?:"")
                         .show(supportFragmentManager, MapDialog.TAG)
                 }
             }

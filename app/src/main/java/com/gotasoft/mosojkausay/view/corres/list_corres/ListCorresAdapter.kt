@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.databinding.ItemListCorresBinding
 
-class ListCorresAdapter<T>(var arrayData: ArrayList<T> = arrayListOf(),
-                           val bind: (T ,ItemListCorresBinding) -> Unit,
-                           val ver: (T) -> Unit,
-                           val validar: (T) -> Unit,
-                           val pendiente: (T) -> Unit): RecyclerView.Adapter<ListCorresAdapter<T>.ListCorresViewHolder>() {
+class ListCorresAdapter<T>(
+    var arrayData: ArrayList<T> = arrayListOf(),
+    val bind: (T ,ItemListCorresBinding) -> Unit,
+    val ver: (T) -> Unit,
+    val validar: (T) -> Unit,
+    val pendiente: (T) -> Unit,
+    val map: (T) -> Unit
+): RecyclerView.Adapter<ListCorresAdapter<T>.ListCorresViewHolder>() {
     inner class ListCorresViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding = ItemListCorresBinding.bind(itemView)
         fun bind(t: T) {
@@ -24,6 +27,9 @@ class ListCorresAdapter<T>(var arrayData: ArrayList<T> = arrayListOf(),
             }
             binding.fabPendienteItemCorres.setOnClickListener {
                 pendiente(t)
+            }
+            binding.fabMapItemCorres.setOnClickListener {
+                map.invoke(t)
             }
         }
     }

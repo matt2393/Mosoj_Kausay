@@ -30,5 +30,7 @@ data class DfcResponse(
     var deletedAt: String? = "",
     var planilla_id: String = "",
     var comunidad_act: String? = "",
-    var tecnico_campo: String? = ""
+    var tecnico_campo: String? = "",
+    var latitud: String? = null,
+    var longitud: String? = null
 ) : Parcelable

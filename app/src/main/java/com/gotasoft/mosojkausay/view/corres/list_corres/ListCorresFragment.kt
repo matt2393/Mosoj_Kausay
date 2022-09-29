@@ -1,7 +1,6 @@
 package com.gotasoft.mosojkausay.view.corres.list_corres
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.estrelladelsur.apptecnico.map.MapDialog
 import com.gotasoft.mosojkausay.R
 import com.gotasoft.mosojkausay.StateData
 import com.gotasoft.mosojkausay.databinding.FragmentListCorresBinding
@@ -26,11 +26,11 @@ import com.gotasoft.mosojkausay.utils.getToken
 import com.gotasoft.mosojkausay.utils.tokenTipoUs
 import com.gotasoft.mosojkausay.view.corres.CorresDialog
 import com.gotasoft.mosojkausay.view.load.LoadDialog
-import kotlinx.coroutines.flow.collect
 
-class ListCorresFragment: Fragment() {
+class ListCorresFragment : Fragment() {
     private val viewModel: ListCorresViewModel by viewModels()
     private var binding: FragmentListCorresBinding? = null
+
     companion object {
         val TAG = ListCorresFragment::class.java.name
         private const val TIPO = "Tipo"
@@ -73,18 +73,24 @@ class ListCorresFragment: Fragment() {
             b.textNomItemCorres.text = re.participant_name
             b.textChildNumberItemCorres.text = re.child_number
             b.textIdCorres.text = re.mcs_id
-            b.textValidadoItemCorres.background = when(re.validacion) {
+            b.textValidadoItemCorres.background = when (re.validacion) {
                 "validado" -> {
                     b.fabPendienteItemCorres.show()
                     b.fabValidarItemCorres.hide()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_validado)
-                } else -> {
+                }
+                else -> {
                     b.fabPendienteItemCorres.hide()
                     b.fabValidarItemCorres.show()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_pendiente)
                 }
             }
             b.textValidadoItemCorres.text = re.validacion.uppercase()
+            if (re.latitud.isNullOrEmpty() || re.longitud.isNullOrEmpty()) {
+                b.fabMapItemCorres.hide()
+            } else {
+                b.fabMapItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -92,23 +98,32 @@ class ListCorresFragment: Fragment() {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
             confim(it.mcs_id, "Revertir", it.participant_name, "pendiente")
+        }, map = {
+            MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
+                .show(childFragmentManager, MapDialog.TAG)
         })
         adapterWelcome = ListCorresAdapter(bind = { wel, b ->
             b.textNomItemCorres.text = wel.participant_name
             b.textChildNumberItemCorres.text = wel.child_number
             b.textIdCorres.text = wel.mcs_id
-            b.textValidadoItemCorres.background = when(wel.validacion) {
+            b.textValidadoItemCorres.background = when (wel.validacion) {
                 "validado" -> {
                     b.fabPendienteItemCorres.show()
                     b.fabValidarItemCorres.hide()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_validado)
-                } else -> {
+                }
+                else -> {
                     b.fabPendienteItemCorres.hide()
                     b.fabValidarItemCorres.show()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_pendiente)
                 }
             }
             b.textValidadoItemCorres.text = wel.validacion.uppercase()
+            if (wel.latitud.isNullOrEmpty() || wel.longitud.isNullOrEmpty()) {
+                b.fabMapItemCorres.hide()
+            } else {
+                b.fabMapItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -116,24 +131,33 @@ class ListCorresFragment: Fragment() {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
             confim(it.mcs_id, "Revertir", it.participant_name, "pendiente")
+        }, map = {
+            MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
+                .show(childFragmentManager, MapDialog.TAG)
         })
         adapterDfc = ListCorresAdapter(bind = { dfc, b ->
             b.textNomItemCorres.text = dfc.participant_name
             b.textChildNumberItemCorres.text = dfc.child_number
             b.textIdCorres.text = dfc.mcs_id
 
-            b.textValidadoItemCorres.background = when(dfc.validacion) {
+            b.textValidadoItemCorres.background = when (dfc.validacion) {
                 "validado" -> {
                     b.fabPendienteItemCorres.show()
                     b.fabValidarItemCorres.hide()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_validado)
-                } else -> {
+                }
+                else -> {
                     b.fabPendienteItemCorres.hide()
                     b.fabValidarItemCorres.show()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_pendiente)
                 }
             }
             b.textValidadoItemCorres.text = dfc.validacion.uppercase()
+            if (dfc.latitud.isNullOrEmpty() || dfc.longitud.isNullOrEmpty()) {
+                b.fabMapItemCorres.hide()
+            } else {
+                b.fabMapItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -141,23 +165,32 @@ class ListCorresFragment: Fragment() {
             confim(it.mcs_id, "Validar", it.participant_name, "validado")
         }, pendiente = {
             confim(it.mcs_id, "Revertir", it.participant_name, "pendiente")
+        }, map = {
+            MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
+                .show(childFragmentManager, MapDialog.TAG)
         })
         adapterUnavailable = ListCorresAdapter(bind = { una, b ->
             b.textNomItemCorres.text = una.participant_name
             b.textChildNumberItemCorres.text = una.child_number
             b.textIdCorres.text = una.id.toString()
-            b.textValidadoItemCorres.background = when(una.validacion) {
+            b.textValidadoItemCorres.background = when (una.validacion) {
                 "validado" -> {
                     b.fabPendienteItemCorres.show()
                     b.fabValidarItemCorres.hide()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_validado)
-                } else -> {
+                }
+                else -> {
                     b.fabPendienteItemCorres.hide()
                     b.fabValidarItemCorres.show()
                     ContextCompat.getDrawable(requireContext(), R.drawable.background_pendiente)
                 }
             }
             b.textValidadoItemCorres.text = una.validacion.uppercase()
+            if (una.latitud.isNullOrEmpty() || una.longitud.isNullOrEmpty()) {
+                b.fabMapItemCorres.hide()
+            } else {
+                b.fabMapItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -165,11 +198,14 @@ class ListCorresFragment: Fragment() {
             confim(it.id.toString(), "Validar", it.participant_name, "validado")
         }, pendiente = {
             confim(it.id.toString(), "Revertir", it.participant_name, "pendiente")
+        }, map = {
+            MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
+                .show(childFragmentManager, MapDialog.TAG)
         })
 
 
         binding?.recyclerListCorres?.layoutManager = LinearLayoutManager(requireContext())
-        binding?.recyclerListCorres?.adapter = when(tipo) {
+        binding?.recyclerListCorres?.adapter = when (tipo) {
             "reply" -> adapterReply
             "welcome" -> adapterWelcome
             "dfc" -> adapterDfc
@@ -178,7 +214,7 @@ class ListCorresFragment: Fragment() {
         }
 
         binding?.switchValidadoListCorres?.setOnClickListener {
-            if(binding!=null && binding!!.switchValidadoListCorres.isChecked) {
+            if (binding != null && binding!!.switchValidadoListCorres.isChecked) {
                 binding?.switchValidadoListCorres?.text = "Validados"
             } else {
                 binding?.switchValidadoListCorres?.text = "Pendientes"
@@ -199,9 +235,9 @@ class ListCorresFragment: Fragment() {
     private fun flowScopes() {
         lifecycleScope.launchWhenStarted {
             getToken(requireContext()).collect {
-                if(it != null) {
+                if (it != null) {
                     token = "Bearer $it"
-                    tipoUs = when(it.tokenTipoUs()) {
+                    tipoUs = when (it.tokenTipoUs()) {
                         TipoPersonal.PATROCINIO -> {
                             1
                         }
@@ -215,7 +251,7 @@ class ListCorresFragment: Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.reply.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         adapterReply?.arrayData = it.data
                         adapterReply?.notifyDataSetChanged()
@@ -228,7 +264,7 @@ class ListCorresFragment: Fragment() {
                         loadDialog?.show(childFragmentManager, LoadDialog.TAG)
                     }
                     StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                         }
                     }
@@ -237,7 +273,7 @@ class ListCorresFragment: Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.welcome.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         adapterWelcome?.arrayData = it.data
                         adapterWelcome?.notifyDataSetChanged()
@@ -250,7 +286,7 @@ class ListCorresFragment: Fragment() {
                         loadDialog?.show(childFragmentManager, LoadDialog.TAG)
                     }
                     StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                         }
                     }
@@ -259,7 +295,7 @@ class ListCorresFragment: Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.dfc.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         adapterDfc?.arrayData = it.data
                         adapterDfc?.notifyDataSetChanged()
@@ -272,7 +308,7 @@ class ListCorresFragment: Fragment() {
                         loadDialog?.show(childFragmentManager, LoadDialog.TAG)
                     }
                     StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                         }
                     }
@@ -281,7 +317,7 @@ class ListCorresFragment: Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.unavailable.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         adapterUnavailable?.arrayData = it.data
                         adapterUnavailable?.notifyDataSetChanged()
@@ -294,7 +330,7 @@ class ListCorresFragment: Fragment() {
                         loadDialog?.show(childFragmentManager, LoadDialog.TAG)
                     }
                     StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                         }
                     }
@@ -303,11 +339,11 @@ class ListCorresFragment: Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.validado.collect {
-                when(it) {
+                when (it) {
                     is StateData.Success -> {
                         Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT)
                             .show()
-                        if(it.data.success) {
+                        if (it.data.success) {
                             load()
                         }
                     }
@@ -319,7 +355,7 @@ class ListCorresFragment: Fragment() {
                         loadDialog?.show(childFragmentManager, LoadDialog.TAG)
                     }
                     StateData.None -> {
-                        if(loadDialog != null) {
+                        if (loadDialog != null) {
                             loadDialog?.dismiss()
                         }
                     }
@@ -330,23 +366,24 @@ class ListCorresFragment: Fragment() {
 
     private fun load() {
         value = binding?.editBuscarListCorres?.text.toString()
-        validado = if(binding!=null && binding!!.switchValidadoListCorres.isChecked){
+        validado = if (binding != null && binding!!.switchValidadoListCorres.isChecked) {
             "validado"
         } else {
             "pendiente"
 
         }
-        when(tipoUs) {
-            1-> {
+        when (tipoUs) {
+            1 -> {
                 loadCorres()
             }
-            0->{
+            0 -> {
                 loadMisCorres()
             }
         }
     }
+
     private fun loadMisCorres() {
-        when(tipo) {
+        when (tipo) {
             "reply" -> {
                 viewModel.getMisReply(token, value, planilla_id, validado)
             }
@@ -361,8 +398,9 @@ class ListCorresFragment: Fragment() {
             }
         }
     }
+
     private fun loadCorres() {
-        when(tipo) {
+        when (tipo) {
             "reply" -> {
                 viewModel.getReply(token, value, planilla_id, validado)
             }

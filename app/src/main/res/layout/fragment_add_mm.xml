@@ -186,7 +186,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:hint="Ocupación"
             app:layout_constraintTop_toBottomOf="@id/textinputFechaAddMM"
-            app:layout_constraintBottom_toTopOf="@id/textinputTes1AddMM">
+            app:layout_constraintBottom_toTopOf="@id/textLabelTest1AddMM">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,16 +194,25 @@
                 android:id="@+id/editOcupacionAddMM"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textLabelTest1AddMM"
+            android:text="@string/hint_testimonio_1"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textinputOcupacionAddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes1AddMM"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textinputTes1AddMM"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="5dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:hint="@string/hint_testimonio_1"
-            app:layout_constraintTop_toBottomOf="@id/textinputOcupacionAddMM"
-            app:layout_constraintBottom_toTopOf="@id/textinputTes2AddMM">
+            app:layout_constraintTop_toBottomOf="@id/textLabelTest1AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textLabelTest2AddMM">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -213,16 +222,25 @@
                 android:id="@+id/editTes1AddMM"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textLabelTest2AddMM"
+            android:text="@string/hint_testimonio_2"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes1AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes2AddMM"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textinputTes2AddMM"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="5dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:hint="@string/hint_testimonio_2"
-            app:layout_constraintTop_toBottomOf="@id/textinputTes1AddMM"
-            app:layout_constraintBottom_toTopOf="@id/textinputTes3AddMM">
+            app:layout_constraintTop_toBottomOf="@id/textLabelTest2AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textLabelTest3AddMM">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -232,16 +250,25 @@
                 android:id="@+id/editTes2AddMM"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textLabelTest3AddMM"
+            android:text="@string/hint_testimonio_3"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes2AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes3AddMM"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textinputTes3AddMM"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="5dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:hint="@string/hint_testimonio_3"
-            app:layout_constraintTop_toBottomOf="@id/textinputTes2AddMM"
-            app:layout_constraintBottom_toTopOf="@id/textinputTes4AddMM">
+            app:layout_constraintTop_toBottomOf="@id/textLabelTest3AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textLabelTest4AddMM">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,15 +277,25 @@
                 android:gravity="top"
                 android:id="@+id/editTes3AddMM"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textLabelTest4AddMM"
+            android:text="@string/hint_testimonio_4"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textinputTes3AddMM"
+            app:layout_constraintBottom_toTopOf="@id/textinputTes4AddMM"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textinputTes4AddMM"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:hint="@string/hint_testimonio_4"
             android:layout_marginHorizontal="5dp"
-            app:layout_constraintTop_toBottomOf="@id/textinputTes3AddMM"
+            app:layout_constraintTop_toBottomOf="@id/textLabelTest4AddMM"
             app:layout_constraintBottom_toTopOf="@id/buttonGuardarMM">
             <EditText
                 android:layout_width="match_parent"

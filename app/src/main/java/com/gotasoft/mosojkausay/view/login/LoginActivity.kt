@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                     Tools.getFCMToken { tokenFCM ->
                         if (tokenFCM.isNotEmpty()) {
                             viewModel.editFCM(
-                                it, FcmReq(tokenFCM)
+                                "Bearer $it", FcmReq(tokenFCM)
                             )
                         }
                         TOKEN = it
