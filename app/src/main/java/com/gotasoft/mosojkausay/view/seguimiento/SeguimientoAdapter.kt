@@ -17,7 +17,8 @@ class SeguimientoAdapter(var arraySeg: ArrayList<SeguimientoResponse> = arrayLis
         private val binding = ItemSeguimientoBinding.bind(itemView)
         fun bind(seg: SeguimientoResponse) {
             with(binding) {
-                textMesItemSeg.text = arrayMeses[seg.mes]
+                val posMes = seg.mes - 1
+                textMesItemSeg.text = if (posMes > -1) arrayMeses[posMes] else ""
                 textActItemSeg.text = seg.tipo
                 textProgramadoItemSeg.text = seg.programado.toString()
                 textEjecutadoItemSeg.text = seg.ejecutado.toString()
