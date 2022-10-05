@@ -12,6 +12,7 @@ class MessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityMessBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.containerMess, MessFragment(), MessFragment.TAG)

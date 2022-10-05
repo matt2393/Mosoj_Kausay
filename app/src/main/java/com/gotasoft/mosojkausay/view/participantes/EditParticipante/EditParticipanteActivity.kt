@@ -67,6 +67,7 @@ class EditParticipanteActivity : AppCompatActivity() {
         ReqPermission.init(this)
         binding = ActivityEditParticipanteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         intent?.let {
             participante = it.getParcelableExtra(PART)
         }

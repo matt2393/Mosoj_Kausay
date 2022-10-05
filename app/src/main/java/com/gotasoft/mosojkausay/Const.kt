@@ -39,10 +39,10 @@ val arrayGestion = arrayListOf("2021", "2022", "2023", "2024",
     "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036")
 val arrayTipoSeg = arrayListOf("actividad", "participacion", "presupuesto")
 val arrayModeloProgValue = arrayListOf("creciendo_contigo", "ninez_segura_protegida",
-    "me_quiero_me_cuido", "pacto")
+    "me_quiero_me_cuido", "pacto", "administracion", "patrocinio", "proteccion")
 
 val arrayModeloProg = arrayListOf("Creciendo Contigo", "Niñez Segura y Protegida",
-    "Me Quiero me Cuido", "Pacto")
+    "Me Quiero me Cuido", "Pacto", "Administración", "Patrocinio", "Protección")
 
 val arrayMeses = arrayListOf("", "Enero", "Febrero", "Marzo", "Abril", "Mayo",
     "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")

@@ -13,7 +13,8 @@ class ListCorresAdapter<T>(
     val ver: (T) -> Unit,
     val validar: (T) -> Unit,
     val pendiente: (T) -> Unit,
-    val map: (T) -> Unit
+    val map: (T) -> Unit,
+    val contact: (T) -> Unit
 ): RecyclerView.Adapter<ListCorresAdapter<T>.ListCorresViewHolder>() {
     inner class ListCorresViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding = ItemListCorresBinding.bind(itemView)
@@ -30,6 +31,9 @@ class ListCorresAdapter<T>(
             }
             binding.fabMapItemCorres.setOnClickListener {
                 map.invoke(t)
+            }
+            binding.fabContactoItemCorres.setOnClickListener {
+                contact.invoke(t)
             }
         }
     }

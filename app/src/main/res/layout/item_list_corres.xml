@@ -77,8 +77,20 @@
             app:srcCompat="@drawable/ic_eye"
             app:layout_constraintTop_toBottomOf="@id/textIdCorres"
             app:layout_constraintStart_toEndOf="@id/fabMapItemCorres"
-            app:layout_constraintEnd_toStartOf="@id/fabValidarItemCorres"
+            app:layout_constraintEnd_toStartOf="@id/fabContactoItemCorres"
             app:layout_constraintBottom_toBottomOf="parent"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fabContactoItemCorres"
+            app:backgroundTint="@color/color_link"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            app:srcCompat="@drawable/ic_phone"
+            app:layout_constraintTop_toTopOf="@id/fabVerItemCorres"
+            app:layout_constraintStart_toEndOf="@id/fabVerItemCorres"
+            app:layout_constraintEnd_toStartOf="@id/fabValidarItemCorres"
+            app:layout_constraintBottom_toBottomOf="@id/fabVerItemCorres"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +100,7 @@
             app:tint="@color/white"
             app:srcCompat="@drawable/ic_check"
             app:layout_constraintTop_toTopOf="@id/fabVerItemCorres"
-            app:layout_constraintStart_toEndOf="@id/fabVerItemCorres"
+            app:layout_constraintStart_toEndOf="@id/fabContactoItemCorres"
             app:layout_constraintEnd_toStartOf="@id/fabPendienteItemCorres"
             app:layout_constraintBottom_toBottomOf="@id/fabVerItemCorres"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton

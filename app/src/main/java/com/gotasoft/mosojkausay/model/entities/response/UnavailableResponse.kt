@@ -26,5 +26,8 @@ data class UnavailableResponse(
     var deletedAt: String? = "",
     var planilla_id: String = "",
     var comunidad_act: String? = "",
-    var tecnico_campo: String? = ""
+    var tecnico_campo: String? = "",
+    var madre_telefono: String? = null,
+    var padre_telefono: String? = null,
+    var referencia_familiar_telefono: String? = null,
 ) : Parcelable

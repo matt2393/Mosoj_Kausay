@@ -32,5 +32,8 @@ data class DfcResponse(
     var comunidad_act: String? = "",
     var tecnico_campo: String? = "",
     var latitud: String? = null,
-    var longitud: String? = null
+    var longitud: String? = null,
+    var madre_telefono: String? = null,
+    var padre_telefono: String? = null,
+    var referencia_familiar_telefono: String? = null,
 ) : Parcelable

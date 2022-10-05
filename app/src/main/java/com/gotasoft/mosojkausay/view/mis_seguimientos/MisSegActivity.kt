@@ -9,6 +9,7 @@ class MisSegActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis_seg)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         supportFragmentManager.beginTransaction()
             .replace(R.id.containerMisSeg, MisSegFragment(), MisSegFragment.TAG)
             .commit()

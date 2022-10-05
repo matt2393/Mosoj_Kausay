@@ -28,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         var tipo = TipoIngreso.PUBLICO
         var tipoPersonal = TipoPersonal.TECNICO
         intent?.let {

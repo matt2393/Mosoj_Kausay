@@ -11,6 +11,7 @@ class CrearMessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityCrearMessBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.containerCrearMess, CrearMess1Fragment(), CrearMess1Fragment.TAG)

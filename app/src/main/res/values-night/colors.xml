@@ -8,12 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="sky_app_translucent">#3389D2F6</color>
-    <color name="sky_app">#89d2f6</color>
-    <color name="sky_app_dark">#6397B1</color>
-    <color name="orange_app_translucent">#80F39200</color>
-    <color name="orange_app">#f39200</color>
-    <color name="orange_app_dark">#C17400</color>
+    <color name="sky_app_translucent">#804A8FB1</color>
+    <color name="sky_app">#5CB2DC</color>
+    <color name="sky_app_dark">#34657E</color>
+    <color name="orange_app_translucent">#80D68100</color>
+    <color name="orange_app">#C67800</color>
+    <color name="orange_app_dark">#AF6B02</color>
     <color name="yellow_app">#ffee00</color>
     <color name="gray_app">#898787</color>
 

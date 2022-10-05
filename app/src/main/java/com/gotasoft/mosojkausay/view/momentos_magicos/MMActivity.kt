@@ -9,6 +9,7 @@ class MMActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mm)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         supportFragmentManager.beginTransaction()
             .replace(R.id.containerMM, MMFragment(), MMFragment.TAG)
             .commit()

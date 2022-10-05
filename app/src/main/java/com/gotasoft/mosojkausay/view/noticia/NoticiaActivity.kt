@@ -19,6 +19,7 @@ class NoticiaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         supportFragmentManager.beginTransaction()
             .replace(R.id.containerNoticia, NotificaListFragment(), "NotList")
             .commit()

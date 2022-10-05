@@ -26,6 +26,7 @@ import com.gotasoft.mosojkausay.utils.getToken
 import com.gotasoft.mosojkausay.utils.tokenTipoUs
 import com.gotasoft.mosojkausay.view.corres.CorresDialog
 import com.gotasoft.mosojkausay.view.load.LoadDialog
+import com.gotasoft.mosojkausay.view.participantes.list_participantes.ContactoDialog
 
 class ListCorresFragment : Fragment() {
     private val viewModel: ListCorresViewModel by viewModels()
@@ -91,6 +92,11 @@ class ListCorresFragment : Fragment() {
             } else {
                 b.fabMapItemCorres.show()
             }
+            if (re.referencia_familiar_telefono.isNullOrEmpty() && re.padre_telefono.isNullOrEmpty() && re.madre_telefono.isNullOrEmpty()) {
+                b.fabContactoItemCorres.hide()
+            } else {
+                b.fabContactoItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -101,6 +107,9 @@ class ListCorresFragment : Fragment() {
         }, map = {
             MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
                 .show(childFragmentManager, MapDialog.TAG)
+        }, contact = {
+            ContactoDialog.newInstance(it.referencia_familiar_telefono ?: "", it.padre_telefono ?: "", it.madre_telefono ?: "")
+                .show(childFragmentManager, ContactoDialog.TAG)
         })
         adapterWelcome = ListCorresAdapter(bind = { wel, b ->
             b.textNomItemCorres.text = wel.participant_name
@@ -124,6 +133,11 @@ class ListCorresFragment : Fragment() {
             } else {
                 b.fabMapItemCorres.show()
             }
+            if (wel.referencia_familiar_telefono.isNullOrEmpty() && wel.padre_telefono.isNullOrEmpty() && wel.madre_telefono.isNullOrEmpty()) {
+                b.fabContactoItemCorres.hide()
+            } else {
+                b.fabContactoItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -134,6 +148,9 @@ class ListCorresFragment : Fragment() {
         }, map = {
             MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
                 .show(childFragmentManager, MapDialog.TAG)
+        }, contact = {
+            ContactoDialog.newInstance(it.referencia_familiar_telefono ?: "", it.padre_telefono ?: "", it.madre_telefono ?: "")
+                .show(childFragmentManager, ContactoDialog.TAG)
         })
         adapterDfc = ListCorresAdapter(bind = { dfc, b ->
             b.textNomItemCorres.text = dfc.participant_name
@@ -158,6 +175,11 @@ class ListCorresFragment : Fragment() {
             } else {
                 b.fabMapItemCorres.show()
             }
+            if (dfc.referencia_familiar_telefono.isNullOrEmpty() && dfc.padre_telefono.isNullOrEmpty() && dfc.madre_telefono.isNullOrEmpty()) {
+                b.fabContactoItemCorres.hide()
+            } else {
+                b.fabContactoItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -168,6 +190,9 @@ class ListCorresFragment : Fragment() {
         }, map = {
             MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
                 .show(childFragmentManager, MapDialog.TAG)
+        }, contact = {
+            ContactoDialog.newInstance(it.referencia_familiar_telefono ?: "", it.padre_telefono ?: "", it.madre_telefono ?: "")
+                .show(childFragmentManager, ContactoDialog.TAG)
         })
         adapterUnavailable = ListCorresAdapter(bind = { una, b ->
             b.textNomItemCorres.text = una.participant_name
@@ -191,6 +216,11 @@ class ListCorresFragment : Fragment() {
             } else {
                 b.fabMapItemCorres.show()
             }
+            if (una.referencia_familiar_telefono.isNullOrEmpty() && una.padre_telefono.isNullOrEmpty() && una.madre_telefono.isNullOrEmpty()) {
+                b.fabContactoItemCorres.hide()
+            } else {
+                b.fabContactoItemCorres.show()
+            }
         }, ver = {
             CorresDialog.newInstance(it)
                 .show(childFragmentManager, CorresDialog.TAG)
@@ -201,6 +231,9 @@ class ListCorresFragment : Fragment() {
         }, map = {
             MapDialog.newInstance(it.latitud ?: "", it.longitud ?: "", it.participant_name ?: "")
                 .show(childFragmentManager, MapDialog.TAG)
+        }, contact = {
+            ContactoDialog.newInstance(it.referencia_familiar_telefono ?: "", it.padre_telefono ?: "", it.madre_telefono ?: "")
+                .show(childFragmentManager, ContactoDialog.TAG)
         })
 
 

@@ -1,6 +1,5 @@
 package com.gotasoft.mosojkausay.view.mis_seguimientos
 
-import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -51,7 +50,7 @@ class MisSegFragment: Fragment() {
         with(binding!!) {
             recyclerMisSeg.layoutManager = LinearLayoutManager(requireContext())
             recyclerMisSeg.adapter = adapter
-            val adapterTipo = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, arrayTipoSeg)
+            val adapterTipo = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, arrayTipoSeg)
             autocompleteTipoMisSeg.setAdapter(adapterTipo)
             autocompleteTipoMisSeg.setText(arrayTipoSeg[0], false)
 

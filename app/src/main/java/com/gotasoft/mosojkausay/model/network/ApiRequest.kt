@@ -214,7 +214,7 @@ interface ApiRequest {
                           @Query("type") type: String = "",
                           @Part foto: MultipartBody.Part): SuccessRes
 
-    @GET("participantes/{gestion}")
+    @GET("participantes/totales/{gestion}")
     suspend fun getPartTotales(@Path("gestion") gestion: String): List<PartTotales>
 
     @PUT("fsm-token")

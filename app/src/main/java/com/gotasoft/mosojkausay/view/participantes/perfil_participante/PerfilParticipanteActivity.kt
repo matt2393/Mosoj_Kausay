@@ -33,6 +33,7 @@ class PerfilParticipanteActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.colorPrimary))
         with(binding) {
             textNombrePerfilPart.text = participante?.nombre_completo
             textChildNumberPerfilPart.text = participante?.child_number
