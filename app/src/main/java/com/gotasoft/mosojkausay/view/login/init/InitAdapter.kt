@@ -22,8 +22,9 @@ class InitAdapter(var arraySlides: ArrayList<SlideResponse> = arrayListOf()): Re
             binding.imageItemInit.load(
                 uri = "${URL_DOWNLOAD_IMAGE}${slideResponse.id}",
                 builder = {
-                    listener { request, metadata ->
-                        Log.e("ImageLoad", "loading $request")
+                    listener { _, _ ->
+                        binding.imageItemInit.visibility = View.VISIBLE
+                        binding.lottieItemInit.visibility = View.GONE
                     }
                 })
         }

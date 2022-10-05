@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -123,10 +124,31 @@ class EditParticipanteActivity : AppCompatActivity() {
 
             imageLoader.memoryCache.clear()
             if(!participante?.foto.isNullOrEmpty()) {
-                imagePart.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto")
+                imagePart.load(
+                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
+                    builder = {
+                        listener { _, _ ->
+                            binding.imagePart.visibility = View.VISIBLE
+                            binding.lottiePart.visibility = View.GONE
+                        }
+                    })
+            } else {
+                binding.imagePart.visibility = View.VISIBLE
+                binding.lottiePart.visibility = View.GONE
             }
             if(!participante?.foto_domicilio.isNullOrEmpty()) {
-                imageDomicilio.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio")
+                imageDomicilio.load(
+                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
+                    builder = {
+                        listener { _, _ ->
+                            binding.imageDomicilio.visibility = View.VISIBLE
+                            binding.lottieDomicilio.visibility = View.GONE
+                        }
+                    }
+                )
+            } else {
+                binding.imageDomicilio.visibility = View.VISIBLE
+                binding.lottieDomicilio.visibility = View.GONE
             }
 
             buttonLocPart.setOnClickListener {

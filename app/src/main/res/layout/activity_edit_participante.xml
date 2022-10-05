@@ -25,8 +25,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/imageDomicilio"
+                android:visibility="invisible"
                 android:src="@drawable/ic_house_color"
                 android:scaleType="centerCrop"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lottieDomicilio"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/image_load"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,8 +58,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/imagePart"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_children"
                     android:scaleType="centerCrop"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lottiePart"
+                    android:scaleType="centerCrop"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/image_load"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

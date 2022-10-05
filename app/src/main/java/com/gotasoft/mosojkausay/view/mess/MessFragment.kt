@@ -109,10 +109,19 @@ class MessFragment: Fragment() {
                         binding?.swipeMess?.isRefreshing = false
                         adapter?.arrayMess = it.data
                         adapter?.notifyDataSetChanged()
+                        if (it.data.isEmpty()) {
+                            binding?.recyclerMess?.visibility = View.GONE
+                            binding?.layoutEmpty?.containerEmpty?.visibility = View.VISIBLE
+                        } else {
+                            binding?.recyclerMess?.visibility = View.VISIBLE
+                            binding?.layoutEmpty?.containerEmpty?.visibility = View.GONE
+                        }
                         //adapter?.notifyItemRangeInserted(0, it.data.size)
                     }
                     is StateData.Error -> {
                         binding?.swipeMess?.isRefreshing = false
+                        binding?.recyclerMess?.visibility = View.GONE
+                        binding?.layoutEmpty?.containerEmpty?.visibility = View.VISIBLE
                     }
                     StateData.Loading -> {
 

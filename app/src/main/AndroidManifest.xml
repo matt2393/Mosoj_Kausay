@@ -38,6 +38,7 @@
             android:name=".view.participantes.perfil_participante.PerfilParticipanteActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.MosojKausay.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.noticia.NoticiaActivity"
@@ -48,6 +49,7 @@
             android:name=".view.participantes.EditParticipante.EditParticipanteActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.MosojKausay.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
 
         <meta-data

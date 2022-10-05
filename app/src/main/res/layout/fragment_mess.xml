@@ -9,12 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeMess">
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerMess"
-            android:clipToPadding="false"
-            android:paddingBottom="70dp"/>
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerMess"
+                android:clipToPadding="false"
+                android:paddingBottom="70dp"/>
+            <include
+                layout="@layout/layout_empty"
+                android:id="@+id/layoutEmpty"/>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

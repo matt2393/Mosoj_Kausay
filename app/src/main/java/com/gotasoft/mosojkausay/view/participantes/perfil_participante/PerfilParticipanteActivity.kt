@@ -2,6 +2,7 @@ package com.gotasoft.mosojkausay.view.participantes.perfil_participante
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import coil.load
 import com.estrelladelsur.apptecnico.map.MapDialog
@@ -56,10 +57,32 @@ class PerfilParticipanteActivity : AppCompatActivity() {
             editPerfilTurnoPart.setText(if (participante?.turno == null) "" else participante?.turno)
 
             if(!participante?.foto.isNullOrEmpty()) {
-                imagePerfilPart.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto")
+                imagePerfilPart.load(
+                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
+                    builder = {
+                        listener { _, _ ->
+                            binding.imagePerfilPart.visibility = View.VISIBLE
+                            binding.lottiePerfilPart.visibility = View.GONE
+                        }
+                    }
+                )
+            } else {
+                binding.imagePerfilPart.visibility = View.VISIBLE
+                binding.lottiePerfilPart.visibility = View.GONE
             }
             if(!participante?.foto_domicilio.isNullOrEmpty()) {
-                imagePerfilDomicilio.load("${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio")
+                imagePerfilDomicilio.load(
+                    uri ="${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
+                    builder = {
+                        listener { _, _ ->
+                            binding.imagePerfilDomicilio.visibility = View.VISIBLE
+                            binding.lottiePerfilDomicilio.visibility = View.GONE
+                        }
+                    }
+                )
+            } else {
+                binding.imagePerfilDomicilio.visibility = View.VISIBLE
+                binding.lottiePerfilDomicilio.visibility = View.GONE
             }
 
             fabLocPerfilPart.setOnClickListener {
