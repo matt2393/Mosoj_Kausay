@@ -95,6 +95,7 @@ class LoginFragment: Fragment() {
                         loadDialog?.dismiss()
                         messError("Error...")
                     }
+                    else -> { }
                 }
             }
         }

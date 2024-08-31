@@ -122,10 +122,10 @@ class EditParticipanteActivity : AppCompatActivity() {
             editCursoPart.setText(if (participante?.curso == null) "" else participante?.curso, false)
             editTurnoPart.setText(if (participante?.turno == null) "" else participante?.turno)
 
-            imageLoader.memoryCache.clear()
+            imageLoader.memoryCache?.clear()
             if(!participante?.foto.isNullOrEmpty()) {
                 imagePart.load(
-                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
+                    data = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
                     builder = {
                         listener { _, _ ->
                             binding.imagePart.visibility = View.VISIBLE
@@ -138,7 +138,7 @@ class EditParticipanteActivity : AppCompatActivity() {
             }
             if(!participante?.foto_domicilio.isNullOrEmpty()) {
                 imageDomicilio.load(
-                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
+                    data = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
                     builder = {
                         listener { _, _ ->
                             binding.imageDomicilio.visibility = View.VISIBLE

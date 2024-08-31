@@ -65,6 +65,11 @@ class HomeActivity : AppCompatActivity() {
                             .replace(R.id.containerHome, HomeTecnicoFragment())
                             .commit()
                     }
+                    else -> {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.containerHome, HomePublicFragment())
+                            .commit()
+                    }
                 }
 
             }

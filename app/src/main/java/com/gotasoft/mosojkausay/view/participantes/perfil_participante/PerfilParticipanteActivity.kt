@@ -58,7 +58,7 @@ class PerfilParticipanteActivity : AppCompatActivity() {
 
             if(!participante?.foto.isNullOrEmpty()) {
                 imagePerfilPart.load(
-                    uri = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
+                    data = "${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto",
                     builder = {
                         listener { _, _ ->
                             binding.imagePerfilPart.visibility = View.VISIBLE
@@ -72,7 +72,7 @@ class PerfilParticipanteActivity : AppCompatActivity() {
             }
             if(!participante?.foto_domicilio.isNullOrEmpty()) {
                 imagePerfilDomicilio.load(
-                    uri ="${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
+                    data ="${URL_DOWNLOAD_PHOTO_PART}child_number=${participante?.child_number}&type=foto_domicilio",
                     builder = {
                         listener { _, _ ->
                             binding.imagePerfilDomicilio.visibility = View.VISIBLE
