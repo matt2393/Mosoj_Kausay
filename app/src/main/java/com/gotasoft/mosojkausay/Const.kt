@@ -1,6 +1,6 @@
 package com.gotasoft.mosojkausay
 
-const val URL_SERVER = "http://35.169.148.98:3001/"//"https://gotasoft.com:3001/"
+const val URL_SERVER = "https://web.mosojkausay.org:3001/"
 const val URL_RUTAS_MAPS = "https://maps.googleapis.com/maps/api/"
 
 const val URL_DOWNLOAD_IMAGE = "${URL_SERVER}slides/download?id="
