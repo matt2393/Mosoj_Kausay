@@ -9,10 +9,10 @@ plugins {
 
 android {
     compileSdk = libs.versions.compile.sdk.get().toInt()
-    namespace = "com.gotasoft.mosojkausay"
+    namespace = "com.gotasoft.mosojkausay_mobile"
 
     defaultConfig {
-        applicationId = "com.gotasoft.mosojkausay"
+        applicationId = "com.gotasoft.mosojkausay_mobile"
         minSdk = libs.versions.min.sdk.get().toInt()
         targetSdk = libs.versions.target.sdk.get().toInt()
         versionCode = 8

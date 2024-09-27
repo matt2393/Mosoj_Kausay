@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996946000906:android:43fff8ecbb86d41aedb3f3",
+        "android_client_info": {
+          "package_name": "com.gotasoft.mosojkausay_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996946000906-jjas5vhuk9lbef760o04cpumk3g66th8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG3MMNYS-w7O1z8YPvnjgVy1fgQ2nkElM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996946000906-jjas5vhuk9lbef760o04cpumk3g66th8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
